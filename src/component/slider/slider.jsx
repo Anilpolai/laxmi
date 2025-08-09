@@ -8,51 +8,67 @@ import sliderData from '../../js file/silder';
 import './slider.css';
 
 const Slider = () => {
-  useEffect(() => {
-    $('.owl-carousel').owlCarousel({
-      items: 1,
-      loop: true,
-      autoplay: true,
-      autoplayTimeout: 3000,
-      autoplayHoverPause: true,
-      nav: true,
-      dots: true,
-      animateOut: 'fadeOut',
-    });
-  }, []);
+    useEffect(() => {
+        $('.owl-carousel').owlCarousel({
+            items: 1,
+            loop: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplayHoverPause: true,
+            nav: true,
+            dots: true,
+            navText: [
+                '<span class="custom-nav-btn prev-btn">&#10094;</span>',
+                '<span class="custom-nav-btn next-btn">&#10095;</span>'
+            ],
+            animateOut: 'fadeOut',
+        });
 
-  return (
-    <section className="hero-slider py-5">
-      <div className="container">
-        <div className="owl-carousel">
-          {sliderData.map((slide) => (
-            <div className="item" key={slide.id}>
-              <div className="row align-items-center">
-                {/* Left Side Content */}
-                <div className="col-md-6 text-start">
-                  <h2 className="fw-bold">{slide.title}</h2>
-                  <p className="lead">{slide.subtitle}</p>
-                  <a href={slide.btnLink} className="btn btn-dark mt-3">
-                    {slide.btnText}
-                  </a>
+        $('.owl-carousel').on('changed.owl.carousel', function () {
+            $('.slider-text h5, .slider-text h2, .slider-text p, .slider-text a').removeClass('animate');
+            setTimeout(() => {
+                $('.owl-item.active .slider-text h5').addClass('animate delay-1');
+                $('.owl-item.active .slider-text h2').addClass('animate delay-2');
+                $('.owl-item.active .slider-text p').addClass('animate delay-3');
+                $('.owl-item.active .slider-text a').addClass('animate delay-4');
+            }, 400);
+        });
+    }, []);
+
+    return (
+        <section className="hero-slider">
+            <div className="container-fluid p-0">
+                <div className="owl-carousel">
+                    {sliderData.map((slide) => (
+                        <div className="item" key={slide.id}>
+                            <div className="row align-items-center gx-0">
+                                {/* Left Side Text */}
+                                <div className="col-md-4 text-start slider-text">
+                                    <h5 className="lead">{slide.subtitle}</h5>
+                                    <h2 className="text-header heading-letter-spacing">{slide.title}</h2>
+                                    <p className="lead">{slide.description}</p>
+                                    <a href={slide.btnLink} className="btn slider-btn mt-3">
+                                        {slide.btnText}
+                                    </a>
+                                </div>
+
+                                {/* Right Side Image */}
+                                <div className="col-md-8 slider-img">
+                                    <div className="image-container">
+                                        <img
+                                            src={slide.img}
+                                            alt={slide.title}
+                                            className="img-fluid"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
                 </div>
-                {/* Right Side Image */}
-                <div className="col-md-6">
-                  <div className="image-container zoom-out">
-                    <img
-                      src={slide.img}
-                      alt={slide.title}
-                      className="img-fluid rounded shadow"
-                    />
-                  </div>
-                </div>
-              </div>
             </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
+        </section>
+    );
 };
 
 export default Slider;

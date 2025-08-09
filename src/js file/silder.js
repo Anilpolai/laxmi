@@ -1,23 +1,22 @@
-// src/data/slider.js
 import s1 from '../img/hero/s1.jpg';
 import s2 from '../img/hero/s2.jpg';
 
 const sliderData = [
   {
-    id: 1,
-    title: "Luxury Saree Collection",
-    subtitle: "Feel the elegance with our latest arrivals.",
-    img: s1,
+    subtitle: "New Arrival",
+    title: "Summer Collection 2025",
+    description: "Discover the latest trends with our new summer lineup.",
     btnText: "Shop Now",
-    btnLink: "/shop"
+    btnLink: "/shop",
+    img: s1
   },
   {
-    id: 2,
-    title: "Festive Wear Special",
-    subtitle: "Celebrate in style with premium designs.",
-    img: s2,
-    btnText: "Explore",
-    btnLink: "/festive"
+    subtitle: "Exclusive Offer",
+    title: "Up to 50% Off",
+    description: "Grab the best deals before they're gone!",
+    btnText: "View Offers",
+    btnLink: "/offers",
+    img: s2
   }
 ];
 
