@@ -1,0 +1,196 @@
+.footer-container {
+  background-color: #000;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.footer-container1 {
+  padding-top: 7rem;
+  padding-bottom: 3rem;
+}
+
+.footer-logo {
+  max-width: 250px;
+}
+
+.footer-container p,
+.footer-container li {
+  margin-bottom: 13px;
+}
+
+.footer-container h5 {
+  color: #b02a3c;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.footer-container ul li {
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.footer-container ul li:hover {
+  color: #b02a3c;
+}
+
+/* Subscribe section */
+.subscribe-text {
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.subscribe-desc {
+  font-size: 13px;
+  margin-bottom: 15px;
+  color: #ccc;
+}
+
+/* Subscribe Form Rounded Style */
+.subscribe-form {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 30px;
+  padding: 5px 10px;
+  width: 100%;
+  max-width: 350px;
+}
+
+.subscribe-form input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 8px 10px;
+  color: white;
+  font-size: 14px;
+}
+
+.subscribe-form input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.send-icon-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.send-icon-btn:hover {
+  color: #b02a3c;
+}
+
+/* Social Icons */
+.social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  border: 1px solid white;
+  border-radius: 50%;
+  color: white;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+/* Facebook hover */
+.social-icon:nth-child(1):hover {
+  background-color: #1877f2;
+  border-color: #1877f2;
+}
+
+/* Instagram hover */
+.social-icon:nth-child(2):hover {
+  background-color: #e1306c;
+  border-color: #e1306c;
+}
+
+/* Footer bottom full width */
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 15px 0;
+  margin-top: 30px;
+  width: 100%;
+}
+
+.footer-bottom p {
+  margin: 0;
+  color: #ccc;
+}
+
+.footer-bottom span {
+  color: #b02a3c;
+}
+
+/* For toggle section */
+.footer-section {
+  position: relative;
+}
+
+.footer-toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.toggle-icon {
+  font-size: 18px;
+  font-weight: bold;
+  display: none; /* Desktop hidden */
+}
+
+/* Smooth expand/collapse + fade */
+.footer-collapse {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.5s ease, opacity 0.5s ease;
+}
+
+.footer-collapse.show {
+  max-height: 500px; /* Enough for full content */
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .toggle-icon {
+    display: inline-block; /* Show toggle on mobile */
+  }
+}
+/* Default: desktop view - always visible */
+.footer-collapse {
+  max-height: none;
+  opacity: 1;
+  overflow: visible;
+  transition: none;
+}
+
+/* Mobile only: collapse/expand */
+@media (max-width: 768px) {
+  .footer-collapse {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.5s ease, opacity 0.5s ease;
+  }
+
+  .footer-collapse.show {
+    max-height: 500px; /* Enough for full content */
+    opacity: 1;
+  }
+
+  .toggle-icon {
+    display: inline-block; /* Show toggle on mobile */
+  }
+}

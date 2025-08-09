@@ -1,0 +1,99 @@
+.top-bar {
+  background-color: #7b1d35;
+  color: white;
+  padding: 8px 0;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 14px;
+}
+
+.top-content {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+  padding: 0 20px;
+  flex-wrap: wrap;
+}
+
+.social {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  justify-content: flex-start;
+}
+
+.welcome {
+  margin-right: 10px;
+  font-weight: 500;
+}
+
+.social svg {
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.social svg:hover {
+  transform: scale(1.2);
+}
+
+.scroll-container {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.scroll-text {
+    margin: 0 10px;
+    animation: scrollText 6s linear infinite;
+}
+.nav-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.nav-button:hover {
+    opacity: 1;
+}
+
+
+.links {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.links ul {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+  padding: 0;
+  margin: 0;
+}
+
+
+@media (max-width: 768px) {
+  .social,
+  .links {
+    display: none;
+  }
+
+  .scroll-container {
+    flex: 1 0 100%;
+    justify-content: center;
+  }
+}
+
+.scroll-text {
+  animation: scrollText 6s linear infinite;
+  font-weight: 500;
+}

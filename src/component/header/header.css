@@ -1,0 +1,122 @@
+:root {
+  --primary-color: #7b1d35;
+  --hover-color: #d8453d;
+  --text-color: #111;
+}
+
+.top-header {
+  border-bottom: 1px solid #ccc;
+  width: 95%;
+  margin: 0 auto;
+}
+
+.logo img {
+  max-height: 60px;
+}
+
+.icon {
+  font-size: 22px;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: transform 0.2s, color 0.2s;
+}
+.icon:hover {
+  color: var(--hover-color);
+  transform: scale(1.2);
+}
+
+.badge {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  background-color: var(--primary-color);
+  color: white;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+
+.navbar-nav .nav-link {
+  font-weight: 600;
+  color: var(--text-color);
+  position: relative;
+}
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link:hover {
+  color: var(--primary-color);
+}
+.navbar-nav .nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background-color: var(--primary-color);
+  width: 0%;
+  transition: width 0.3s;
+}
+.navbar-nav .nav-link.active::after,
+.navbar-nav .nav-link:hover::after {
+  width: 100%;
+}
+
+/* Mobile menu */
+.mobile-nav {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 75%;
+  height: 100%;
+  background: white;
+  z-index: 999;
+  padding-top: 60px;
+  transition: left 0.3s ease;
+}
+.mobile-nav.open {
+  left: 0;
+}
+.close-icon span {
+  font-size: 26px;
+  font-weight: bold;
+  color: var(--primary-color);
+  cursor: pointer;
+}
+.mobile-nav .nav-link {
+  display: block;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+  font-weight: bold;
+}
+
+/* Mobile footer icons */
+.mobile-footer-icons {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: white; /* White background */
+  padding: 15px 0;
+  border-top: 1px solid #ddd;
+}
+.footer-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 12px;
+  color: var(--text-color);
+  text-decoration: none;
+}
+.footer-icon .icon {
+  font-size: 22px;
+  color: var(--text-color);
+}
+.footer-icon.active .icon,
+.footer-icon:hover .icon,
+.footer-icon.active span,
+.footer-icon:hover span {
+  color: var(--primary-color);
+}
+.footer-icon span {
+  margin-top: 2px;
+  font-size: 11px;
+}
