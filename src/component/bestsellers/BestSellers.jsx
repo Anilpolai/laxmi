@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FaHeart, FaEye, FaShoppingCart } from "react-icons/fa";
-import "./bestSellers.css";
+import "./bestsellers.css";
 import { products as productData } from "../../js file/products"; // Import data file
 
 export default function BestSellers() {
