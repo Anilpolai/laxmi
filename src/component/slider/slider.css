@@ -251,3 +251,27 @@
     }
 }
 
+/* ===== Responsive Mobile View ===== */
+@media (max-width: 768px) {
+    .hero-slider .row {
+        flex-direction: reverse; /* Image upar karne ke liye reverse */
+    }
+
+    .slider-text {
+        text-align: center;
+        left: 0;
+        
+    }
+
+    .slider-text h5,
+    .slider-text h2,
+    .slider-text p,
+    .slider-text a {
+        left: 0;
+        text-align: center;
+    }
+
+    .slider-img {
+        order: -1; /* Ensure image is first */
+    }
+}

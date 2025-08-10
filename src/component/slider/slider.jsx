@@ -16,7 +16,7 @@ const Slider = () => {
             autoplayTimeout: 5000,
             autoplayHoverPause: true,
             nav: true,
-            dots: true,
+            dots: false,
             navText: [
                 '<span class="custom-nav-btn prev-btn">&#10094;</span>',
                 '<span class="custom-nav-btn next-btn">&#10095;</span>'
