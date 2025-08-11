@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FaHeart, FaEye, FaShoppingCart } from "react-icons/fa";
-import "./bestsellers.css";
 import { products as productData } from "../../js file/products"; // Import data file
+import './BestSellers.css'
 
 export default function BestSellers() {
   const [wishlist, setWishlist] = useState([]);
