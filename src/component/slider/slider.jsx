@@ -39,8 +39,8 @@ const Slider = () => {
         <section className="hero-slider">
             <div className="container-fluid p-0">
                 <div className="owl-carousel">
-                    {sliderData.map((slide) => (
-                        <div className="item" key={slide.id}>
+                    {sliderData.map((slide , index) => (
+                        <div className="item" key={slide.id || index}>
                             <div className="row align-items-center gx-0">
                                 {/* Left Side Text */}
                                 <div className="col-md-4 text-start slider-text">
