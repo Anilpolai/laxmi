@@ -1,12 +1,12 @@
 // src/components/BestSellers.jsx
 import React, { useEffect, useState } from "react";
-import OwlCarousel from "react-owl-carousel";
-import { Row, Col, Card, Button } from "react-bootstrap";
 import { FaRegHeart } from "react-icons/fa";
 import { FiEye } from "react-icons/fi";
 import { products as productData } from "../../js file/products";
-import "owl.carousel/dist/assets/owl.carousel.css";
-import "owl.carousel/dist/assets/owl.theme.default.css";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
 import "./bestsellers.css";
 
 export default function BestSellers() {
@@ -23,25 +23,6 @@ export default function BestSellers() {
     );
   };
 
-  // OwlCarousel responsive settings
-  const responsive = {
-    0: {
-      items: 1,
-    },
-    576: {
-      items: 2,
-    },
-    768: {
-      items: 3,
-    },
-    992: {
-      items: 4,
-    },
-    1200: {
-      items: 5,
-    },
-  };
-
   return (
     <div className="best-sellers-section">
       <div className="text-center mb-4">
@@ -52,61 +33,67 @@ export default function BestSellers() {
         </p>
       </div>
 
-      <OwlCarousel
-        className="owl-theme"
-        loop={false} // no infinite loop to stop sliding when no more items
-        margin={15}
-        nav={true}
-        dots={false}
-        responsive={responsive}
-        navText={[
-          "<span class='custom-arrow carousel-control-prev-icon'></span>",
-          "<span class='custom-arrow carousel-control-next-icon'></span>",
-        ]}
+      <Swiper
+        modules={[Navigation]}
+        spaceBetween={15}
+        slidesPerView={5}
+        navigation={{
+          prevEl: ".swiper-button-prev-custom",
+          nextEl: ".swiper-button-next-custom",
+        }}
+        breakpoints={{
+          0: { slidesPerView: 1 },
+          576: { slidesPerView: 2 },
+          768: { slidesPerView: 3 },
+          992: { slidesPerView: 4 },
+          1200: { slidesPerView: 5 },
+        }}
       >
         {products.map((product) => (
-          <div key={product.id} className="product-card">
-            <Card className="border-0">
-              <div className="product-image">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="main-img"
-                />
-                <img
-                  src={product.hoverimage}
-                  alt={`${product.name} Hover`}
-                  className="hover-img"
-                />
+          <SwiperSlide key={product.id} className="product-card">
+            <div className="product-image">
+              <img
+                src={product.image}
+                alt={product.name}
+                className="main-img"
+              />
+              <img
+                src={product.hoverimage}
+                alt={`${product.name} Hover`}
+                className="hover-img"
+              />
 
-                {/* Wishlist always visible */}
-                <Button
-                  variant="light"
-                  className={`icon-btn wishlist ${
-                    wishlist.includes(product.id) ? "active" : ""
-                  }`}
-                  onClick={() => toggleWishlist(product.id)}
-                >
-                  <FaRegHeart />
-                </Button>
+              {/* Wishlist always visible */}
+              <button
+                className={`icon-btn wishlist ${
+                  wishlist.includes(product.id) ? "active" : ""
+                }`}
+                onClick={() => toggleWishlist(product.id)}
+                aria-label="Toggle Wishlist"
+              >
+                <FaRegHeart />
+              </button>
 
-                {/* View icon only on hover */}
-                <Button variant="light" className="icon-btn view">
-                  <FiEye />
-                </Button>
+              {/* View icon only on hover */}
+              <button className="icon-btn view" aria-label="View Product">
+                <FiEye />
+              </button>
 
-                {/* Quickshop Button */}
-                <Button className="quickshop-btn">Quickshop</Button>
-              </div>
+              {/* Quickshop Button */}
+              <button className="quickshop-btn">Quickshop</button>
+            </div>
 
-              <Card.Body className="text-center">
-                <Card.Title className="product-name">{product.name}</Card.Title>
-                <Card.Text className="product-price">₹{product.price}</Card.Text>
-              </Card.Body>
-            </Card>
-          </div>
+            <div className="text-center product-info">
+              <h5 className="product-name">{product.name}</h5>
+              <p className="product-price">₹{product.price}</p>
+            </div>
+          </SwiperSlide>
         ))}
-      </OwlCarousel>
+
+        {/* Navigation Buttons */}
+        <div className="swiper-button-prev-custom custom-arrow">&#10094;</div>
+        <div className="swiper-button-next-custom custom-arrow">&#10095;</div>
+      </Swiper>
     </div>
   );
 }
