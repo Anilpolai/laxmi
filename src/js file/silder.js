@@ -4,7 +4,7 @@ import s2 from '../img/hero/s2.jpg';
 const sliderData = [
   {
     subtitle: "New Arrival",
-    title: "Summer Collection 2025",
+    title: "Summer Collection",
     description: "Discover the latest trends with our new summer lineup.",
     btnText: "Shop Now",
     btnLink: "/shop",

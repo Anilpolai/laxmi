@@ -9,24 +9,92 @@ export const products = [
     id: 1,
     name: "Embroidered Kurti",
     price: 1299,
-    image: p1
+    image: p1,
+    hoverimage:p3
   },
   {
     id: 2,
     name: "Kurti Set with Dupatta",
     price: 1799,
-    image: p2
+    image: p2,
+    hoverimage: p4
+
   },
   {
     id: 3,
     name: "Casual Tunic",
     price: 999,
-    image: p3
+    image: p3,
+    hoverimage: p1
+
   },
   {
     id: 4,
     name: "Designer Saree",
     price: 2499,
-    image: p4
+    image: p4,
+    hoverimage: p2
   },
+  {
+    id: 1,
+    name: "Embroidered Kurti",
+    price: 1299,
+    image: p1,
+    hoverimage:p3
+  },
+  {
+    id: 2,
+    name: "Kurti Set with Dupatta",
+    price: 1799,
+    image: p2,
+    hoverimage: p4
+
+  },
+  {
+    id: 3,
+    name: "Casual Tunic",
+    price: 999,
+    image: p3,
+    hoverimage: p1
+
+  },
+  {
+    id: 4,
+    name: "Designer Saree",
+    price: 2499,
+    image: p4,
+    hoverimage: p2
+  },
+  {
+    id: 1,
+    name: "Embroidered Kurti",
+    price: 1299,
+    image: p1,
+    hoverimage:p3
+  },
+  {
+    id: 2,
+    name: "Kurti Set with Dupatta",
+    price: 1799,
+    image: p2,
+    hoverimage: p4
+
+  },
+  {
+    id: 3,
+    name: "Casual Tunic",
+    price: 999,
+    image: p3,
+    hoverimage: p1
+
+  },
+  {
+    id: 4,
+    name: "Designer Saree",
+    price: 2499,
+    image: p4,
+    hoverimage: p2
+  },
+ 
+
 ];

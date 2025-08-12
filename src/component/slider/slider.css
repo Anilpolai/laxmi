@@ -2,7 +2,8 @@
     width: 100%;
     background: #fff;
     overflow: hidden;
-    margin-top: 0; /* No top gap */
+    margin-top: 0;
+    /* No top gap */
     padding-top: 0;
 }
 
@@ -45,18 +46,20 @@
 .slider-btn {
     border-radius: 30px;
     padding: 10px 25px;
-    background: black; /* Default background black */
+    background: black;
+    /* Default background black */
     color: white;
     font-weight: 500;
     text-decoration: none;
     transition: all 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 .slider-btn:hover {
-    background: black;
-    transform: translateY(-3px) scale(1.05); /* Slight lift and scale for 3D effect */
-    box-shadow: 0 6px 10px rgba(0,0,0,0.3);
+    background-color: #7b1d35;
+    transform: translateY(-3px) scale(1.05);
+    /* Slight lift and scale for 3D effect */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
 }
 
 
@@ -66,12 +69,14 @@
     height: 100%;
     overflow: hidden;
 }
+
 .slider-img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.5s ease;
 }
+
 .slider-img img:hover {
     transform: scale(1.05);
 }
@@ -90,6 +95,7 @@
     text-align: center;
     margin-top: 15px;
 }
+
 .owl-dot span {
     width: 10px;
     height: 10px;
@@ -99,6 +105,7 @@
     margin: 5px;
     transition: all 0.3s ease;
 }
+
 .owl-dot.active span {
     background: #000;
     transform: scale(1.2);
@@ -109,6 +116,7 @@
     padding: 20px;
     animation: fadeInLeft 1s ease forwards;
 }
+
 .slider-text h5 {
     color: #666;
     font-size: 1rem;
@@ -116,6 +124,7 @@
     opacity: 0;
     animation: fadeUp 1s ease forwards 0.3s;
 }
+
 .slider-text h2 {
     font-size: 2.5rem;
     font-weight: bold;
@@ -123,14 +132,17 @@
     opacity: 0;
     animation: fadeUp 1s ease forwards 0.6s;
 }
+
 .slider-text p {
     font-size: 1rem;
     color: #444;
     opacity: 0;
     animation: fadeUp 1s ease forwards 0.9s;
 }
+
 .slider-text .btn {
-    border-radius: 50px; /* Rounded button */
+    border-radius: 50px;
+    /* Rounded button */
     padding: 10px 25px;
     font-weight: 500;
     margin-top: 10px;
@@ -142,11 +154,13 @@
 .slider-img {
     height: 100%;
 }
+
 .slider-img .image-container {
     width: 100%;
     height: 100%;
     overflow: hidden;
 }
+
 .slider-img img {
     width: 100%;
     height: 100%;
@@ -154,10 +168,12 @@
     transform: scale(1.1);
     transition: transform 3s ease;
 }
+
 /* When slide is active, zoom out */
 .owl-item.active .slider-img img {
     transform: scale(1);
 }
+
 /* Remove hover zoom */
 .slider-img img:hover {
     transform: none;
@@ -181,8 +197,10 @@
     transform: translateY(-50%);
     z-index: 100;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-    opacity: 0; /* Start hidden */
-    pointer-events: none; /* Not clickable when hidden */
+    opacity: 0;
+    /* Start hidden */
+    pointer-events: none;
+    /* Not clickable when hidden */
     transition: all 0.4s ease;
 }
 
@@ -205,10 +223,11 @@
 
 /* Hover effect for arrows */
 .custom-nav-btn:hover {
-    background: black;
+    background: #7b1d35;
     color: white;
     transform: translateY(-50%) scale(1.1);
 }
+
 /* Right arrow hidden state (shifted right) */
 .next-btn {
     right: 15px;
@@ -235,43 +254,76 @@
         opacity: 0;
         transform: translateY(20px);
     }
+
     100% {
         opacity: 1;
         transform: translateY(0);
     }
 }
+
 @keyframes fadeInLeft {
     0% {
         opacity: 0;
         transform: translateX(-30px);
     }
+
     100% {
         opacity: 1;
         transform: translateX(0);
     }
 }
 
+/* ===== PC View: 600px se upar ===== */
+@media (min-width: 600px) {
+    .hero-slider .row {
+        flex-direction: row;
+        /* Normal desktop layout */
+    }
+
+    .text-header {
+        position: relative;
+        left: 0;
+    }
+
+    .slider-text {
+        text-align: left;
+    }
+}
+
+
 /* ===== Responsive Mobile View ===== */
 @media (max-width: 768px) {
     .hero-slider .row {
-        flex-direction: reverse; /* Image upar karne ke liye reverse */
+        flex-direction: reverse;
+        /* Image upar, text niche */
+    }
+
+    .slider-img {
+        order: -1;
+        /* Image first */
+        width: 100%;
+        height: auto;
+    }
+
+    .slider-img img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        /* Image proportion maintain kare */
     }
 
     .slider-text {
         text-align: center;
         left: 0;
-        
+        padding: 15px;
     }
 
     .slider-text h5,
     .slider-text h2,
     .slider-text p,
     .slider-text a {
+        position: relative;
         left: 0;
         text-align: center;
-    }
-
-    .slider-img {
-        order: -1; /* Ensure image is first */
     }
 }

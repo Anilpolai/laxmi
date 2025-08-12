@@ -13,11 +13,8 @@ export const categoriesData = [
     img: '/images/tunics.jpg'
   },
   {
-    name: 'Saree',
+    name: 'Co-Ord',
     img: '/images/saree.jpg'
   },
-  {
-    name: 'Lehenga',
-    img: '/images/lehenga.jpg'
-  }
+
 ];
