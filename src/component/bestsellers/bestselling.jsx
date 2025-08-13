@@ -11,7 +11,7 @@ import "owl.carousel/dist/assets/owl.theme.default.css";
 
 import "./bestsellers.css";
 
-export default function BestSellers() {
+export default function bestsellers() {
   const [wishlist, setWishlist] = useState([]);
   const [products, setProducts] = useState([]);
 
