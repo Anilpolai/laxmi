@@ -16,7 +16,6 @@
 
 .section-title {
   font-family: "Montserrat", sans-serif;
-  font-optical-sizing: auto;
   font-size: 39px;
   margin: 0;
 }
@@ -92,17 +91,18 @@
   color: #fff;
 }
 
+/* View icon default position (desktop) */
 .icon-btn.view {
-  top: 15%;
+  top: 60px; /* below wishlist */
   right: 10px;
   opacity: 0;
-  transform: translate(20px, -50%);
+  transform: translate(20px, 0);
   transition: all 0.3s ease;
 }
 
 .product-image:hover .icon-btn.view {
   opacity: 1;
-  transform: translate(0, -50%);
+  transform: translate(0, 0);
 }
 
 /* Quickshop */
@@ -154,10 +154,7 @@
   margin: 0;
 }
 
-/* ===================== */
-/* Owl Carousel Nav */
-/* ===================== */
-
+/* Owl Carousel Navigation */
 .owl-nav {
   position: absolute;
   top: 50%;
@@ -194,33 +191,15 @@
   color: #fff !important;
 }
 
-/* Optional: Hide disabled nav buttons */
 .owl-nav .disabled {
   opacity: 0.4;
   cursor: default;
 }
 
-/* Responsive */
-@media (max-width: 1200px) {
-  .product-card {
-    max-width: 100% !important;
-  }
-}
-@media (max-width: 992px) {
-  .product-card {
-    max-width: 100% !important;
-  }
-}
+/* Responsive Fix – only mobile change icon positions */
 @media (max-width: 768px) {
-  /* Always show view & quickshop on mobile */
-  .icon-btn.view,
-  .quickshop-btn {
-    opacity: 1 !important;
-    transform: translate(0,0) !important;
-  }
-}
-@media (max-width: 576px) {
-  .product-card {
-    max-width: 100% !important;
+  .icon-btn.view {
+    top: 58px; /* still clearly below wishlist */
+    right: 10px;
   }
 }
