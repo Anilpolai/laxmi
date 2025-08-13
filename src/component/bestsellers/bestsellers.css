@@ -1,6 +1,6 @@
 /* Section Styles */
 .best-sellers-section {
-   position: relative;
+  position: relative;
   width: 100%;
   padding: 40px 0;
   background: #fff;
@@ -15,10 +15,9 @@
 }
 
 .section-title {
-    font-family: "Montserrat", sans-serif;
-     font-optical-sizing: auto;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
   font-size: 39px;
-  /* font-weight: bold; */
   margin: 0;
 }
 
@@ -29,7 +28,7 @@
 }
 
 /* Product Slide */
-.swiper-slide.product-card {
+.product-card {
   max-width: 100%;
   box-sizing: border-box;
   position: relative;
@@ -130,9 +129,9 @@
 .product-image:hover .quickshop-btn {
   opacity: 1;
   transform: translate(-50%, 0);
- ;
 }
-.quickshop-btn:hover{
+
+.quickshop-btn:hover {
   background-color: #7b1d35;
   color: #fff;
 }
@@ -155,106 +154,73 @@
   margin: 0;
 }
 
-/* Swiper Navigation Buttons */
-.custom-arrow {
-  background-color: #fff;
+/* ===================== */
+/* Owl Carousel Nav */
+/* ===================== */
+
+.owl-nav {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.best-sellers-section:hover .owl-nav {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.owl-nav button {
+  background-color: #fff !important;
   color: black !important;
   border-radius: 50%;
   width: 45px;
   height: 45px;
+  font-size: 28px !important;
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-  user-select: none;
   transition: all 0.3s ease;
-  font-size: 28px;
-  font-weight: bold;
-  user-select: none;
-}
-.swiper-button-prev-custom,.swiper-button-next-custom{
-  font-size: 14px;
 }
 
-.swiper-button-prev-custom {
-  left: 10px;
-}
-
-.swiper-button-next-custom {
-  right: 10px;
-}
-
-.custom-arrow:hover {
+.owl-nav button:hover {
   background-color: #7b1d35 !important;
   color: #fff !important;
 }
 
-
-
-/* Initially hide nav buttons and position them offscreen */
-.swiper-button-prev-custom,
-.swiper-button-next-custom {
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-  font-weight: bold;
-  user-select: none;
-  cursor: pointer;
+/* Optional: Hide disabled nav buttons */
+.owl-nav .disabled {
+  opacity: 0.4;
+  cursor: default;
 }
-
-/* Left arrow starts off to the left, hidden */
-.swiper-button-prev-custom {
-  left: 10px;
-  transform: translate(-50px, -50%);
-}
-
-/* Right arrow starts off to the right, hidden */
-.swiper-button-next-custom {
-  right: 10px;
-  transform: translate(50px, -50%);
-}
-
-/* On hover of the whole section, show nav buttons with sliding animation */
-.best-sellers-section:hover .swiper-button-prev-custom {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translate(0, -50%); /* slide in from left to center */
-}
-
-.best-sellers-section:hover .swiper-button-next-custom {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translate(0, -50%); /* slide in from right to center */
-}
-
 
 /* Responsive */
 @media (max-width: 1200px) {
-  .swiper-slide.product-card {
+  .product-card {
     max-width: 100% !important;
   }
 }
 @media (max-width: 992px) {
-  .swiper-slide.product-card {
+  .product-card {
     max-width: 100% !important;
   }
 }
 @media (max-width: 768px) {
-  .swiper-slide.product-card {
-    max-width: 100% !important;
+  /* Always show view & quickshop on mobile */
+  .icon-btn.view,
+  .quickshop-btn {
+    opacity: 1 !important;
+    transform: translate(0,0) !important;
   }
 }
 @media (max-width: 576px) {
-  .swiper-slide.product-card {
+  .product-card {
     max-width: 100% !important;
   }
 }

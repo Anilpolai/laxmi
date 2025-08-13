@@ -1,12 +1,14 @@
 // src/components/BestSellers.jsx
 import React, { useEffect, useState } from "react";
-import { FaRegHeart } from "react-icons/fa";
+import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { FiEye } from "react-icons/fi";
+import $ from '../../jquery/jquery';
 import { products as productData } from "../../js file/products";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
+
+import OwlCarousel from "react-owl-carousel";
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel/dist/assets/owl.theme.default.css";
+
 import "./bestsellers.css";
 
 export default function BestSellers() {
@@ -23,6 +25,22 @@ export default function BestSellers() {
     );
   };
 
+  // Owl Carousel Options
+  const options = {
+    margin: 15,
+    loop: products.length > 5, // loop only if more products
+    nav: true,
+    dots: false,
+    navText: ["&#10094;", "&#10095;"], // your custom arrows
+    responsive: {
+      0: { items: 1 },
+      576: { items: 2 },
+      768: { items: 3 },
+      992: { items: 4 },
+      1200: { items: 5 },
+    },
+  };
+
   return (
     <div className="best-sellers-section">
       <div className="text-center mb-4">
@@ -33,67 +51,48 @@ export default function BestSellers() {
         </p>
       </div>
 
-      <Swiper
-        modules={[Navigation]}
-        spaceBetween={15}
-        slidesPerView={5}
-        navigation={{
-          prevEl: ".swiper-button-prev-custom",
-          nextEl: ".swiper-button-next-custom",
-        }}
-        breakpoints={{
-          0: { slidesPerView: 1 },
-          576: { slidesPerView: 2 },
-          768: { slidesPerView: 3 },
-          992: { slidesPerView: 4 },
-          1200: { slidesPerView: 5 },
-        }}
-      >
-        {products.map((product) => (
-          <SwiperSlide key={product.id} className="product-card">
-            <div className="product-image">
-              <img
-                src={product.image}
-                alt={product.name}
-                className="main-img"
-              />
-              <img
-                src={product.hoverimage}
-                alt={`${product.name} Hover`}
-                className="hover-img"
-              />
+      {products.length > 0 && (
+        <OwlCarousel className="owl-theme" {...options}>
+          {products.map((product) => (
+            <div key={product.id} className="product-card item">
+              <div className="product-image">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="main-img"
+                />
+                <img
+                  src={product.hoverimage}
+                  alt={`${product.name} Hover`}
+                  className="hover-img"
+                />
 
-              {/* Wishlist always visible */}
-              <button
-                className={`icon-btn wishlist ${
-                  wishlist.includes(product.id) ? "active" : ""
-                }`}
-                onClick={() => toggleWishlist(product.id)}
-                aria-label="Toggle Wishlist"
-              >
-                <FaRegHeart />
-              </button>
+                {/* Wishlist Button */}
+                <button
+                  className={`icon-btn wishlist ${wishlist.includes(product.id) ? "active" : ""}`}
+                  onClick={() => toggleWishlist(product.id)}
+                  aria-label="Toggle Wishlist"
+                >
+                  {wishlist.includes(product.id) ? <FaHeart /> : <FaRegHeart />}
+                </button>
 
-              {/* View icon only on hover */}
-              <button className="icon-btn view" aria-label="View Product">
-                <FiEye />
-              </button>
+                {/* View Button */}
+                <button className="icon-btn view" aria-label="View Product">
+                  <FiEye />
+                </button>
 
-              {/* Quickshop Button */}
-              <button className="quickshop-btn">Quickshop</button>
+                {/* Quickshop */}
+                <button className="quickshop-btn">Quickshop</button>
+              </div>
+
+              <div className="text-center product-info">
+                <h5 className="product-name">{product.name}</h5>
+                <p className="product-price">₹{product.price}</p>
+              </div>
             </div>
-
-            <div className="text-center product-info">
-              <h5 className="product-name">{product.name}</h5>
-              <p className="product-price">₹{product.price}</p>
-            </div>
-          </SwiperSlide>
-        ))}
-
-        {/* Navigation Buttons */}
-        <div className="swiper-button-prev-custom custom-arrow">&#10094;</div>
-        <div className="swiper-button-next-custom custom-arrow">&#10095;</div>
-      </Swiper>
+          ))}
+        </OwlCarousel>
+      )}
     </div>
   );
 }
