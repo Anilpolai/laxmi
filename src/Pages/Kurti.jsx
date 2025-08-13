@@ -1,5 +1,5 @@
 import React from 'react'
-import BestSellers from '../component/bestsellers/bestSellers'
+import BestSellers from '../component/Bestsellers/bestSellers'
 
 function Kurti() {
   return (

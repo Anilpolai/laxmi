@@ -2,7 +2,7 @@ import React from 'react'
 import Slider from '../component/slider/slider'
 import Marktag from '../component/marketag/marktag'
 import CategorySection from '../component/categories/categories'
-import BestSellers from '../component/bestsellers/bestSellers'
+import BestSellers from '../component/Bestsellers/bestSellers'
 import NewArrival from '../component/newarrival/newarrival'
 
 function Home() {
