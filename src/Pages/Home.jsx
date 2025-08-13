@@ -3,7 +3,7 @@ import Slider from '../component/slider/slider'
 import Marktag from '../component/marketag/marktag'
 import CategorySection from '../component/categories/categories'
 import BestSellers from '../component/bestsellers/BestSellers'
-import NewArrival from '../component/new arrival/newarrival'
+import NewArrival from '../component/newarrival/newarrival'
 
 function Home() {
   return (
