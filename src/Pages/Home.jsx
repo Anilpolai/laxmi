@@ -2,8 +2,8 @@ import React from 'react'
 import Slider from '../component/slider/slider'
 import Marktag from '../component/marketag/marktag'
 import CategorySection from '../component/categories/categories'
-import Bestsellers from '../component/Bestsellers/bestselling'
 import NewArrival from '../component/newarrival/newarrival'
+import BestSellers from '../component/Bestsellers/bestselling'
 
 function Home() {
   return (
@@ -11,7 +11,7 @@ function Home() {
       <Slider />
       <Marktag />
       <CategorySection />
-      <Bestsellers/>
+      <BestSellers/>
       <NewArrival />
     </>
   )

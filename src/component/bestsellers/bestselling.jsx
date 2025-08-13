@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { FiEye } from "react-icons/fi";
-import $ from '../../jquery/jquery';
 import { products as productData } from "../../js file/products";
 
 import OwlCarousel from "react-owl-carousel";
@@ -11,7 +10,7 @@ import "owl.carousel/dist/assets/owl.theme.default.css";
 
 import "./bestsellers.css";
 
-export default function bestsellers() {
+export default function BestSellers() {
   const [wishlist, setWishlist] = useState([]);
   const [products, setProducts] = useState([]);
 
