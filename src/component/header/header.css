@@ -60,63 +60,121 @@
   width: 100%;
 }
 
-/* Mobile menu */
-.mobile-nav {
-  position: fixed;
-  top: 0;
-  left: -100%;
-  width: 75%;
-  height: 100%;
-  background: white;
-  z-index: 999;
-  padding-top: 60px;
-  transition: left 0.3s ease;
-}
-.mobile-nav.open {
-  left: 0;
-}
-.close-icon span {
-  font-size: 26px;
-  font-weight: bold;
-  color: var(--primary-color);
-  cursor: pointer;
-}
-.mobile-nav .nav-link {
-  display: block;
-  padding: 12px 0;
-  border-bottom: 1px solid #eee;
-  font-weight: bold;
+/* ---------- Mobile Header Improvements ---------- */
+@media (max-width: 992px) {
+  /* Top header full width */
+  .top-header {
+    width: 100%;
+    margin: 0;
+    padding: 8px 12px;
+    border-bottom: 1px solid #eee;
+  }
+
+  /* Mobile hamburger menu toggle */
+  .menu-toggle {
+    font-size: 28px;
+    cursor: pointer;
+    color: var(--text-color);
+    line-height: 1;
+  }
+
+  /* Mobile nav drawer */
+  .mobile-nav {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 80%;
+    max-width: 320px;
+    height: 100%;
+    background: #fff;
+    z-index: 9999;
+    padding-top: 60px;
+    transition: left 0.3s ease-in-out;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .mobile-nav.open {
+    left: 0;
+  }
+  .mobile-nav .nav-link {
+    display: block;
+    padding: 14px 12px;
+    font-weight: bold;
+    border-bottom: 1px solid #f3f3f3;
+    color: var(--text-color);
+    font-size: 15px;
+  }
+  .mobile-nav .nav-link:hover {
+    background-color: #f9f9f9;
+    color: var(--primary-color);
+  }
+  .close-icon span {
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    color: var(--primary-color);
+  }
 }
 
-/* Mobile footer icons */
+/* ---------- Bottom Mobile Footer Nav ---------- */
 .mobile-footer-icons {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  background: white; /* White background */
-  padding: 15px 0;
+  background: #fff;
+  padding: 8px 0;
   border-top: 1px solid #ddd;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 999;
+  height: 60px;
 }
+
+/* Make space so content does not go behind footer nav */
+@media (max-width: 992px) {
+  body {
+    padding-bottom: 60px; /* same as footer height */
+  }
+}
+
 .footer-icon {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 12px;
-  color: var(--text-color);
+  font-size: 11px;
   text-decoration: none;
+  color: var(--text-color);
+  min-width: 50px; /* bigger tap area */
 }
+
 .footer-icon .icon {
   font-size: 22px;
   color: var(--text-color);
 }
+
+.footer-icon span {
+  margin-top: 2px;
+  font-size: 10px;
+}
+
+/* Active/hover state */
 .footer-icon.active .icon,
-.footer-icon:hover .icon,
 .footer-icon.active span,
+.footer-icon:hover .icon,
 .footer-icon:hover span {
   color: var(--primary-color);
 }
-.footer-icon span {
-  margin-top: 2px;
-  font-size: 11px;
+
+/* Badge position for cart */
+.footer-icon.position-relative .badge {
+  position: absolute;
+  top: -4px;
+  right: 10px;
+  background-color: var(--primary-color);
+  color: white;
+  font-size: 9px;
+  padding: 1px 5px;
+  border-radius: 50%;
 }

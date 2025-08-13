@@ -1,5 +1,6 @@
 /* Section Styles */
 .best-sellers-section {
+   position: relative;
   width: 100%;
   padding: 40px 0;
   background: #fff;
@@ -8,14 +9,16 @@
 .section-tagline {
   font-size: 14px;
   letter-spacing: 2px;
-  color: #d33;
+  color: #7b1d35;
   font-weight: 500;
   margin-bottom: 5px;
 }
 
 .section-title {
-  font-size: 32px;
-  font-weight: bold;
+    font-family: "Montserrat", sans-serif;
+     font-optical-sizing: auto;
+  font-size: 39px;
+  /* font-weight: bold; */
   margin: 0;
 }
 
@@ -127,6 +130,9 @@
 .product-image:hover .quickshop-btn {
   opacity: 1;
   transform: translate(-50%, 0);
+ ;
+}
+.quickshop-btn:hover{
   background-color: #7b1d35;
   color: #fff;
 }
@@ -187,6 +193,49 @@
   background-color: #7b1d35 !important;
   color: #fff !important;
 }
+
+
+
+/* Initially hide nav buttons and position them offscreen */
+.swiper-button-prev-custom,
+.swiper-button-next-custom {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  font-weight: bold;
+  user-select: none;
+  cursor: pointer;
+}
+
+/* Left arrow starts off to the left, hidden */
+.swiper-button-prev-custom {
+  left: 10px;
+  transform: translate(-50px, -50%);
+}
+
+/* Right arrow starts off to the right, hidden */
+.swiper-button-next-custom {
+  right: 10px;
+  transform: translate(50px, -50%);
+}
+
+/* On hover of the whole section, show nav buttons with sliding animation */
+.best-sellers-section:hover .swiper-button-prev-custom {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(0, -50%); /* slide in from left to center */
+}
+
+.best-sellers-section:hover .swiper-button-next-custom {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(0, -50%); /* slide in from right to center */
+}
+
 
 /* Responsive */
 @media (max-width: 1200px) {

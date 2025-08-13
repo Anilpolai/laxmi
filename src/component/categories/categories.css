@@ -46,7 +46,26 @@
   color: #333;
 }
 
-/* .category-item:hover .category-name {
-  background: black;
-  color: white;
-} */
+.categories-row {
+  display: flex;
+  justify-content: center;
+  gap: 115px;
+  flex-wrap: wrap;
+}
+
+/* Keep your old category-item/category-image/category-name CSS as is */
+
+@media (max-width: 768px) {
+  .categories-row {
+    display: none; /* Hide flex row on mobile */
+  }
+  /* Optional: adjust Swiper slide width for smaller devices */
+  .swiper-slide {
+    width: 140px !important;
+  }
+}
+@media (min-width: 769px) {
+  .swiper {
+    display: none; /* Hide Swiper on desktop */
+  }
+}
