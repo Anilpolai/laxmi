@@ -1,0 +1,128 @@
+.shop-swiper-section {
+  width: 100%;
+  margin: 40px auto;
+  padding: 0 24px 40px 24px;
+}
+
+.shop-swiper-heading {
+  text-align: center;
+  margin-bottom: 38px;
+}
+
+.shop-swiper-heading h2 {
+  font-size: 2.6rem;
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+  font-weight: 700;
+}
+.shop-swiper-heading p {
+  font-size: 1.15rem;
+  color: #7a7a7a;
+  margin-bottom: 0;
+  font-weight: 400;
+}
+
+.shop-slide {
+  padding: 15px 10px;
+}
+
+.shop-slide-inner {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.shop-main-img {
+  width: 100%;
+  max-width: 320px;
+  height: 420px;
+  object-fit: cover;
+  border-radius: 18px;
+  margin: 0 auto;
+}
+
+.shop-card-overlay {
+  width: calc(100% - 20px);
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  border-radius: 15px;
+}
+
+.shop-thumb {
+  width: 58px;
+  height: 58px;
+  object-fit: cover;
+  border-radius: 14px;
+  margin-right: 13px;
+  box-shadow: 0 1px 7px rgba(50,50,50,.1);
+}
+
+.shop-card-info {
+  flex: 1;
+}
+
+.shop-card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+  line-height: 1.2;
+  color: #1b1b1b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.shop-card-price {
+  font-size: 1rem;
+  color: #1a5a61;
+  font-weight: 600;
+}
+
+.shop-card-oldprice {
+  margin-left: 10px;
+  text-decoration: line-through;
+  color: #b0b0b2;
+  font-weight: 400;
+  font-size: 0.95rem;
+}
+
+/* Custom arrows */
+.custom-arrow {
+  width: 46px;
+  height: 46px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #111;
+  cursor: pointer;
+}
+.custom-arrow.next { right: -20px; }
+.custom-arrow.prev { left: -20px; }
+
+@media (max-width: 900px) {
+  .shop-main-img { max-width: 220px; height: 320px; }
+  .shop-card-overlay { padding: 10px; }
+}
+@media (max-width: 600px) {
+  .shop-swiper-section { padding: 0 2vw; }
+  .shop-main-img { max-width: 90vw; height: 260px; }
+  .custom-arrow { display: none; }
+}
