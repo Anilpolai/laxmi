@@ -5,6 +5,7 @@ import CategorySection from '../component/categories/categories'
 import NewArrival from '../component/newarrival/newarrival'
 import BestSellers from '../component/newseller/bestselling'
 import ShopSwiper from '../component/shoplook/shopswiper'
+import CustomerTestimonials from '../component/reviews/CustomerTestimonials'
 
 function Home() {
   return (
@@ -15,6 +16,7 @@ function Home() {
       <BestSellers/>
       <NewArrival />
       <ShopSwiper/>
+      <CustomerTestimonials/>
     </>
   )
 }
