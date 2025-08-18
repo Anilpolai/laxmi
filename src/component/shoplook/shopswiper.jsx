@@ -1,25 +1,6 @@
 import React from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import OwlCarousel from "react-owl-carousel";
 import "./shopswiper.css";
-
-// Custom Arrow Components
-function NextArrow({ onClick }) {
-  return (
-    <div className="custom-arrow next" onClick={onClick}>
-      &#8250;
-    </div>
-  );
-}
-
-function PrevArrow({ onClick }) {
-  return (
-    <div className="custom-arrow prev" onClick={onClick}>
-      &#8249;
-    </div>
-  );
-}
 
 export default function ShopSwiper() {
   const products = [
@@ -56,20 +37,28 @@ export default function ShopSwiper() {
     },
   ];
 
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 5,
-    slidesToScroll: 1,
-    arrows: true,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
-    responsive: [
-      { breakpoint: 1200, settings: { slidesToShow: 3 } },
-      { breakpoint: 768, settings: { slidesToShow: 2 } },
-      { breakpoint: 480, settings: { slidesToShow: 1 } },
-    ],
+  const options = {
+    loop: true,
+    margin: 15,
+    nav: true,
+    dots: false, // default
+    responsive: {
+      0: {
+        items: 2,
+        dots: true,   // ✅ mobile पर dots दिखेंगे
+        nav: false,
+      },
+      600: {
+        items: 2,
+        dots: true,
+        nav: false,
+      },
+      1000: {
+        items: 5,
+        dots: false,  // ✅ desktop पर dots hide
+        nav: true,
+      },
+    },
   };
 
   return (
@@ -79,7 +68,7 @@ export default function ShopSwiper() {
         <p>Unmatched design — superior performance and customer satisfaction in one.</p>
       </div>
 
-      <Slider {...settings}>
+      <OwlCarousel className="owl-theme" {...options}>
         {products.map((item) => (
           <div key={item.id} className="shop-slide">
             <div className="shop-slide-inner">
@@ -99,7 +88,7 @@ export default function ShopSwiper() {
             </div>
           </div>
         ))}
-      </Slider>
+      </OwlCarousel>
     </div>
   );
 }

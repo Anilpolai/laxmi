@@ -118,7 +118,7 @@
 .custom-arrow.prev { left: -20px; }
 
 @media (max-width: 900px) {
-  .shop-main-img { max-width: 220px; height: 320px; }
+  .shop-main-img { width: 100%;}
   .shop-card-overlay { padding: 10px; }
 }
 @media (max-width: 600px) {

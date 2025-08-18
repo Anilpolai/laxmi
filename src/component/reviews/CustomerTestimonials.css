@@ -156,13 +156,54 @@
   }
 }
 
+/* Mobile full width card */
 @media (max-width: 600px) {
-  .testimonial-section {
-    padding: 30px 4vw;
+  .testimonial-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto;
+    text-align: center; /* सब content center */
+    border-radius: 12px;
+    padding: 20px;
   }
 
-  .testimonial-heading h2 {
-    font-size: 1.5rem;
+  .testimonial-user {
+    justify-content: center;
+  }
+
+  .testimonial-user img {
+    margin: 0 auto 10px auto;
+    display: block;
+  }
+
+  .testimonial-user h4 {
+    text-align: center;
+    font-size: 1.1rem;
+  }
+
+  .testimonial-content {
+    font-size: 1rem;
+    margin-top: 10px;
+  }
+
+  .testimonial-location {
+    margin-top: 6px;
+    color: #777;
+    font-size: 0.95rem;
+  }
+
+  /* dots center */
+  .slick-dots {
+    bottom: -30px;
+  }
+
+  .slick-dots li button:before {
+    font-size: 10px;
+    color: #444;
+  }
+
+  .slick-dots li.slick-active button:before {
+    color: #111;
   }
 }
 
