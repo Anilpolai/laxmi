@@ -94,50 +94,58 @@
   position: relative;
 }
 
-/* 🔹 MOBILE ONLY */
+/* MOBILE ONLY */
 @media (max-width: 768px) {
   .newstyle {
     display: none;
   }
 
-  .sectionbox {
-  position: relative;
-  width: 48%;
-  min-height: 400px;
-  border-radius: 24px;
-  overflow: hidden;
-  box-shadow: 0 4px 20px rgba(44,12,44,0.11);
-  background: #f8f5f4;
-}
-
   .top-slider {
     margin: 0;
+    padding: 0;
+    width: 100%;
   }
 
   .mobile-section {
-    width: 100%;
+    width: 90%;              /* ✅ fixed 90% width */
     min-height: 400px;
-    background: #000; /* ✅ Black background */
-    border-radius: 0; /* ✅ full width no curve */
+    background: #000;
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 0 auto;          /* ✅ center align */
   }
 
-  .mobile-section .main-img2 {
+   .mobile-section .main-img2 {
     height: 400px;
-    border-radius: 0;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 16px;
   }
+
 
   .img-overlay {
     padding: 20px;
-    border-radius: 0; /* ✅ remove curve bottom */
+    border-radius: 0 0 16px 16px; /* ✅ Keep only bottom curve */
   }
 
   .latest-styles.sectionbox {
     width: 100%;
-    margin: 0 auto;
-    border-radius: 0;
+    margin: 20px auto;
+    border-radius: 16px;
+    overflow: hidden;
   }
 
   .latest-styles img {
-    border-radius: 0;
+    border-radius: 16px;
+  }
+
+  /* ✅ Fix Owl Carousel spacing */
+  .owl-carousel .owl-stage-outer {
+    padding: 0 12px; /* slight padding so radius is visible */
+  }
+
+  .owl-carousel .owl-item {
+    display: flex;
+    justify-content: center;
   }
 }
