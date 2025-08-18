@@ -16,7 +16,6 @@ const NewArrival = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Data for top two boxes
   const topBoxes = [
     {
       img: fs1,
@@ -35,12 +34,12 @@ const NewArrival = () => {
   return (
     <div className="newarrival">
       {isMobile ? (
-        // 🔹 MOBILE: Slider for top two boxes
+        // 🔹 MOBILE: Full-width Black Background Slider
         <div className="top-slider">
-          <Swiper spaceBetween={16} slidesPerView={'auto'}>
+          <Swiper spaceBetween={0} slidesPerView={1}>
             {topBoxes.map((box, i) => (
-              <SwiperSlide key={i} style={{ width: '80%', maxWidth: '320px' }}>
-                <div className="sectionbox">
+              <SwiperSlide key={i}>
+                <div className="sectionbox mobile-section">
                   <img src={box.img} alt={box.title} className="main-img2" />
                   <div className="img-overlay">
                     <span className="offer-text">{box.offer}</span>
@@ -53,7 +52,7 @@ const NewArrival = () => {
           </Swiper>
         </div>
       ) : (
-        // 🔹 DESKTOP: Side-by-side boxes
+        // 🔹 DESKTOP: Side-by-side
         <div className="newstyle">
           {topBoxes.map((box, i) => (
             <div className="sectionbox" key={i}>
@@ -68,7 +67,7 @@ const NewArrival = () => {
         </div>
       )}
 
-      {/* 🔹 Latest Styles always below */}
+      {/* 🔹 Latest Styles */}
       <div className="latest-styles sectionbox">
         <img src={fs3} alt="Latest Styles" className="main-img2" />
         <div className="img-center-overlay">

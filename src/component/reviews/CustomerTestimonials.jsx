@@ -39,26 +39,24 @@ const testimonials = [
   }
 ];
 
-
-
-// Custom Arrow Components
+// Custom Arrows
 function NextArrow({ onClick }) {
   return (
-    <div className="custom-arrow next" onClick={onClick} style={{right: -22}}>
+    <div className="custom-arrow next" onClick={onClick}>
       &#8250;
     </div>
   );
 }
 function PrevArrow({ onClick }) {
   return (
-    <div className="custom-arrow prev" onClick={onClick} style={{left: -22}}>
+    <div className="custom-arrow prev" onClick={onClick}>
       &#8249;
     </div>
   );
 }
 
 export default function CustomerTestimonials() {
- const settings = {
+  const settings = {
     centerMode: true,
     centerPadding: "60px",
     slidesToShow: 3,
@@ -69,7 +67,7 @@ export default function CustomerTestimonials() {
     prevArrow: <PrevArrow />,
     responsive: [
       { breakpoint: 950, settings: { slidesToShow: 2, centerPadding: "0px" } },
-      { breakpoint: 600, settings: { slidesToShow: 1, centerPadding: "0px" } }
+      { breakpoint: 600, settings: { slidesToShow: 1, centerPadding: "0px", dots: true } }
     ],
   };
 
@@ -84,23 +82,25 @@ export default function CustomerTestimonials() {
       <Slider {...settings}>
         {testimonials.map((item, idx) => (
           <div className="testimonial-card" key={idx}>
-            <div className="testimonial-avatar">
-              <img src={item.img} alt={item.name} />
-            </div>
-            <div className="testimonial-info">
+            <div className="testimonial-header">
+              <div className="testimonial-avatar">
+                <img src={item.img} alt={item.name} />
+              </div>
               <div className="testimonial-name">{item.name}</div>
+            </div>
+
+            <div className="testimonial-info">
               <div className="testimonial-stars">
-                {Array(item.stars)
-                  .fill(0)
-                  .map((_, i) => (
-                    <span key={i} style={{ color: "#FFA300", fontSize: "22px"}}>★</span>
-                  ))}
+                {Array(item.stars).fill(0).map((_, i) => (
+                  <span key={i} style={{ color: "#FFA300", fontSize: "22px" }}>★</span>
+                ))}
               </div>
               <div className="testimonial-title">{item.title}</div>
               <div className="testimonial-content">{item.content}</div>
               <div className="testimonial-location">{item.location}</div>
             </div>
           </div>
+
         ))}
       </Slider>
     </div>
