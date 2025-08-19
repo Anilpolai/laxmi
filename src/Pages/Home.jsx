@@ -6,6 +6,7 @@ import NewArrival from '../component/newarrival/newarrival'
 import BestSellers from '../component/newseller/bestselling'
 import ShopSwiper from '../component/shoplook/shopswiper'
 import CustomerTestimonials from '../component/reviews/CustomerTestimonials'
+import CardsInstagram from '../component/MovingCards/cards-instagram'
 
 function Home() {
   return (
@@ -17,6 +18,7 @@ function Home() {
       <NewArrival />
       <ShopSwiper/>
       <CustomerTestimonials/>
+      <CardsInstagram/>
     </>
   )
 }

@@ -1,0 +1,49 @@
+/* cards-instagram.css */
+
+.instagram-gallery {
+  overflow-x: hidden; /* hide scrollbar */
+  position: relative;
+  width: 100%;
+  padding: 16px 0;
+  cursor: grab;
+}
+
+.insta-card {
+  flex: 0 0 auto;
+  width: 350px;
+  height: 490px;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.insta-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.insta-card:hover img {
+  transform: scale(1.05);
+}
+
+.insta-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 12px;
+  border-radius: 50%;
+}
+
+.insta-card:hover .insta-overlay {
+  opacity: 1;
+  cursor: pointer;
+}
