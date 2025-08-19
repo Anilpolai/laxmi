@@ -12,25 +12,31 @@ import img5 from "../../img/fs2.jpg";
 const images = [img1, img2, img3, img4, img5];
 
 function CardsInstagram() {
-  // Duplicate images for seamless loop
   const loopImages = [...images, ...images];
 
   return (
-    <div className="instagram-gallery">
-      <div className="instagram-slider">
-        {loopImages.map((img, idx) => (
-          <div className="insta-card" key={idx}>
-            <img src={img} alt={`Instagram ${idx}`} />
-            <a
-              href="https://www.instagram.com/yourprofile"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="insta-overlay"
-            >
-              <FaInstagram size={36} />
-            </a>
-          </div>
-        ))}
+    <div className="instagram-section">
+      <div className="instagram-header text-center">
+        <h2>@Yourinstagram</h2>
+        <p>Inspire and let yourself be inspired, from one unique fashion to another.</p>
+      </div>
+
+      <div className="instagram-gallery">
+        <div className="instagram-slider">
+          {loopImages.map((img, idx) => (
+            <div className="insta-card" key={idx}>
+              <img src={img} alt={`Instagram ${idx}`} />
+              <a
+                href="https://www.instagram.com/yourprofile"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="insta-overlay"
+              >
+                <FaInstagram size={36} />
+              </a>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

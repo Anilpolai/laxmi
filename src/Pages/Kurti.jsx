@@ -2,8 +2,8 @@ import React from 'react'
 
 function Kurti() {
   return (
-    <div>Kurti
-      
+    <div>
+      Kurti
     </div>
   )
 }

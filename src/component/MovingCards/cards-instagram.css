@@ -1,10 +1,24 @@
 /* cards-instagram.css */
 
+/* Header styles */
+.instagram-header h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.instagram-header p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 24px;
+}
+
+/* Gallery styles */
 .instagram-gallery {
   display: flex;
   gap: 16px;
   padding: 16px 0;
-  overflow: hidden;           /* hide scrollbars */
+  overflow: hidden;
   position: relative;
   width: 100%;
 }
