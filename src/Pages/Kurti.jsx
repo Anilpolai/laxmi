@@ -3,7 +3,8 @@ import React from 'react'
 function Kurti() {
   return (
     <div>
-      Kurti
+      <div className="first-img">Home-kurtis</div>
+      
     </div>
   )
 }

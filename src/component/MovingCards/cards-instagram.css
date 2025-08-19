@@ -38,34 +38,47 @@
   margin-right: 16px;
 }
 
-.insta-card img {
+.insta-card video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.3s ease;
 }
 
-.insta-card:hover img {
+.insta-card:hover video {
   transform: scale(1.05);
 }
 
+/* Common overlay styles */
 .insta-overlay {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #fff;
+  bottom: -50px; /* start hidden */
   opacity: 0;
-  transition: opacity 0.3s ease;
-  background: rgba(0,0,0,0.4);
-  padding: 12px;
+  transition: all 0.4s ease;
+  color:#7b1d35;
+  background: rgba(255, 255, 255, 0.6);
+  padding: 10px 12px;
   border-radius: 50%;
+  z-index: 2;
 }
 
+/* Instagram icon left */
+.insta-left {
+  left: 20px;
+}
+
+/* Cart icon right */
+.insta-right {
+  right: 20px;
+}
+
+/* Hover effect: slide up + show */
 .insta-card:hover .insta-overlay {
+  bottom: 20px;  /* slide up into place */
   opacity: 1;
   cursor: pointer;
 }
+
 
 /* Keyframes for continuous scrolling */
 @keyframes scroll {
