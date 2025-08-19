@@ -12,7 +12,7 @@ const videos = [
 ];
 
 function CardsInstagram() {
-  const loopVideos = [...videos, ...videos];
+  const loopVideos = [...videos, ...videos, ...videos];
 
   return (
     <div className="instagram-section">
