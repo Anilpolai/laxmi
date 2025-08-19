@@ -3,13 +3,13 @@ import React from "react";
 import "./cards-instagram.css";
 import { FaInstagram, FaShoppingCart } from "react-icons/fa";
 
-// Import videos
-import vid1 from "../../img/video/v1.mp4";
-import vid2 from "../../img/video/v2.mp4";
-import vid3 from "../../img/video/v3.mp4";
-import vid4 from "../../img/video/v4.mp4";
-
-const videos = [vid1, vid2, vid3, vid4];
+// ✅ Use URLs directly instead of import
+const videos = [
+  "https://www.snehalcreation.co.in/backend/uploads/gallery_images/2813_MM-1015.mp4",
+  "https://www.snehalcreation.co.in/backend/uploads/gallery_images/2814_MM-1016.mp4",
+  "https://www.snehalcreation.co.in/backend/uploads/gallery_images/2814_MM-1016.mp4",
+  "https://www.snehalcreation.co.in/backend/uploads/gallery_images/2813_MM-1015.mp4",
+];
 
 function CardsInstagram() {
   const loopVideos = [...videos, ...videos];
