@@ -52,7 +52,7 @@ const header = () => {
             <li className="nav-item"><NavLink to="/Kurti" className="nav-link">Kurti</NavLink></li>
             <li className="nav-item"><NavLink to="/kurti-set" className="nav-link">Kurti Set</NavLink></li>
             <li className="nav-item"><NavLink to="/tunics" className="nav-link">Tunics</NavLink></li>
-            <li className="nav-item"><NavLink to="/co-ord-set" className="nav-link">Co-Ord Set</NavLink></li>
+            <li className="nav-item"><NavLink to="/co-ord" className="nav-link">Co-Ord Set</NavLink></li>
             <li className="nav-item"><NavLink to="/contact" className="nav-link">Contact</NavLink></li>
             <li className="nav-item"><NavLink to="/about" className="nav-link">About Us</NavLink></li>
           </ul>
