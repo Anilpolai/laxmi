@@ -1,0 +1,488 @@
+/* Left filter full height */
+.kurti-container {
+  display: flex;
+  align-items: flex-start;
+  /* ✅ sidebar top se start */
+  width: 100%;
+  margin: 0 auto;
+  gap: 25px;
+}
+
+.kurti-filter {
+  
+  width: 280px;
+  min-height: 100vh;
+  /* ✅ full height */
+  background: #fafafa;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 0;
+  /* ✅ scroll pe fixed */
+}
+
+.kurti-section {
+  flex: 1;
+}
+
+/* Column icons */
+.kurti-columns {
+  display: flex;
+  gap: 10px;
+}
+
+.kurti-columns button {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #fff;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 16px;
+}
+
+.kurti-columns button.active {
+  background: #7b1d35;
+  color: #fff;
+  border-color: #7b1d35;
+}
+
+/* Story section */
+.kurti-stories {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+.kurti-story {
+  width: 70px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.kurti-story img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 2px solid #7b1d35;
+  object-fit: cover;
+  margin-bottom: 5px;
+}
+
+
+
+/* ===========================
+   Section Styles
+=========================== */
+.kurti-container {
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+  gap: 25px;
+}
+
+.kurti-section {
+  width: 90%;
+  /* ✅ 90% width */
+  margin: 0 auto;
+  /* ✅ center align dono side equal */
+  padding: 60px 20px;
+  /* ✅ andar ka gap */
+  background: #fff;
+}
+
+/* Right section */
+.kurti-section {
+  flex: 1;
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+}
+
+/* Grid Columns */
+.kurti-products-grid {
+  display: grid;
+  gap: 25px;
+  margin-top: 40px;
+}
+
+.kurti-products-grid.cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.kurti-products-grid.cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.kurti-products-grid.cols-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* Section Headings */
+.kurti-tagline,
+.kurti-title,
+.kurti-subtitle {
+  text-align: center;
+}
+
+.kurti-tagline {
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: #7b1d35;
+  font-weight: 500;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.kurti-title {
+  font-family: "Montserrat", sans-serif;
+  font-size: 32px;
+  margin: 0;
+  font-weight: 700;
+  color: #111;
+}
+
+.kurti-subtitle {
+  font-size: 16px;
+  color: #555;
+  margin-top: 5px;
+}
+
+/* ===========================
+   Grid Layout (Full width)
+=========================== */
+.kurti-products-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  /* ✅ Desktop - 5 per row */
+  gap: 25px;
+  margin-top: 40px;
+  width: 100%;
+}
+
+/* Laptop */
+@media (max-width: 1199px) {
+  .kurti-products-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Tablet */
+@media (max-width: 991px) {
+  .kurti-products-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .kurti-products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    /* ✅ Always 2x2 */
+    gap: 20px;
+  }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+  .kurti-products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    /* ✅ Still 2x2 */
+    gap: 15px;
+  }
+}
+
+
+/* ===========================
+   Product Card
+=========================== */
+.kurti-card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.kurti-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+/* ===========================
+   Product Image
+=========================== */
+.kurti-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.kurti-image img {
+  width: 100%;
+  display: block;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  border-radius: 12px 12px 0 0;
+}
+
+.kurti-image:hover img.kurti-main-img {
+  transform: scale(1.05);
+}
+
+.kurti-image .kurti-hover-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.kurti-image:hover .kurti-hover-img {
+  opacity: 1;
+  transform: scale(1.08);
+}
+
+/* ===========================
+   Icons (Wishlist, View)
+=========================== */
+.kurti-icon-btn {
+  background: #fff;
+  border: none;
+  border-radius: 50%;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  z-index: 3;
+  transition: all 0.3s ease;
+  color: #333;
+}
+
+/* Wishlist */
+.kurti-icon-btn.kurti-wishlist {
+  top: 10px;
+  right: 10px;
+}
+
+.kurti-icon-btn.kurti-wishlist.active {
+  background-color: #7b1d35;
+  color: #fff;
+}
+
+/* View */
+.kurti-icon-btn.kurti-view {
+  top: 55px;
+  right: 10px;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.kurti-image:hover .kurti-icon-btn.kurti-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===========================
+   Quickshop Button
+=========================== */
+.kurti-quickshop-btn {
+  width: 80%;
+  padding: 10px 20px;
+  background: #fff;
+  color: #000;
+  border: none;
+  border-radius: 50px;
+  opacity: 0;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-weight: 600;
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translate(-50%, 20px);
+  text-align: center;
+  z-index: 2;
+}
+
+/* ✅ Button poore card hover pe dikh jayega */
+.kurti-card:hover .kurti-quickshop-btn {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* Image zoom on full card hover */
+.kurti-card:hover .kurti-main-img {
+  transform: scale(1.05);
+}
+
+/* Hover image visible on full card hover */
+.kurti-card:hover .kurti-hover-img {
+  opacity: 1;
+  transform: scale(1.08);
+}
+
+/* View icon show on full card hover */
+.kurti-card:hover .kurti-icon-btn.kurti-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Quickshop button show on full card hover */
+.kurti-card:hover .kurti-quickshop-btn {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* Text color change on full card hover */
+.kurti-card:hover .kurti-name {
+  color: #7b1d35;
+}
+
+.kurti-card:hover .kurti-price {
+  color: #000;
+}
+
+.kurti-quickshop-btn:hover {
+  background-color: #7b1d35;
+  color: #fff;
+}
+
+
+/* ===========================
+   Product Info
+=========================== */
+.kurti-info {
+  padding: 15px 10px 20px;
+  text-align: center;
+}
+
+.kurti-name {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 5px 0;
+  color: #222;
+  transition: color 0.3s ease;
+}
+
+.kurti-price {
+  font-size: 14px;
+  color: #d33;
+  font-weight: bold;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+/* ✅ Now hover works when whole card is hovered */
+.kurti-card:hover .kurti-name {
+  color: #7b1d35;
+}
+
+.kurti-card:hover .kurti-price {
+  color: #000;
+}
+
+
+/* Wrapper with Sidebar */
+.kurti-wrapper {
+  display: flex;
+  width: 95%;
+  margin: 0 auto;
+  gap: 30px;
+}
+
+
+/* Left filter */
+.kurti-filter {
+  width: 260px;
+  /* ✅ thoda bada */
+  background: #fafafa;
+  border-radius: 12px;
+  padding: 20px;
+  height: 100%;
+  /* ✅ top to bottom */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.kurti-filter h3 {
+  margin-bottom: 15px;
+  font-size: 20px;
+  color: #7b1d35;
+}
+
+.filter-box {
+  margin-bottom: 25px;
+}
+
+.filter-box h4 {
+  font-size: 16px;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.filter-box input[type="range"] {
+  width: 100%;
+}
+
+.filter-box label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.filter-box h4 {
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.filter-box label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+.filter-box button {
+  margin-right: 8px;
+  padding: 5px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+  background: #f9f9f9;
+  transition: 0.3s;
+}
+
+.filter-box button:hover {
+  background: #7b1d35;
+  color: #fff;
+  border-color: #7b1d35;
+}
+
+/* Stock text */
+.kurti-stock {
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+.kurti-stock.in-stock {
+  color: green;
+  font-weight: 600;
+}
+
+.kurti-stock.out-stock {
+  color: red;
+  font-weight: 600;
+}
+
+/* Product Section (already there but adjust for sidebar) */
+.kurti-section {
+  flex: 1;
+}
