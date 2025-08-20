@@ -1,5 +1,5 @@
 import p1 from '../img/kurti/blue1.jpg';
-import p2 from '../img/kurti/lightPink1.jpg';
+import p2 from '../img/kurti/lightpink1.jpg';
 import p3 from '../img/kurti/blue2.jpg';
 import p4 from '../img/kurti/pink1.jpg';
 
