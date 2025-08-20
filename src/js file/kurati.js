@@ -1,7 +1,7 @@
-import p1 from '../img/products/p1.jpg';
-import p2 from '../img/products/p2.jpg';
-import p3 from '../img/products/p3.jpg';
-import p4 from '../img/products/p4.jpg';
+import p1 from '../img/kurti/blue1.jpg';
+import p2 from '../img/kurti/light-pink1.jpg';
+import p3 from '../img/kurti/blue2.jpg';
+import p4 from '../img/kurti/pink1.jpg';
 
 export const products = [
   {
