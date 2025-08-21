@@ -4,7 +4,7 @@ import { FiEye } from "react-icons/fi";
 import { BsGrid3X3GapFill, BsGridFill } from "react-icons/bs";
 import { FaThLarge, FaTh } from "react-icons/fa"; // extra option for variety
 import { Link } from "react-router-dom";
-import { products as productData } from "../js file/kurati";
+import { products as productData } from "../jsfile/kurati";
 import banner from '../img/kurti/homekurti.jpg'
 import "./kurti.css";
 
