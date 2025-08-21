@@ -1,24 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { FaRegHeart, FaHeart } from "react-icons/fa";
+import { FaRegHeart, FaHeart, FaFilter } from "react-icons/fa";
 import { FiEye } from "react-icons/fi";
 import { BsGrid3X3GapFill, BsGridFill } from "react-icons/bs";
-import { FaThLarge, FaTh } from "react-icons/fa"; // extra option for variety
+import { FaThLarge } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { products as productData } from "../jsfile/kurati";
-import banner from '../img/kurti/homekurti.jpg'
+import banner from "../img/kurti/homekurti.jpg";
 import "./kurti.css";
 
 function Kurti() {
   const [wishlist, setWishlist] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState(productData);
-  const [priceRange
-    
-  ] = useState(5000);
   const [availability, setAvailability] = useState("all");
   const [columns, setColumns] = useState(3);
   const [minPrice, setMinPrice] = useState(500);
   const [maxPrice, setMaxPrice] = useState(5000);
 
+  // ✅ Mobile filter toggle
+  const [showFilter, setShowFilter] = useState(false);
 
   useEffect(() => {
     let updated = productData.filter(
@@ -29,8 +28,6 @@ function Kurti() {
     setFilteredProducts(updated);
   }, [minPrice, maxPrice, availability]);
 
-
-  // Wishlist load
   useEffect(() => {
     const saved = JSON.parse(localStorage.getItem("wishlist")) || [];
     setWishlist(saved);
@@ -46,21 +43,22 @@ function Kurti() {
     });
   };
 
-  // Filter products
-  useEffect(() => {
-    let updated = productData.filter((p) => p.price <= priceRange);
-    if (availability === "in") updated = updated.filter((p) => p.stock > 0);
-    if (availability === "out") updated = updated.filter((p) => p.stock === 0);
-    setFilteredProducts(updated);
-  }, [priceRange, availability]);
-
   return (
     <div className="kurti-Full">
-      <img src={banner} alt="" />
+      {/* Banner */}
+      <div className="kurti-banner">
+        <img src={banner} alt="Kurti Banner" />
+      </div>
       <div className="kurti-container">
 
-        {/* ================= Left Filter ================= */}
-        <aside className="kurti-filter">
+        {/* ================= Left Filter (Sidebar / Drawer) ================= */}
+        <aside className={`kurti-filter ${showFilter ? "open" : ""}`}>
+          <button
+            className="filter-close"
+            onClick={() => setShowFilter(false)}
+          >
+            ✕
+          </button>
           <h3>Filter</h3>
 
           {/* Availability */}
@@ -98,35 +96,29 @@ function Kurti() {
             </label>
           </div>
 
-
           {/* Price */}
           <div className="filter-box">
             <h4>Price (₹)</h4>
-
-            {/* Input Boxes */}
             <div className="price-inputs">
-              {/* Min Price */}
               <input
                 type="text"
                 value={minPrice}
                 onInput={(e) => {
-                  e.target.value = e.target.value.replace(/[^0-9]/g, ""); // sirf number allow
+                  e.target.value = e.target.value.replace(/[^0-9]/g, "");
                   setMinPrice(Number(e.target.value) || 0);
                 }}
               />
               <span>–</span>
-              {/* Max Price */}
               <input
                 type="text"
                 value={maxPrice}
                 onInput={(e) => {
-                  e.target.value = e.target.value.replace(/[^0-9]/g, ""); // sirf number allow
+                  e.target.value = e.target.value.replace(/[^0-9]/g, "");
                   setMaxPrice(Number(e.target.value) || 0);
                 }}
               />
             </div>
 
-            {/* Single Slider */}
             <input
               type="range"
               min="500"
@@ -139,22 +131,14 @@ function Kurti() {
                 setMaxPrice(val);
               }}
             />
-
             <p>
               Range: <strong>₹{minPrice}</strong> – <strong>₹{maxPrice}</strong>
             </p>
           </div>
-
-
-
-
-
         </aside>
 
         {/* ================= Right Products ================= */}
         <main className="kurti-section">
-
-          {/* Title + Layout in one row */}
           <div className="kurti-header">
             <div className="kurti-texts">
               <p className="kurti-tagline">STAY AHEAD OF THE FASHION CURVE</p>
@@ -165,17 +149,34 @@ function Kurti() {
             </div>
 
             <div className="kurti-columns">
-              <button onClick={() => setColumns(3)} className={columns === 3 ? "active" : ""}>
+              <button
+                onClick={() => setColumns(3)}
+                className={columns === 3 ? "active" : ""}
+              >
                 <BsGrid3X3GapFill />
               </button>
-              <button onClick={() => setColumns(4)} className={columns === 4 ? "active" : ""}>
+              <button
+                onClick={() => setColumns(4)}
+                className={columns === 4 ? "active" : ""}
+              >
                 <BsGridFill />
               </button>
-              <button onClick={() => setColumns(5)} className={columns === 5 ? "active" : ""}>
+              <button
+                onClick={() => setColumns(5)}
+                className={columns === 5 ? "active" : ""}
+              >
                 <FaThLarge />
               </button>
             </div>
           </div>
+
+           {/* Mobile Filter Button */}
+          <button
+            className="mobile-filter-btn"
+            onClick={() => setShowFilter(!showFilter)}
+          >
+            <FaFilter /> Filter
+          </button>
 
 
           {/* Products Grid */}
@@ -183,29 +184,17 @@ function Kurti() {
             {filteredProducts.map((product) => (
               <div key={product.id} className="kurti-card">
                 <div className="kurti-image">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="kurti-main-img"
-                  />
-                  <img
-                    src={product.hoverimage}
-                    alt="hover"
-                    className="kurti-hover-img"
-                  />
+                  <img src={product.image} alt={product.name} className="kurti-main-img" />
+                  <img src={product.hoverimage} alt="hover" className="kurti-hover-img" />
 
                   <button
-                    className={`kurti-icon-btn kurti-wishlist ${wishlist.includes(product.id) ? "active" : ""
-                      }`}
+                    className={`kurti-icon-btn kurti-wishlist ${wishlist.includes(product.id) ? "active" : ""}`}
                     onClick={() => toggleWishlist(product.id)}
                   >
                     {wishlist.includes(product.id) ? <FaHeart /> : <FaRegHeart />}
                   </button>
 
-                  <Link
-                    to={`/product/${product.id}`}
-                    className="kurti-icon-btn kurti-view"
-                  >
+                  <Link to={`/product/${product.id}`} className="kurti-icon-btn kurti-view">
                     <FiEye />
                   </Link>
 

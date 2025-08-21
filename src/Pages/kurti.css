@@ -8,8 +8,30 @@
   gap: 25px;
 }
 
+
+/* ========================
+   Banner Styles
+======================== */
+.kurti-banner {
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.kurti-banner img {
+  width: 100%;
+  height: 200px;
+  /* fixed height */
+  object-fit: cover;
+  /* ✅ perfect fit */
+  display: block;
+  border-radius: 0;
+  /* no rounded corners */
+}
+
+
 .kurti-filter {
-  
+
   width: 280px;
   min-height: 100vh;
   background: #fafafa;
@@ -31,7 +53,8 @@
 .kurti-header {
   position: relative;
   margin-bottom: 30px;
-  text-align: center; /* title & tagline center me */
+  text-align: center;
+  /* title & tagline center me */
 }
 
 /* Title texts center aligned */
@@ -44,7 +67,8 @@
   position: absolute;
   top: 50%;
   right: 0;
-  transform: translateY(-50%); /* vertically center align */
+  transform: translateY(-50%);
+  /* vertically center align */
   display: flex;
   gap: 10px;
 }
@@ -510,3 +534,125 @@
 }
 
 
+/* =========================
+   Mobile Filter Button
+========================= */
+.mobile-filter-btn {
+  display: none;
+  background: var(--primary-color, #333);
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 14px;
+  transition: 0.3s;
+}
+.mobile-filter-btn svg {
+  margin-right: 5px;
+  font-size: 16px;
+}
+
+.filter-close {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 22px;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  cursor: pointer;
+}
+
+/* Desktop */
+.kurti-filter {
+  width: 280px;
+  min-height: 100vh;
+  background: #fafafa;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 0;
+}
+
+/* Mobile Drawer */
+@media (max-width: 768px) {
+  .mobile-filter-btn {
+    display: inline-flex;
+    align-items: center;
+  }
+
+   .kurti-filter {
+    position: fixed;
+    top: 0;
+    left: -260px; /* pehle hidden */
+    width: 240px; /* ✅ chhoti chhoti sidebar */
+    height: 100%;
+    background: #fff;
+    box-shadow: 2px 0 6px rgba(0,0,0,0.15);
+    padding: 20px;
+    z-index: 1000;
+    transition: left 0.3s ease;
+    overflow-y: auto;
+  }
+
+
+    .kurti-filter.open {
+    left: 0; /* ✅ jab icon click kare to side se khule */
+  }
+  .filter-close {
+    display: block;
+  }
+
+  /* Hide sidebar in normal layout */
+  .kurti-container {
+    position: relative;
+    flex-direction: column;
+  }
+
+  /* ✅ Hide on mobile */
+
+  .kurti-columns {
+    display: none;
+  }
+}
+
+/* ========================
+   Grid Control
+======================== */
+.kurti-products-grid {
+  display: grid;
+  gap: 25px;
+  margin-top: 40px;
+  width: 100%;
+}
+
+/* Desktop Default – 5 columns */
+.kurti-products-grid {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+/* Laptop */
+@media (max-width: 1199px) {
+  .kurti-products-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Tablet */
+@media (max-width: 991px) {
+  .kurti-products-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .kurti-products-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    /* ✅ always 2x2 */
+    gap: 20px;
+  }
+}
