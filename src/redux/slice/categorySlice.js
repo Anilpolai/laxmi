@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { categoriesData } from '../../js file/categoriesData';
+import { categoriesData } from '../../jsfile/categoriesData';
 
 const initialState = {
   list: categoriesData, // ✅ fetched from JS file

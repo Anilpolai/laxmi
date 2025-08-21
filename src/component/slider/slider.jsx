@@ -4,7 +4,7 @@ import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import 'owl.carousel';
 
-import sliderData from '../../js file/silder';
+import sliderData from '../../jsfile/silder';
 import './slider.css';
 
 const Slider = () => {

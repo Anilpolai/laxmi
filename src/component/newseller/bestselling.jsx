@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { FiEye } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import { products as productData } from "../../js file/products";
+import { products as productData } from "../../jsfile/products";
 import "./bestselling.css";
 
 export default function BestSellers() {
