@@ -20,7 +20,7 @@
 
 .kurti-banner img {
   width: 100%;
-  height: 200px;
+  height: auto;
   /* fixed height */
   object-fit: cover;
   /* ✅ perfect fit */

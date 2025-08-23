@@ -16,6 +16,8 @@ function Kurti() {
   const [minPrice, setMinPrice] = useState(500);
   const [maxPrice, setMaxPrice] = useState(5000);
   const [discount, setDiscount] = useState("all");
+  const [sortBy, setSortBy] = useState("default");
+
   const [fabric, setFabric] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 12;
@@ -202,6 +204,50 @@ function Kurti() {
                 onChange={(e) => setDiscount(e.target.value)}
               />
               30% & above
+            </label>
+          </div>
+          {/* Sort By */}
+          <div className="filter-box">
+            <h4>Sort By</h4>
+            <label>
+              <input
+                type="radio"
+                name="sort"
+                value="default"
+                checked={sortBy === "default"}
+                onChange={(e) => setSortBy(e.target.value)}
+              />
+              Default
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="sort"
+                value="low-high"
+                checked={sortBy === "low-high"}
+                onChange={(e) => setSortBy(e.target.value)}
+              />
+              Price: Low to High
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="sort"
+                value="high-low"
+                checked={sortBy === "high-low"}
+                onChange={(e) => setSortBy(e.target.value)}
+              />
+              Price: High to Low
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="sort"
+                value="featured"
+                checked={sortBy === "featured"}
+                onChange={(e) => setSortBy(e.target.value)}
+              />
+              Featured
             </label>
           </div>
 
