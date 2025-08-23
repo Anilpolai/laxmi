@@ -35,7 +35,7 @@ function Filter({ products, onFilter }) {
     if (sortBy === "high-low") updated.sort((a, b) => b.price - a.price);
 
     onFilter(updated); // send filtered products back to parent
-  }, [availability, minPrice, maxPrice, discount, fabric, sortBy, products, onFilter]);
+  }, [availability, minPrice, maxPrice, discount, fabric, sortBy, products]);
 
   return (
     <aside className="kurti-filter">
