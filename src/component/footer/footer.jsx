@@ -18,7 +18,7 @@ function Footer() {
                     {/* Logo & Contact */}
                     <div className="col-md-3">
                         <img src={logo} alt="Logo" className="mb-3 footer-logo" />
-                        <p><FaMapLocationDot className="me-2" />First Floor, Tulsi Arcade, 145, Sudama Chowk, Saket Raw House, Mota Varachha, Surat, Gujarat,394101</p>
+                        <p>First Floor, Tulsi Arcade, 145, Sudama Chowk, Saket Raw House, Mota Varachha, Surat, Gujarat,394101</p>
                         <p><MdCall className="me-2" />+91 9409222049</p>
                         <p><MdEmail className="me-2" />laxmiethnics0@gmail.com</p>
                     </div>

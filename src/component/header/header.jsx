@@ -6,10 +6,14 @@ import logo from '../../img/logo-1.png';
 import { IoSearch, IoCartOutline } from "react-icons/io5";
 import { FaRegHeart, FaRegUser, FaHome } from "react-icons/fa";
 import { PiShoppingBagLight } from "react-icons/pi"; // Shop icon
+import SignInSignUp from '../../login/login';
 
 const header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const toggleMenu = () => setMenuOpen(!menuOpen);
+
+  const [showAuth, setShowAuth] = useState(false);
+  const toggleAuth = () => setShowAuth(!showAuth);
 
   return (
     <div>
@@ -36,7 +40,8 @@ const header = () => {
         {/* Desktop + Mobile Header Icons */}
         <div className="icons d-flex gap-3 align-items-center">
           <FaRegHeart className="icon" />
-          <FaRegUser className="icon d-none d-lg-inline" />
+          {/* 🔥 User icon opens SignInSignUp */}
+          <FaRegUser className="icon d-none d-lg-inline" onClick={toggleAuth} />
           <div className="position-relative d-none d-lg-inline">
             <IoCartOutline className="icon" />
             <span className="badge">0</span>
@@ -95,6 +100,16 @@ const header = () => {
           <span className="badge">0</span>
         </NavLink>
       </div>
+
+      {/* 🔥 SignInSignUp Popup */}
+      {showAuth && (
+        <div className="auth-popup">
+          <div className="auth-content">
+            <span className="close-btn" onClick={toggleAuth}>&times;</span>
+            <SignInSignUp />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
