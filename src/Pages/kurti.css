@@ -142,7 +142,10 @@
   padding: 20px;
   background: #fff;
   border-radius: 12px;
+  transition: margin-left 0.3s ease;
+
 }
+
 
 /* Grid Columns */
 .kurti-products-grid {
@@ -225,6 +228,9 @@
     grid-template-columns: repeat(2, 1fr);
     /* ✅ Always 2x2 */
     gap: 20px;
+  }
+  .kurti-filter.open ~ .kurti-section {
+    margin-left: 280px;
   }
 }
 
@@ -614,6 +620,51 @@
   cursor: pointer;
 }
 
+
+/* Sidebar Animation */
+.kurti-filter {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 300px;
+  height: 100%;
+  background: #fff;
+  box-shadow: -2px 0 10px rgba(0,0,0,0.2);
+  transition: right 0.4s ease-in-out;
+  padding: 20px;
+  z-index: 1000;
+}
+
+.kurti-filter.open {
+  right: 0;
+}
+
+/* Close Button */
+.filter-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background:  #7b1d35;
+  border: none;
+  color: #fff;
+  font-size: 22px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+/* Hover Animation */
+.filter-close:hover {
+  background: #e60000;
+  transform: rotate(180deg) scale(1.1);
+}
+
+
 /* Desktop */
 .kurti-filter {
   width: 280px;
@@ -711,6 +762,57 @@
     grid-template-columns: repeat(2, 1fr) !important;
     /* ✅ always 2x2 */
     gap: 20px;
+  }
+}
+
+
+
+
+
+/* ==== Desktop Drawer ==== */
+.kurti-filter {
+  position: fixed;
+  top: 0;
+  left: -300px; /* Default hidden */
+  width: 280px;
+  height: 100%;
+  background: #fafafa;
+  border-radius: 0;
+  padding: 20px;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+  z-index: 1000;
+  transition: left 0.3s ease-in-out;
+  overflow-y: auto;
+}
+
+.kurti-filter.open {
+  left: 0; /* Slide in */
+}
+
+/* Desktop filter button */
+.desktop-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 10px 0 20px;
+  padding: 8px 14px;
+  background: #7b1d35;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.desktop-filter-btn:hover {
+  background: #5a1527;
+}
+
+/* Mobile ke liye pehle se hai */
+@media (max-width: 768px) {
+  .desktop-filter-btn {
+    display: none;
   }
 }
 
