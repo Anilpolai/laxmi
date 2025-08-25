@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
-import { FaMapLocationDot } from "react-icons/fa6";
 import { MdCall, MdEmail } from "react-icons/md";
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import { FiSend } from "react-icons/fi";

@@ -21,7 +21,7 @@ function KurtiFilter({
         ✕
       </button>
       <h3>Filter</h3>
-      
+
 
       {/* Availability */}
       <div className="filter-box">
@@ -187,6 +187,21 @@ function KurtiFilter({
           Rayon
         </label>
       </div>
+
+
+      <button
+        className="reset-btn"
+        onClick={() => {
+          setAvailability("all");
+          setMinPrice(500);
+          setMaxPrice(5000);
+          setDiscount("all");
+          setFabric("all");
+        }}
+      >
+        Reset Filters
+      </button>
+
     </aside>
   );
 }
