@@ -1,3 +1,25 @@
+/* Full width banner */
+.kurti-banner-full {
+  width: 100%;
+  overflow: hidden;
+}
+
+.kurti-banner-full img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* Main content 90% width, centered */
+.kurti-Full {
+  width: 90%;
+  margin: 0 auto;
+  padding: 60px 0;
+}
+
+/* Rest of your previous CSS (products grid, cards, hover, filters, pagination, etc.) remains unchanged */
+
 /* Left filter full height */
 .kurti-container {
   display: flex;
@@ -65,7 +87,7 @@
 /* Buttons bilkul right me */
 .kurti-columns {
   position: absolute;
-  top: 50%;
+  top: 90%;
   right: 0;
   transform: translateY(-50%);
   /* vertically center align */
@@ -145,7 +167,32 @@
   transition: margin-left 0.3s ease;
 
 }
+.kurti-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  gap: 20px;
+  flex-wrap: wrap; /* ✅ responsive ke liye */
+}
 
+.kurti-header-left {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.kurti-texts {
+  flex: 2;
+  text-align: center;
+}
+
+.kurti-columns {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
 
 /* Grid Columns */
 .kurti-products-grid {

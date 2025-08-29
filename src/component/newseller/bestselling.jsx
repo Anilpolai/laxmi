@@ -2,26 +2,16 @@ import React, { useEffect, useState } from "react";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { FiEye } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { toggleWishlist } from "../../redux/slice/wishlistSlice";
 import { products as productData } from "../../jsfile/products";
 import "./bestselling.css";
 
 export default function BestSellers() {
-  const [wishlist, setWishlist] = useState([]);
+  const wishlist = useSelector((state) => state.wishlist.items);
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    const saved = JSON.parse(localStorage.getItem("wishlist")) || [];
-    setWishlist(saved);
-  }, []);
-
-  const toggleWishlist = (id) => {
-    setWishlist((prev) => {
-      const updated = prev.includes(id)
-        ? prev.filter((item) => item !== id)
-        : [...prev, id];
-      localStorage.setItem("wishlist", JSON.stringify(updated));
-      return updated;
-    });
-  };
+  
 
   return (
     <div className="best-sellers-section">
@@ -49,7 +39,7 @@ export default function BestSellers() {
               {/* Wishlist Button */}
               <button
                 className={`icon-btn wishlist ${wishlist.includes(product.id) ? "active" : ""}`}
-                onClick={() => toggleWishlist(product.id)}
+                onClick={() => dispatch(toggleWishlist(product.id))}
                 aria-label="Toggle Wishlist"
               >
                 {wishlist.includes(product.id) ? <FaHeart /> : <FaRegHeart />}

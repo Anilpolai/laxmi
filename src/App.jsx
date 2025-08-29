@@ -6,6 +6,7 @@ import Tunics from "./Pages/products/tunics";
 import Coord from "./Pages/products/co-ord";
 import { Routes, Route } from "react-router-dom";
 import Endlayout from "./component/Endlayout";
+import Wishlist from "./component/wishlist/Wishlist";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         {/* Layout wrapper */}
         <Route element={<Endlayout />}>
           <Route path="/" element={<Home />} />
+          <Route path="/wishlist" element={<Wishlist/>} />
 
           {/* Products by category */}
           <Route path="/kurti" element={<Kurti category="Kurti" />} />

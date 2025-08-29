@@ -5,7 +5,7 @@
 .best-sellers-section {
   width: 90%;              /* ✅ 90% width */
   margin: 0 auto;          /* ✅ center align dono side equal */
-  padding: 60px 20px;      /* ✅ andar ka gap */
+  padding : 60px 20px;     /* ✅ andar ka gap */
   background: #fff;
 }
 

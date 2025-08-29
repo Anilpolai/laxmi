@@ -13,7 +13,7 @@ export const products = [
   },
   {
     id: 2,
-    name: "Kurti Set with Dupatta",
+    name: "Onion Pink Embroidered Neck Vatican Kurti Set with Chanderi Jacquard Dupatta",
     price: 1799,
     image: p2,
     hoverimage: p4

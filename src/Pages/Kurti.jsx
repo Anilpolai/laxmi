@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { toggleWishlist } from "../redux/slice/wishlistSlice";
 import { FaRegHeart, FaHeart, FaFilter } from "react-icons/fa";
 import { FiEye } from "react-icons/fi";
 import { BsGrid3X3GapFill, BsGridFill } from "react-icons/bs";
 import { FaThLarge } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { products as productData } from "../jsfile/kurati";
+import { kurti as productData } from "../jsfile/kurti";
 import banner from "../img/kurti/homekurti.jpg";
 import "./kurti.css";
-import KurtiFilter from "../component/filter/KurtiFilter"; // ✅ import filter
+import KurtiFilter from "../component/filter/KurtiFilter";
 
 function Kurti() {
-  const [wishlist, setWishlist] = useState([]);
+  const dispatch = useDispatch();
+  const wishlist = useSelector((state) => state.wishlist.items);
+
   const [filteredProducts, setFilteredProducts] = useState(productData);
   const [availability, setAvailability] = useState("all");
   const [columns, setColumns] = useState(4);
@@ -23,194 +27,120 @@ function Kurti() {
 
   const productsPerPage = 12;
 
-  // Filter logic
   useEffect(() => {
     let updated = productData.filter(
       (p) => p.price >= minPrice && p.price <= maxPrice
     );
     if (availability === "in") updated = updated.filter((p) => p.stock > 0);
     if (availability === "out") updated = updated.filter((p) => p.stock === 0);
-
-    if (discount !== "all") {
-      const minDisc = Number(discount);
-      updated = updated.filter((p) => p.discount >= minDisc);
-    }
-
-    if (fabric !== "all") {
-      updated = updated.filter(
-        (p) => p.fabric?.toLowerCase() === fabric.toLowerCase()
-      );
-    }
-
+    if (discount !== "all") updated = updated.filter((p) => p.discount >= Number(discount));
+    if (fabric !== "all") updated = updated.filter((p) => p.fabric?.toLowerCase() === fabric.toLowerCase());
     setFilteredProducts(updated);
+    setCurrentPage(1);
   }, [minPrice, maxPrice, availability, discount, fabric]);
 
-  useEffect(() => {
-    const saved = JSON.parse(localStorage.getItem("wishlist")) || [];
-    setWishlist(saved);
-  }, []);
-
-  const toggleWishlist = (id) => {
-    setWishlist((prev) => {
-      const updated = prev.includes(id)
-        ? prev.filter((item) => item !== id)
-        : [...prev, id];
-      localStorage.setItem("wishlist", JSON.stringify(updated));
-      return updated;
-    });
-  };
-
-  // Pagination
   const indexOfLast = currentPage * productsPerPage;
   const indexOfFirst = indexOfLast - productsPerPage;
   const currentProducts = filteredProducts.slice(indexOfFirst, indexOfLast);
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
 
   return (
-    <div className="kurti-Full">
+    <div>
       {/* Banner */}
-      <div className="kurti-banner">
+      <div className="kurti-banner-full">
         <img src={banner} alt="Kurti Banner" />
       </div>
-      {/* Desktop Filter Button */}
-      <button
-        className="desktop-filter-btn"
-        onClick={() => setShowFilter(!showFilter)}
-      >
-        <FaFilter /> Filter
-      </button>
-      
 
+      <div className="kurti-Full">
+        <div className="kurti-container">
+          {/* Filter */}
+          <KurtiFilter
+            showFilter={showFilter}
+            setShowFilter={setShowFilter}
+            availability={availability}
+            setAvailability={setAvailability}
+            minPrice={minPrice}
+            setMinPrice={setMinPrice}
+            maxPrice={maxPrice}
+            setMaxPrice={setMaxPrice}
+            discount={discount}
+            setDiscount={setDiscount}
+            fabric={fabric}
+            setFabric={setFabric}
+          />
 
-
-      <div className="kurti-container">
-        {/* ✅ Separate Filter Component */}
-        <KurtiFilter
-          showFilter={showFilter}
-          setShowFilter={setShowFilter}
-          availability={availability}
-          setAvailability={setAvailability}
-          minPrice={minPrice}
-          setMinPrice={setMinPrice}
-          maxPrice={maxPrice}
-          setMaxPrice={setMaxPrice}
-          discount={discount}
-          setDiscount={setDiscount}
-          fabric={fabric}
-          setFabric={setFabric}
-        />
-
-        {/* ================= Right Products ================= */}
-        <main className="kurti-section">
-          <div className="kurti-header">
-            <div className="kurti-texts">
-              <p className="kurti-tagline">STAY AHEAD OF THE FASHION CURVE</p>
-              <h2 className="kurti-title">Kurti</h2>
-              <p className="kurti-subtitle">
-                “Grace in every stitch, tradition in every silhouette—your
-                perfect kurti awaits.”
-              </p>
-            </div>
-
-            <div className="kurti-columns">
-              <button
-                onClick={() => setColumns(3)}
-                className={columns === 3 ? "active" : ""}
-              >
-                <BsGrid3X3GapFill />
-              </button>
-              <button
-                onClick={() => setColumns(4)}
-                className={columns === 4 ? "active" : ""}
-              >
-                <BsGridFill />
-              </button>
-              <button
-                onClick={() => setColumns(5)}
-                className={columns === 5 ? "active" : ""}
-              >
-                <FaThLarge />
-              </button>
-            </div>
-          </div>
-
-          {/* Mobile Filter Button */}
-          <button
-            className="mobile-filter-btn"
-            onClick={() => setShowFilter(!showFilter)}
-          >
-            <FaFilter /> Filter
-          </button>
-
-          {/* Products Grid */}
-          <div className={`kurti-products-grid cols-${columns}`}>
-            {currentProducts.map((product) => (
-              <div key={product.id} className="kurti-card">
-                <div className="kurti-image">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="kurti-main-img"
-                  />
-                  <img
-                    src={product.hoverimage}
-                    alt="hover"
-                    className="kurti-hover-img"
-                  />
-
-                  <button
-                    className={`kurti-icon-btn kurti-wishlist ${wishlist.includes(product.id) ? "active" : ""
-                      }`}
-                    onClick={() => toggleWishlist(product.id)}
-                  >
-                    {wishlist.includes(product.id) ? <FaHeart /> : <FaRegHeart />}
-                  </button>
-
-                  <Link
-                    to={`/product/${product.id}`}
-                    className="kurti-icon-btn kurti-view"
-                  >
-                    <FiEye />
-                  </Link>
-
-                  <button className="kurti-quickshop-btn">Quickshop</button>
-                </div>
-
-                <div className="kurti-info">
-                  <h5 className="kurti-name">{product.name}</h5>
-                  <p className="kurti-price">₹{product.price}</p>
-                </div>
+          <main className="kurti-section">
+            {/* Header */}
+            <div className="kurti-header">
+              <div className="kurti-header-left">
+                <button
+                  className="desktop-filter-btn"
+                  onClick={() => setShowFilter(!showFilter)}
+                >
+                  <FaFilter /> Filter
+                </button>
               </div>
-            ))}
-          </div>
-        </main>
-      </div>
 
-      {/* Pagination */}
-      <div className="pagination">
-        <button
-          disabled={currentPage === 1}
-          onClick={() => setCurrentPage((p) => p - 1)}
-        >
-          Prev
-        </button>
+              <div className="kurti-texts">
+                <p className="kurti-tagline">STAY AHEAD OF THE FASHION CURVE</p>
+                <h2 className="kurti-title">Kurti</h2>
+                <p className="kurti-subtitle">
+                  Grace in every stitch, tradition in every silhouette—your perfect kurti awaits.
+                </p>
+              </div>
 
-        {Array.from({ length: totalPages }, (_, i) => (
-          <button
-            key={i}
-            className={currentPage === i + 1 ? "active" : ""}
-            onClick={() => setCurrentPage(i + 1)}
-          >
-            {i + 1}
-          </button>
-        ))}
+              <div className="kurti-columns">
+                <button onClick={() => setColumns(3)} className={columns === 3 ? "active" : ""}><BsGrid3X3GapFill /></button>
+                <button onClick={() => setColumns(4)} className={columns === 4 ? "active" : ""}><BsGridFill /></button>
+                <button onClick={() => setColumns(5)} className={columns === 5 ? "active" : ""}><FaThLarge /></button>
+              </div>
+            </div>
 
-        <button
-          disabled={currentPage === totalPages}
-          onClick={() => setCurrentPage((p) => p + 1)}
-        >
-          Next
-        </button>
+            {/* Mobile Filter */}
+            <button className="mobile-filter-btn" onClick={() => setShowFilter(!showFilter)}>
+              <FaFilter /> Filter
+            </button>
+
+            {/* Products Grid */}
+            <div className={`kurti-products-grid cols-${columns}`}>
+              {currentProducts.map((product) => (
+                <div key={product.id} className="kurti-card">
+                  <div className="kurti-image">
+                    <img src={product.image} alt={product.name} className="kurti-main-img" />
+                    <img src={product.hoverimage} alt="hover" className="kurti-hover-img" />
+
+                    <button
+                      className={`kurti-icon-btn kurti-wishlist ${wishlist.includes(product.id) ? "active" : ""}`}
+                      onClick={() => dispatch(toggleWishlist(product.id))}
+                    >
+                      {wishlist.includes(product.id) ? <FaHeart /> : <FaRegHeart />}
+                    </button>
+
+                    <Link to={`/product/${product.id}`} className="kurti-icon-btn kurti-view"><FiEye /></Link>
+                    <button className="kurti-quickshop-btn">Quickshop</button>
+                  </div>
+
+                  <div className="kurti-info">
+                    <h5 className="kurti-name">{product.name}</h5>
+                    <p className="kurti-price">₹{product.price}</p>
+                    {product.discount && <p className="kurti-discount">{product.discount}% OFF</p>}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </main>
+        </div>
+
+        {/* Pagination */}
+        <div className="pagination">
+          <button disabled={currentPage === 1} onClick={() => setCurrentPage((p) => p - 1)}>Prev</button>
+          {Array.from({ length: totalPages }, (_, i) => (
+            <button key={i} className={currentPage === i + 1 ? "active" : ""} onClick={() => setCurrentPage(i + 1)}>
+              {i + 1}
+            </button>
+          ))}
+          <button disabled={currentPage === totalPages} onClick={() => setCurrentPage((p) => p + 1)}>Next</button>
+        </div>
       </div>
     </div>
   );

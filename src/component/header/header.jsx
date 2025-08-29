@@ -1,19 +1,23 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom'; // ✅ added useNavigate
 import './header.css';
 import Topre from '../toper/toper';
 import logo from '../../img/logo-1.png';
 import { IoSearch, IoCartOutline } from "react-icons/io5";
 import { FaRegHeart, FaRegUser, FaHome } from "react-icons/fa";
-import { PiShoppingBagLight } from "react-icons/pi"; // Shop icon
+import { PiShoppingBagLight } from "react-icons/pi"; 
 import SignInSignUp from '../../login/login';
+import { useSelector } from 'react-redux';
 
-const header = () => {
+const Header = () => {   // ✅ capitalized
   const [menuOpen, setMenuOpen] = useState(false);
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
   const [showAuth, setShowAuth] = useState(false);
   const toggleAuth = () => setShowAuth(!showAuth);
+
+  const wishlistCount = useSelector((state) => state.wishlist.items.length);
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -37,11 +41,15 @@ const header = () => {
           </NavLink>
         </div>
 
-        {/* Desktop + Mobile Header Icons */}
+        {/* Icons */}
         <div className="icons d-flex gap-3 align-items-center">
-          <FaRegHeart className="icon" />
-          {/* 🔥 User icon opens SignInSignUp */}
+          <div className="position-relative" onClick={() => navigate("/wishlist")}>
+            <FaRegHeart className="icon" />
+            {wishlistCount > 0 && <span className="badge">{wishlistCount}</span>}
+          </div>
+
           <FaRegUser className="icon d-none d-lg-inline" onClick={toggleAuth} />
+
           <div className="position-relative d-none d-lg-inline">
             <IoCartOutline className="icon" />
             <span className="badge">0</span>
@@ -101,7 +109,7 @@ const header = () => {
         </NavLink>
       </div>
 
-      {/* 🔥 SignInSignUp Popup */}
+      {/* SignInSignUp Popup */}
       {showAuth && (
         <div className="auth-popup">
           <div className="auth-content">
@@ -114,4 +122,4 @@ const header = () => {
   );
 };
 
-export default header;
+export default Header;   // ✅ capitalized
