@@ -71,7 +71,14 @@ function Kurti() {
 
           <main className="kurti-section">
             {/* Header */}
-            <div className="kurti-header">
+            <div className="kurti-texts">
+              <p className="kurti-tagline">STAY AHEAD OF THE FASHION CURVE</p>
+              <h2 className="kurti-title">Kurti</h2>
+              <p className="kurti-subtitle">
+                Grace in every stitch, tradition in every silhouette—your perfect kurti awaits.
+              </p>
+            </div>
+            <div className="kurti-header2">
               <div className="kurti-header-left">
                 <button
                   className="desktop-filter-btn"
@@ -80,20 +87,12 @@ function Kurti() {
                   <FaFilter /> Filter
                 </button>
               </div>
-
-              <div className="kurti-texts">
-                <p className="kurti-tagline">STAY AHEAD OF THE FASHION CURVE</p>
-                <h2 className="kurti-title">Kurti</h2>
-                <p className="kurti-subtitle">
-                  Grace in every stitch, tradition in every silhouette—your perfect kurti awaits.
-                </p>
-              </div>
-
               <div className="kurti-columns">
                 <button onClick={() => setColumns(3)} className={columns === 3 ? "active" : ""}><BsGrid3X3GapFill /></button>
                 <button onClick={() => setColumns(4)} className={columns === 4 ? "active" : ""}><BsGridFill /></button>
                 <button onClick={() => setColumns(5)} className={columns === 5 ? "active" : ""}><FaThLarge /></button>
               </div>
+
             </div>
 
             {/* Mobile Filter */}

@@ -30,7 +30,6 @@
   gap: 25px;
 }
 
-
 /* ========================
    Banner Styles
 ======================== */
@@ -65,34 +64,46 @@
   /* ✅ scroll pe fixed */
 }
 
+/* Right section */
 .kurti-section {
+  width: 90%;
   flex: 1;
+  padding: 20px;
+  margin: 0 auto;
   background: #fff;
   border-radius: 12px;
-  padding: 20px;
+  transition: margin-left 0.3s ease;
+
 }
 
-.kurti-header {
-  position: relative;
-  margin-bottom: 30px;
-  text-align: center;
-  /* title & tagline center me */
-}
-
-/* Title texts center aligned */
-.kurti-texts {
-  display: inline-block;
-}
-
-/* Buttons bilkul right me */
-.kurti-columns {
-  position: absolute;
-  top: 90%;
-  right: 0;
-  transform: translateY(-50%);
-  /* vertically center align */
+.kurti-header2 {
   display: flex;
-  gap: 10px;
+  justify-content: space-between;
+}
+
+
+/* Section Headings */
+.kurti-tagline,
+.kurti-title,
+.kurti-subtitle {
+  text-align: center;
+}
+
+.kurti-tagline {
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: #7b1d35;
+  font-weight: 500;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.kurti-title {
+  font-family: "Montserrat", sans-serif;
+  font-size: 32px;
+  margin: 0;
+  /* font-weight: 700; */
+  color: #111;
 }
 
 
@@ -101,6 +112,7 @@
   border-radius: 6px;
   background: #fff;
   padding: 6px 10px;
+  margin: 5px;
   cursor: pointer;
   transition: 0.3s;
   font-size: 16px;
@@ -141,58 +153,9 @@
 /* ===========================
    Section Styles
 =========================== */
-.kurti-container {
-  display: flex;
-  width: 100%;
-  margin: 0 auto;
-  gap: 25px;
-}
 
-.kurti-section {
-  width: 90%;
-  /* ✅ 90% width */
-  margin: 0 auto;
-  /* ✅ center align dono side equal */
-  padding: 60px 20px;
-  /* ✅ andar ka gap */
-  background: #fff;
-}
 
-/* Right section */
-.kurti-section {
-  flex: 1;
-  padding: 20px;
-  background: #fff;
-  border-radius: 12px;
-  transition: margin-left 0.3s ease;
 
-}
-.kurti-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 30px;
-  gap: 20px;
-  flex-wrap: wrap; /* ✅ responsive ke liye */
-}
-
-.kurti-header-left {
-  flex: 1;
-  display: flex;
-  justify-content: flex-start;
-}
-
-.kurti-texts {
-  flex: 2;
-  text-align: center;
-}
-
-.kurti-columns {
-  flex: 1;
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-}
 
 /* Grid Columns */
 .kurti-products-grid {
@@ -213,35 +176,6 @@
   grid-template-columns: repeat(4, 1fr);
 }
 
-/* Section Headings */
-.kurti-tagline,
-.kurti-title,
-.kurti-subtitle {
-  text-align: center;
-}
-
-.kurti-tagline {
-  font-size: 14px;
-  letter-spacing: 2px;
-  color: #7b1d35;
-  font-weight: 500;
-  margin-bottom: 5px;
-  text-transform: uppercase;
-}
-
-.kurti-title {
-  font-family: "Montserrat", sans-serif;
-  font-size: 32px;
-  margin: 0;
-  font-weight: 700;
-  color: #111;
-}
-
-.kurti-subtitle {
-  font-size: 16px;
-  color: #555;
-  margin-top: 5px;
-}
 
 /* ===========================
    Grid Layout (Full width)
@@ -276,7 +210,8 @@
     /* ✅ Always 2x2 */
     gap: 20px;
   }
-  .kurti-filter.open ~ .kurti-section {
+
+  .kurti-filter.open~.kurti-section {
     margin-left: 280px;
   }
 }
@@ -567,9 +502,6 @@
 }
 
 /* Product Section (already there but adjust for sidebar) */
-.kurti-section {
-  flex: 1;
-}
 
 .price-inputs {
   display: flex;
@@ -676,7 +608,7 @@
   width: 300px;
   height: 100%;
   background: #fff;
-  box-shadow: -2px 0 10px rgba(0,0,0,0.2);
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
   transition: right 0.4s ease-in-out;
   padding: 20px;
   z-index: 1000;
@@ -691,7 +623,7 @@
   position: absolute;
   top: 15px;
   right: 15px;
-  background:  #7b1d35;
+  background: #7b1d35;
   border: none;
   color: #fff;
   font-size: 22px;
@@ -813,27 +745,26 @@
 }
 
 
-
-
-
 /* ==== Desktop Drawer ==== */
 .kurti-filter {
   position: fixed;
   top: 0;
-  left: -300px; /* Default hidden */
+  left: -300px;
+  /* Default hidden */
   width: 280px;
   height: 100%;
   background: #fafafa;
   border-radius: 0;
   padding: 20px;
-  box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
   z-index: 1000;
   transition: left 0.3s ease-in-out;
   overflow-y: auto;
 }
 
 .kurti-filter.open {
-  left: 0; /* Slide in */
+  left: 0;
+  /* Slide in */
 }
 
 /* Desktop filter button */
@@ -862,4 +793,3 @@
     display: none;
   }
 }
-
