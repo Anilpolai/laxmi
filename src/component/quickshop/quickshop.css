@@ -1,0 +1,82 @@
+.quickshop-page {
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.quickshop-content {
+  display: flex;
+  gap: 30px;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.quickshop-thumbs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.quickshop-thumbs .thumb {
+  width: 60px;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.quickshop-thumbs .thumb.active {
+  border-color: #000;
+}
+
+.quickshop-carousel {
+  flex: 1;
+}
+
+.quickshop-carousel .main-slide {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.quickshop-info {
+  width: 300px;
+}
+
+.quickshop-info .price {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.quickshop-info .discount {
+  color: red;
+}
+
+.size-selector button {
+  margin: 5px;
+  padding: 5px 10px;
+}
+
+.size-selector button.active {
+  background: black;
+  color: white;
+}
+
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.quantity-selector button {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.add-to-cart {
+  padding: 10px;
+  width: 100%;
+  background: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+}

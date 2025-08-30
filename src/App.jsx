@@ -7,6 +7,7 @@ import Coord from "./Pages/products/co-ord";
 import { Routes, Route } from "react-router-dom";
 import Endlayout from "./component/Endlayout";
 import Wishlist from "./component/wishlist/Wishlist";
+import QuickshopPage from "./component/quickshop/quickshop";
 
 function App() {
   return (
@@ -16,6 +17,8 @@ function App() {
         <Route element={<Endlayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/wishlist" element={<Wishlist/>} />
+          <Route path="/quickshop/:id" element={<QuickshopPage />} />
+          
 
           {/* Products by category */}
           <Route path="/kurti" element={<Kurti category="Kurti" />} />

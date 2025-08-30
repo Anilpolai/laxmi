@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { toggleWishlist } from "../redux/slice/wishlistSlice";
+import { toggleWishlist } from "../redux/slice/wishlistSlice"
 import { FaRegHeart, FaHeart, FaFilter } from "react-icons/fa";
 import { FiEye } from "react-icons/fi";
 import { BsGrid3X3GapFill, BsGridFill } from "react-icons/bs";
 import { FaThLarge } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { kurti as productData } from "../jsfile/kurti";
+import Quickshop from "../component/quickshop/quickshop";
 import banner from "../img/kurti/homekurti.jpg";
 import "./kurti.css";
 import KurtiFilter from "../component/filter/KurtiFilter";
@@ -14,6 +15,8 @@ import KurtiFilter from "../component/filter/KurtiFilter";
 function Kurti() {
   const dispatch = useDispatch();
   const wishlist = useSelector((state) => state.wishlist.items);
+  const [quickshopProduct, setQuickshopProduct] = useState(null);
+
 
   const [filteredProducts, setFilteredProducts] = useState(productData);
   const [availability, setAvailability] = useState("all");
@@ -116,7 +119,11 @@ function Kurti() {
                     </button>
 
                     <Link to={`/product/${product.id}`} className="kurti-icon-btn kurti-view"><FiEye /></Link>
-                    <button className="kurti-quickshop-btn">Quickshop</button>
+                    <Link to={`/quickshop/${product.id}`} className="kurti-quickshop-btn">
+                      Quickshop
+                    </Link>
+
+
                   </div>
 
                   <div className="kurti-info">
