@@ -5,13 +5,14 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleWishlist } from "../../redux/slice/wishlistSlice";
 import { products as productData } from "../../jsfile/products";
+import QuickshopPage from "../quickshop/quickshop";
 import "./bestselling.css";
 
 export default function BestSellers() {
   const wishlist = useSelector((state) => state.wishlist.items);
   const dispatch = useDispatch();
 
-  
+
 
   return (
     <div className="best-sellers-section">
@@ -46,12 +47,17 @@ export default function BestSellers() {
               </button>
 
               {/* View Button */}
-              <Link to={`/product/${product.id}`} className="icon-btn view" aria-label="View Product">
+              <Link to={`/quickshop/${product.id}`} className="icon-btn view" aria-label="View Product">
                 <FiEye />
               </Link>
 
               {/* Quickshop Button */}
-              <button className="quickshop-btn">Quickshop</button>
+              <Link
+                to={`/quickshop/${product.id}`}
+                className="quickshop-btn"
+              >
+                Quickshop
+              </Link>
             </div>
 
             {/* Product Info */}
