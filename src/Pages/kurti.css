@@ -236,6 +236,7 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   position: relative;
+  cursor: pointer;
 }
 
 .kurti-card:hover {
@@ -249,6 +250,7 @@
 .kurti-image {
   position: relative;
   overflow: hidden;
+  
 }
 
 .kurti-image img {
@@ -319,6 +321,11 @@
   opacity: 1;
   transform: translateY(0);
 }
+.kurti-quickshop-btn,
+.kurti-view {
+  text-decoration: none;
+}
+
 
 /* ===========================
    Quickshop Button

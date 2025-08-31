@@ -1,0 +1,53 @@
+.review-section {
+  margin-top: 30px;
+}
+
+.review-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.review-form input,
+.review-form textarea,
+.review-form select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.review-form button {
+  background: #7b1d35;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.review-card {
+  display: flex;
+  gap: 12px;
+  background: #fafafa;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.review-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.review-info h4 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.review-rating {
+  color: gold;
+  margin: 4px 0;
+}

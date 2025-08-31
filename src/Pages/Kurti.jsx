@@ -5,7 +5,7 @@ import { FaRegHeart, FaHeart, FaFilter } from "react-icons/fa";
 import { FiEye } from "react-icons/fi";
 import { BsGrid3X3GapFill, BsGridFill } from "react-icons/bs";
 import { FaThLarge } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { NavLink, useNavigate } from 'react-router-dom';
 import { kurti as productData } from "../jsfile/kurti";
 import Quickshop from "../component/quickshop/quickshop";
 import banner from "../img/kurti/homekurti.jpg";
@@ -41,7 +41,7 @@ function Kurti() {
     setFilteredProducts(updated);
     setCurrentPage(1);
   }, [minPrice, maxPrice, availability, discount, fabric]);
-
+  const navigate = useNavigate();
   const indexOfLast = currentPage * productsPerPage;
   const indexOfFirst = indexOfLast - productsPerPage;
   const currentProducts = filteredProducts.slice(indexOfFirst, indexOfLast);
@@ -106,8 +106,8 @@ function Kurti() {
             {/* Products Grid */}
             <div className={`kurti-products-grid cols-${columns}`}>
               {currentProducts.map((product) => (
-                <div key={product.id} className="kurti-card">
-                  <div className="kurti-image">
+                <div key={product.id} className="kurti-card" onClick={() => navigate(`/quickshop/${product.id}`)}>
+                  <div className="kurti-image" >
                     <img src={product.image} alt={product.name} className="kurti-main-img" />
                     <img src={product.hoverimage} alt="hover" className="kurti-hover-img" />
 
@@ -118,10 +118,10 @@ function Kurti() {
                       {wishlist.includes(product.id) ? <FaHeart /> : <FaRegHeart />}
                     </button>
 
-                    <Link to={`/product/${product.id}`} className="kurti-icon-btn kurti-view"><FiEye /></Link>
-                    <Link to={`/quickshop/${product.id}`} className="kurti-quickshop-btn">
+                    <NavLink to={`/quickshop/${product.id}`} className="kurti-icon-btn kurti-view"><FiEye /></NavLink>
+                    <NavLink to={`/quickshop/${product.id}`} className="kurti-quickshop-btn">
                       Quickshop
-                    </Link>
+                    </NavLink>
 
 
                   </div>

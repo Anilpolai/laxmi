@@ -1,82 +1,322 @@
 .quickshop-page {
-  padding: 40px;
+  padding: 20px;
   display: flex;
   justify-content: center;
 }
-
 .quickshop-content {
   display: flex;
-  gap: 30px;
-  max-width: 1200px;
-  width: 100%;
+  gap: 40px;
+  width: 80%;        
+  flex-wrap: wrap;
+  margin: 0 auto;   
 }
-
-.quickshop-thumbs {
+/* Left Images */
+.quickshop-left {
+  flex: 1;
+  min-width: 250px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  align-items: center;
 }
 
-.quickshop-thumbs .thumb {
-  width: 60px;
-  cursor: pointer;
-  border: 2px solid transparent;
-}
-
-.quickshop-thumbs .thumb.active {
-  border-color: #000;
-}
-
-.quickshop-carousel {
-  flex: 1;
-}
-
-.quickshop-carousel .main-slide {
+/* Main Image container */
+.quickshop-left .main-image {
   width: 100%;
+  max-width: 900px;
+  height: 800px;
+  margin-bottom: 15px;
+  position: relative;
+  overflow: hidden; /* hide sliding overflow */
   border-radius: 10px;
 }
 
-.quickshop-info {
-  width: 300px;
+/* Slider track */
+.slider-track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s ease; /* smooth slide */
 }
 
-.quickshop-info .price {
-  font-weight: bold;
+/* Each slide (img/video) */
+.slider-track img,
+.slider-track video {
+  min-width: 100%; /* each slide takes full width */
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 10px;
+}
+
+
+.quickshop-left .main-image img,
+.quickshop-left .main-image video {
+  width: 100%;
+  height: 100%;           /* force same height */
+  object-fit: cover;      /* image/video crop & center */
+  object-position: center;/* center alignment */
+  border-radius: 10px;
+}
+
+.quickshop-left .thumbnails {
+  display: flex;
+  gap: 10px;
+}
+/* Slider navigation buttons */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(123, 29, 53, 0.7);
+  border: none;
+  color: #fff;
   font-size: 20px;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  z-index: 5;
 }
 
-.quickshop-info .discount {
+.nav-btn:hover {
+  background: #7b1d35;
+}
+
+.nav-btn.prev {
+  left: 15px;
+  font-size: 5px;
+}
+
+.nav-btn.next {
+  right: 15px;
+  font-size: 5px;
+}
+
+.main-image {
+  position: relative; /* important for nav-btn absolute */
+}
+
+.quickshop-left .thumbnails img,
+.quickshop-left .thumbnails video {
+  width: 80px; /* thumbnails stay small */
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.quickshop-left .thumbnails .active img,
+.quickshop-left .thumbnails .active video {
+  border-color: #7b1d35;
+}
+
+/* Right content stays 70% width */
+.quickshop-right {
+  flex: 0 0 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.quickshop-right h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.quickshop-right .price {
+  font-weight: bold;
+  font-size: 22px;
+  color: #111;
+}
+
+.quickshop-right .discount {
   color: red;
+  font-weight: bold;
 }
 
-.size-selector button {
-  margin: 5px;
-  padding: 5px 10px;
+/* Sizes */
+.sizes {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
-.size-selector button.active {
-  background: black;
-  color: white;
+.sizes button {
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: 0.3s;
 }
 
-.quantity-selector {
+.sizes button.active,
+.sizes button:hover {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+/* Product Actions */
+.product-actions {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin: 10px 0;
+  margin-top: 15px;
 }
 
-.quantity-selector button {
-  width: 30px;
-  height: 30px;
+.quantity {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.quantity button {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  background-color: #fff;
   cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.quantity button:hover {
+  background-color: #7b1d35;
+  color: #fff;
+  border-color: #7b1d35;
+}
+
+.quantity span {
+  min-width: 30px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.add-to-cart,
+.wishlist {
+  width: 200px;
+  padding: 12px 25px;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
 }
 
 .add-to-cart {
-  padding: 10px;
-  width: 100%;
-  background: black;
-  color: white;
+  background-color: #7b1d35;
+  color: #fff;
   border: none;
-  cursor: pointer;
+}
+
+.add-to-cart:hover {
+  background-color: #5e1528;
+}
+
+.wishlist {
+  background-color: #fff;
+  color: #7b1d35;
+  border: 1px solid #7b1d35;
+}
+
+.wishlist:hover {
+  background-color: #7b1d35;
+  color: #fff;
+}
+
+.wishlist.active {
+  background-color: #7b1d35;
+  color: #fff;
+}
+
+.wishlist.active:hover {
+  background-color: #5e1528;
+}
+
+/* Accordion */
+.accordion {
+  margin-bottom: 10px;
+}
+
+.accordion h4 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.accordion-icon {
+  color: #7b1d35;
+}
+
+.accordion hr {
+  border: 0;
+  border-bottom: 2px solid #7b1d35;
+  margin: 5px 0 10px 0;
+}
+
+/* Reviews */
+.review-section {
+  margin-top: 20px;
+}
+
+
+/* Responsive Fix */
+@media (max-width: 992px) {
+  .quickshop-content {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+  }
+
+  .quickshop-left,
+  .quickshop-right {
+    width: 100%;
+    flex: none;
+  }
+
+  .quickshop-left .main-image {
+    height: auto;         /* don't fix 800px on mobile */
+    max-height: 500px;    /* cap height */
+  }
+
+  .quickshop-left .main-image img,
+  .quickshop-left .main-image video {
+    height: 100%;
+    object-fit: contain; /* full image visible on mobile */
+  }
+
+  .quickshop-right {
+    margin-top: 10px;
+    padding: 0 10px;
+  }
+
+  .quickshop-right h2 {
+    font-size: 22px;
+  }
+
+  .quickshop-right .price {
+    font-size: 18px;
+  }
+
+  .product-actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .add-to-cart,
+  .wishlist {
+    width: 100%;
+  }
 }
