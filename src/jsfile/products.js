@@ -8,84 +8,108 @@ export const products = [
     id: 1,
     name: "Embroidered Kurti",
     price: 1299,
-    image: p1,
-    hoverimage: p3
+    images: [p1, p3], // 👈 array for slider
+    description: "A stylish embroidered kurti with intricate embroidery.",
+    sizes: ["S", "M", "L", "XL"],
+    reviews: []
   },
   {
     id: 2,
     name: "Onion Pink Embroidered Neck Vatican Kurti Set with Chanderi Jacquard Dupatta",
     price: 1799,
-    image: p2,
-    hoverimage: p4
+    images: [p2, p4],
+    description: "Elegant kurti set with dupatta, perfect for festive occasions.",
+    sizes: ["M", "L", "XL"],
+    reviews: []
   },
   {
     id: 3,
     name: "Casual Tunic",
     price: 999,
-    image: p3,
-    hoverimage: p1
+    images: [p3, p1],
+    description: "Lightweight tunic for everyday casual wear.",
+    sizes: ["S", "M", "L"],
+    reviews: []
   },
   {
     id: 4,
     name: "Designer Saree",
     price: 2499,
-    image: p4,
-    hoverimage: p2
+    images: [p4, p2],
+    description: "Premium designer saree with fine fabric and design.",
+    sizes: [],
+    reviews: []
   },
   {
     id: 5,
     name: "Embroidered Kurti",
     price: 1299,
-    image: p1,
-    hoverimage: p3
+    images: [p1, p3],
+    description: "Beautiful embroidered kurti with comfortable fabric.",
+    sizes: ["S", "M", "L", "XL"],
+    reviews: []
   },
   {
     id: 6,
     name: "Kurti Set with Dupatta",
     price: 1799,
-    image: p2,
-    hoverimage: p4
+    images: [p2, p4],
+    description: "Trendy kurti set with dupatta.",
+    sizes: ["M", "L", "XL"],
+    reviews: []
   },
   {
     id: 7,
     name: "Casual Tunic",
     price: 999,
-    image: p3,
-    hoverimage: p1
+    images: [p3, p1],
+    description: "Simple tunic for everyday comfort.",
+    sizes: ["S", "M", "L"],
+    reviews: []
   },
   {
     id: 8,
     name: "Designer Saree",
     price: 2499,
-    image: p4,
-    hoverimage: p2
+    images: [p4, p2],
+    description: "Elegant saree designed for special occasions.",
+    sizes: [],
+    reviews: []
   },
   {
     id: 9,
     name: "Embroidered Kurti",
     price: 1299,
-    image: p1,
-    hoverimage: p3
+    images: [p1, p3],
+    description: "Stylish embroidered kurti with premium finishing.",
+    sizes: ["S", "M", "L", "XL"],
+    reviews: []
   },
   {
     id: 10,
     name: "Kurti Set with Dupatta",
     price: 1799,
-    image: p2,
-    hoverimage: p4
+    images: [p2, p4],
+    description: "Classic kurti set with a dupatta for traditional look.",
+    sizes: ["M", "L", "XL"],
+    reviews: []
   },
   {
     id: 11,
     name: "Casual Tunic",
     price: 999,
-    image: p3,
-    hoverimage: p1
+    images: [p3, p1],
+    description: "Breathable tunic for daily use.",
+    sizes: ["S", "M", "L"],
+    reviews: []
   },
   {
     id: 12,
     name: "Designer Saree",
     price: 2499,
-    image: p4,
-    hoverimage: p2
+    images: [p4, p2],
+    description: "Luxurious saree crafted for elegance.",
+    sizes: [],
+    reviews: []
   }
 ];

@@ -1,0 +1,43 @@
+.icon-btn1 {
+   background: #fff;
+  border: none;
+  border-radius: 50%;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  z-index: 3;
+  transition: all 0.3s ease;
+  color: #333;
+}
+
+
+/* Wishlist */
+.icon-btn1.wishlist1 {
+  top: 10px;
+  right: 10px;
+}
+
+.icon-btn1.wishlist1.active {
+  background-color: #7b1d35;
+  color: #fff;
+}
+
+
+/* View */
+.icon-btn1.view {
+  top: 55px;
+  right: 10px;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.product-image:hover .icon-btn1.view {
+  opacity: 1;
+  transform: translateY(0);
+}

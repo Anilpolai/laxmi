@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleWishlist } from "../redux/slice/wishlistSlice"
+import { selectProductById } from "../redux/slice/quickshopSlice";
 import { FaRegHeart, FaHeart, FaFilter } from "react-icons/fa";
 import { FiEye } from "react-icons/fi";
 import { BsGrid3X3GapFill, BsGridFill } from "react-icons/bs";
 import { FaThLarge } from "react-icons/fa";
 import { NavLink, useNavigate } from 'react-router-dom';
 import { kurti as productData } from "../jsfile/kurti";
-import Quickshop from "../component/quickshop/quickshop";
 import banner from "../img/kurti/homekurti.jpg";
 import "./kurti.css";
 import KurtiFilter from "../component/filter/KurtiFilter";
@@ -15,8 +15,8 @@ import KurtiFilter from "../component/filter/KurtiFilter";
 function Kurti() {
   const dispatch = useDispatch();
   const wishlist = useSelector((state) => state.wishlist.items);
-  const [quickshopProduct, setQuickshopProduct] = useState(null);
-
+  const products = useSelector((state) => state.products.list);
+  const kurtiProducts = products.filter((p) => p.category === "kurti");
 
   const [filteredProducts, setFilteredProducts] = useState(productData);
   const [availability, setAvailability] = useState("all");
@@ -109,12 +109,15 @@ function Kurti() {
                 <div key={product.id} className="kurti-card" onClick={() => navigate(`/quickshop/${product.id}`)}>
                   <div className="kurti-image" >
                     <img src={product.image} alt={product.name} className="kurti-main-img" />
-                    <img src={product.hoverimage} alt="hover" className="kurti-hover-img" />
+                    <img src={product.hoverimage} alt={product.name} className="kurti-hover-img" />
+
 
                     <button
                       className={`kurti-icon-btn kurti-wishlist ${wishlist.includes(product.id) ? "active" : ""}`}
-                      onClick={() => dispatch(toggleWishlist(product.id))}
-                    >
+                      onClick={(e) => {
+                        e.stopPropagation(); // ✅ prevent triggering navigate
+                        dispatch(toggleWishlist(product.id));
+                      }}>
                       {wishlist.includes(product.id) ? <FaHeart /> : <FaRegHeart />}
                     </button>
 

@@ -2,20 +2,17 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { removeWishlist, clearWishlist } from "../../redux/slice/wishlistSlice";
-import { products as productsData } from "../../jsfile/products";
-import { kurti as kurtiData } from "../../jsfile/kurti";
 import { FaHeart } from "react-icons/fa";
 import { FiEye } from "react-icons/fi";
+import './wishlist.css';
 
 export default function Wishlist() {
   const wishlist = useSelector((state) => state.wishlist.items);
+  const products = useSelector((state) => state.products.list); // ✅ pull all products from Redux
   const dispatch = useDispatch();
 
-  // Merge both arrays
-  const allProducts = [...productsData, ...kurtiData];
-
-  // Filter only wishlist products
-  const wishlistProducts = allProducts.filter((p) => wishlist.includes(p.id));
+  // Filter wishlist products
+  const wishlistProducts = products.filter((p) => wishlist.includes(p.id));
 
   return (
     <section className="best-sellers-section">
@@ -40,18 +37,19 @@ export default function Wishlist() {
               <div key={product.id} className="product-card">
                 <div className="product-image">
                   <img
-                    src={product.image}
+                    src={product.images ? product.images[0] : product.image}
                     alt={product.name}
                     className="main-img"
                   />
                   <img
-                    src={product.hoverimage}
+                    src={product.images ? product.images[1] : product.hoverimage}
                     alt={`${product.name} Hover`}
                     className="hover-img"
                   />
 
+
                   <button
-                    className="icon-btn wishlist active"
+                    className="icon-btn1 wishlist1 active"
                     onClick={() => dispatch(removeWishlist(product.id))}
                     aria-label="Remove from Wishlist"
                   >
@@ -59,19 +57,25 @@ export default function Wishlist() {
                   </button>
 
                   <Link
-                    to={`/product/${product.id}`}
-                    className="icon-btn view"
+                    to={`/quickshop/${product.id}`} // ✅ point to Quickshop
+                    className="icon-btn1 view"
                     aria-label="View Product"
                   >
                     <FiEye />
                   </Link>
 
-                  <button className="quickshop-btn">Quickshop</button>
+                  <Link
+                    to={`/quickshop/${product.id}`} // Quickshop button
+                    className="quickshop-btn"
+                  >
+                    Quickshop
+                  </Link>
                 </div>
 
                 <div className="product-info">
                   <h5 className="product-name">{product.name}</h5>
                   <p className="product-price">₹{product.price}</p>
+                  {product.discount && <p className="product-discount">{product.discount}% OFF</p>}
                 </div>
               </div>
             ))}

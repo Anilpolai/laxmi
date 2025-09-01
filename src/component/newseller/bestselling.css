@@ -133,13 +133,14 @@
 /* ===========================
    Icons (Wishlist, View)
 =========================== */
-.icon-btn {
+
+.best-icon-btn {
   background: #fff;
   border: none;
   border-radius: 50%;
   font-size: 16px;
   cursor: pointer;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
   width: 38px;
   height: 38px;
   display: flex;
@@ -150,27 +151,29 @@
   transition: all 0.3s ease;
   color: #333;
 }
-
 /* Wishlist */
-.icon-btn.wishlist {
+.best-icon-btn.best-wishlist {
   top: 10px;
   right: 10px;
 }
 
-.icon-btn.wishlist.active {
+.best-icon-btn.best-wishlist.active {
   background-color: #7b1d35;
   color: #fff;
 }
 
+
+
+
 /* View */
-.icon-btn.view {
+.best-icon-btn.view {
   top: 55px;
   right: 10px;
   opacity: 0;
   transform: translateY(10px);
 }
 
-.product-image:hover .icon-btn.view {
+.product-image:hover .best-icon-btn.view {
   opacity: 1;
   transform: translateY(0);
 }

@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleWishlist } from "../../redux/slice/wishlistSlice";
-import { kurti as productData } from "../../jsfile/kurti";
 import { FaTruck, FaSoap, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import ReviewSection from "../review/review";
+import { selectProductById } from "../../redux/slice/quickshopSlice";
 import "./quickshop.css";
 
 const QuickshopPage = () => {
@@ -13,12 +13,13 @@ const QuickshopPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const product = useSelector((state) => selectProductById(state, id));
   const wishlist = useSelector((state) => state.wishlist.items);
 
-  const product = productData.find((p) => p.id === id);
+  // ✅ Add all state hooks before using them
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedSize, setSelectedSize] = useState(product?.sizes?.[0] || "");
   const [quantity, setQuantity] = useState(1);
-  const [currentIndex, setCurrentIndex] = useState(0);
 
   if (!product) {
     return <div className="p-4 text-red-500">❌ Product not found</div>;
@@ -38,8 +39,6 @@ const QuickshopPage = () => {
     );
   };
 
-  const mainImage = product.images[currentIndex];
-
   return (
     <div className="quickshop-page">
       <div className="quickshop-content">
@@ -52,22 +51,30 @@ const QuickshopPage = () => {
                 transform: `translateX(-${currentIndex * 100}%)`,
               }}
             >
-              {product.images.map((img, i) =>
-                img.endsWith(".mp4") ? (
-                  <video key={i} src={img} controls />
-                ) : (
-                  <img key={i} src={img} alt={product.name} />
+              {product.images?.length ? (
+                product.images.map((img, i) =>
+                  img.endsWith(".mp4") ? (
+                    <video key={i} src={img} controls />
+                  ) : (
+                    <img key={i} src={img} alt={product.name} />
+                  )
                 )
+              ) : (
+                <p>No images available</p>
               )}
             </div>
 
             {/* Navigation buttons */}
-            <button className="nav-btn prev" onClick={handlePrev}>
-              <FaChevronLeft />
-            </button>
-            <button className="nav-btn next" onClick={handleNext}>
-              <FaChevronRight />
-            </button>
+            {product.images?.length > 1 && (
+              <>
+                <button className="nav-btn prev" onClick={handlePrev}>
+                  <FaChevronLeft />
+                </button>
+                <button className="nav-btn next" onClick={handleNext}>
+                  <FaChevronRight />
+                </button>
+              </>
+            )}
           </div>
 
           <div className="thumbnails">

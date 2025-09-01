@@ -26,3 +26,7 @@ li{
 .footer-container a:hover {
   color: var(--primary-color); /* your theme color */
 }
+.quickshop-btn {
+  text-decoration: none;
+}
+

@@ -5,10 +5,11 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleWishlist } from "../../redux/slice/wishlistSlice";
 import { products as productData } from "../../jsfile/products";
-import QuickshopPage from "../quickshop/quickshop";
+
 import "./bestselling.css";
 
 export default function BestSellers() {
+  const products = useSelector((state) => state.products.list);
   const wishlist = useSelector((state) => state.wishlist.items);
   const dispatch = useDispatch();
 
@@ -30,24 +31,23 @@ export default function BestSellers() {
         {productData.map((product) => (
           <div key={product.id} className="product-card">
             <div className="product-image">
-              <img src={product.image} alt={product.name} className="main-img" />
+              <img src={product.images[0]} alt={product.name} className="main-img" />
               <img
-                src={product.hoverimage}
+                src={product.images[1]}
                 alt={`${product.name} Hover`}
                 className="hover-img"
-              />
+              /> 
 
               {/* Wishlist Button */}
               <button
-                className={`icon-btn wishlist ${wishlist.includes(product.id) ? "active" : ""}`}
+                className={`best-icon-btn best-wishlist ${wishlist.includes(product.id) ? "active" : ""}`}
                 onClick={() => dispatch(toggleWishlist(product.id))}
-                aria-label="Toggle Wishlist"
-              >
+                aria-label="Toggle Wishlist">
                 {wishlist.includes(product.id) ? <FaHeart /> : <FaRegHeart />}
               </button>
 
               {/* View Button */}
-              <Link to={`/quickshop/${product.id}`} className="icon-btn view" aria-label="View Product">
+              <Link to={`/quickshop/${product.id}`} className="best-icon-btn view" aria-label="View Product">
                 <FiEye />
               </Link>
 
