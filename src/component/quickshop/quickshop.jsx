@@ -8,6 +8,7 @@ import "./quickshop.css";
 
 import ProductGallery from "./ProductGallery";
 import ImageModal from "./ImageModal";
+import LiveViewers from "./LiveViewers";
 import SizeChartAccordion from "../sizeandpincode/SizeChartAccordion";
 import PincodeAccordion from "../sizeandpincode/PincodeAccordion";
 import ShippingAccordion from "../sizeandpincode/ShippingAccordion";
@@ -47,6 +48,7 @@ const QuickshopPage = () => {
         {/* ✅ Right: Info */}
         <div className="quickshop-right">
           <h2>{product.name}</h2>
+          <LiveViewers />
           <p className="price">₹{product.price}</p>
           {product.discount && (
             <p className="discount">{product.discount}% OFF</p>

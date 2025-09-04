@@ -674,3 +674,27 @@
     opacity: 1;
   }
 }
+
+.live-viewers {
+  margin-top: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #7b1d35;
+  background: #fff5f7;
+  border: 1px solid #f0c4d1;
+  padding: 6px 12px;
+  border-radius: 8px;
+  display: inline-block;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.live-viewers span {
+  font-weight: bold;
+  color: #d62b70;
+}
+
+/* smooth fade effect when number updates */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-3px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
