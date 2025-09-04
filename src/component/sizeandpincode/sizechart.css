@@ -78,6 +78,6 @@
 }
 
 .accordion-content.open {
-  max-height: 500px; /* large enough for table */
+  max-height: 523px; /* large enough for table */
   opacity: 1;
 }
