@@ -96,9 +96,6 @@ const QuickshopPage = () => {
 
         {/* Right: Info */}
         <div className="quickshop-right">
-          <button className="close-btn" onClick={() => navigate(-1)}>
-            ✕
-          </button>
           <h2>{product.name}</h2>
           <p className="price">₹{product.price}</p>
           {product.discount && (
