@@ -1,16 +1,18 @@
-// QuickshopPage.jsx
+// src/components/quickshop/QuickshopPage.jsx
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleWishlist } from "../../redux/slice/wishlistSlice";
-import { FaTruck, FaSoap, FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import ReviewSection from "../review/review";
 import { selectProductById } from "../../redux/slice/quickshopSlice";
 import "./quickshop.css";
+
+import ProductGallery from "./ProductGallery";
+import ImageModal from "./ImageModal";
 import SizeChartAccordion from "../sizeandpincode/SizeChartAccordion";
 import PincodeAccordion from "../sizeandpincode/PincodeAccordion";
 import ShippingAccordion from "../sizeandpincode/ShippingAccordion";
 import CareGuideAccordion from "../sizeandpincode/CareGuideAccordion";
+import ReviewSection from "../review/review";
 
 const QuickshopPage = () => {
   const { id } = useParams();
@@ -20,7 +22,7 @@ const QuickshopPage = () => {
   const product = useSelector((state) => selectProductById(state, id));
   const wishlist = useSelector((state) => state.wishlist.items);
 
-  // ✅ Add all state hooks before using them
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedSize, setSelectedSize] = useState(product?.sizes?.[0] || "");
   const [quantity, setQuantity] = useState(1);
@@ -31,74 +33,18 @@ const QuickshopPage = () => {
 
   const isWishlisted = wishlist.includes(product.id);
 
-  const handlePrev = () => {
-    setCurrentIndex((prev) =>
-      prev === 0 ? product.images.length - 1 : prev - 1
-    );
-  };
-
-  const handleNext = () => {
-    setCurrentIndex((prev) =>
-      prev === product.images.length - 1 ? 0 : prev + 1
-    );
-  };
-
   return (
     <div className="quickshop-page">
       <div className="quickshop-content">
-        {/* Left: Images */}
-        <div className="quickshop-left">
-          <div className="main-image">
-            <div
-              className="slider-track"
-              style={{
-                transform: `translateX(-${currentIndex * 100}%)`,
-              }}
-            >
-              {product.images?.length ? (
-                product.images.map((img, i) =>
-                  img.endsWith(".mp4") ? (
-                    <video key={i} src={img} controls />
-                  ) : (
-                    <img key={i} src={img} alt={product.name} />
-                  )
-                )
-              ) : (
-                <p>No images available</p>
-              )}
-            </div>
+        {/* ✅ Left: Product Gallery */}
+        <ProductGallery
+          images={product.images}
+          currentIndex={currentIndex}
+          setCurrentIndex={setCurrentIndex}
+          onOpenModal={() => setIsModalOpen(true)}
+        />
 
-            {/* Navigation buttons */}
-            {product.images?.length > 1 && (
-              <>
-                <button className="nav-btn prev" onClick={handlePrev}>
-                  <FaChevronLeft />
-                </button>
-                <button className="nav-btn next" onClick={handleNext}>
-                  <FaChevronRight />
-                </button>
-              </>
-            )}
-          </div>
-
-          <div className="thumbnails">
-            {product.images?.map((img, i) => (
-              <div
-                key={i}
-                className={`thumb ${currentIndex === i ? "active" : ""}`}
-                onClick={() => setCurrentIndex(i)}
-              >
-                {img.endsWith(".mp4") ? (
-                  <video src={img} width={80} />
-                ) : (
-                  <img src={img} alt="" width={80} />
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Right: Info */}
+        {/* ✅ Right: Info */}
         <div className="quickshop-right">
           <h2>{product.name}</h2>
           <p className="price">₹{product.price}</p>
@@ -107,6 +53,7 @@ const QuickshopPage = () => {
           )}
           <p>{product.description}</p>
 
+          {/* Sizes */}
           <div className="sizes">
             {product.sizes?.map((size) => (
               <button
@@ -119,6 +66,7 @@ const QuickshopPage = () => {
             ))}
           </div>
 
+          {/* Cart + Wishlist */}
           <div className="product-actions">
             <div className="quantity">
               <button onClick={() => setQuantity((q) => Math.max(1, q - 1))}>
@@ -138,14 +86,25 @@ const QuickshopPage = () => {
             </button>
           </div>
 
+          {/* Accordions */}
           <ShippingAccordion />
           <CareGuideAccordion />
           <SizeChartAccordion />
           <PincodeAccordion />
 
+          {/* Reviews */}
           <ReviewSection reviews={product.reviews || []} />
         </div>
       </div>
+
+      {/* ✅ Fullscreen Modal */}
+      <ImageModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        images={product.images}
+        currentIndex={currentIndex}
+        setCurrentIndex={setCurrentIndex}
+      />
     </div>
   );
 };
