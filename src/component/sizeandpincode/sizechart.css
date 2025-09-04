@@ -1,0 +1,83 @@
+/* Accordion tables and inputs */
+.size-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+.size-table th, 
+.size-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+.size-table th {
+  background: #f4f4f4;
+  font-weight: bold;
+}
+
+.pincode-check input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-right: 8px;
+  width: 200px;
+}
+.pincode-check button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 6px;
+  background: #7b1d35;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.pincode-check button:hover {
+  background: #5e1528;
+}
+.availability {
+  margin-top: 8px;
+  font-weight: bold;
+}
+
+.accordion {
+  margin-bottom: 10px;
+}
+
+/* Header */
+.accordion-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.accordion h4 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.accordion-icon {
+  color: #7b1d35;
+}
+
+.accordion hr {
+  border: 0;
+  border-bottom: 2px solid #7b1d35;
+  margin: 5px 0 10px 0;
+}
+
+/* Smooth slide content */
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.4s ease-in-out;
+}
+
+.accordion-content.open {
+  max-height: 500px; /* large enough for table */
+  opacity: 1;
+}

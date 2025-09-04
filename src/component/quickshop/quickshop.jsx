@@ -7,6 +7,10 @@ import { FaTruck, FaSoap, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import ReviewSection from "../review/review";
 import { selectProductById } from "../../redux/slice/quickshopSlice";
 import "./quickshop.css";
+import SizeChartAccordion from "../sizeandpincode/SizeChartAccordion";
+import PincodeAccordion from "../sizeandpincode/PincodeAccordion";
+import ShippingAccordion from "../sizeandpincode/ShippingAccordion";
+import CareGuideAccordion from "../sizeandpincode/CareGuideAccordion";
 
 const QuickshopPage = () => {
   const { id } = useParams();
@@ -134,21 +138,10 @@ const QuickshopPage = () => {
             </button>
           </div>
 
-          <div className="accordion">
-            <h4>
-              <FaTruck className="accordion-icon" /> Shipping Information
-            </h4>
-            <hr />
-            <p>Ships in 3-5 business days.</p>
-          </div>
-
-          <div className="accordion">
-            <h4>
-              <FaSoap className="accordion-icon" /> Care Guide
-            </h4>
-            <hr />
-            <p>Dry clean only.</p>
-          </div>
+          <ShippingAccordion />
+          <CareGuideAccordion />
+          <SizeChartAccordion />
+          <PincodeAccordion />
 
           <ReviewSection reviews={product.reviews || []} />
         </div>
