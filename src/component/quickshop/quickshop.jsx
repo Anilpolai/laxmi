@@ -14,6 +14,7 @@ import PincodeAccordion from "../sizeandpincode/PincodeAccordion";
 import ShippingAccordion from "../sizeandpincode/ShippingAccordion";
 import CareGuideAccordion from "../sizeandpincode/CareGuideAccordion";
 import ReviewSection from "../review/review";
+import ReviewList from "../review/reviewList";
 
 const QuickshopPage = () => {
   const { id } = useParams();
@@ -22,7 +23,8 @@ const QuickshopPage = () => {
 
   const product = useSelector((state) => selectProductById(state, id));
   const wishlist = useSelector((state) => state.wishlist.items);
-
+  const [isReviewOpen, setIsReviewOpen] = useState(false);
+  
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedSize, setSelectedSize] = useState(product?.sizes?.[0] || "");
@@ -93,10 +95,33 @@ const QuickshopPage = () => {
           <CareGuideAccordion />
           <SizeChartAccordion />
           <PincodeAccordion />
-
-          {/* Reviews */}
-          <ReviewSection reviews={product.reviews || []} />
         </div>
+        <div className="review-section2">
+      {/* Review Button */}
+      <button className="add-review-btn" onClick={() => setIsReviewOpen(true)}>
+        ✍️ Write a Review
+      </button>
+
+      {/* Review List always visible */}
+      <div className="review-list">
+        <ReviewList reviews={product.reviews} />
+      </div>
+
+      {/* Review Form Modal */}
+      <div className={`review-modal ${isReviewOpen ? "open" : ""}`} onClick={() => setIsReviewOpen(false)}>
+        <div
+          className="review-modal-content"
+          onClick={(e) => e.stopPropagation()} // andar click karne par modal close na ho
+        >
+          <span className="close-btn" onClick={() => setIsReviewOpen(false)}>
+            ✖
+          </span>
+          <h3>Write Your Review</h3>
+          <ReviewSection reviews={product.reviews} />
+        </div>
+      </div>
+    </div>
+
       </div>
 
       {/* ✅ Fullscreen Modal */}
