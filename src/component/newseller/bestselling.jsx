@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { FiEye } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";   // ✅ Added useNavigate
 import { useSelector, useDispatch } from "react-redux";
 import { toggleWishlist } from "../../redux/slice/wishlistSlice";
 import { products as productData } from "../../jsfile/products";
@@ -9,11 +9,9 @@ import { products as productData } from "../../jsfile/products";
 import "./bestselling.css";
 
 export default function BestSellers() {
-  const products = useSelector((state) => state.products.list);
   const wishlist = useSelector((state) => state.wishlist.items);
   const dispatch = useDispatch();
-
-
+  const navigate = useNavigate();   // ✅ Now we can navigate programmatically
 
   return (
     <div className="best-sellers-section">
@@ -29,25 +27,44 @@ export default function BestSellers() {
       {/* Product Grid */}
       <div className="products-grid">
         {productData.map((product) => (
-          <div key={product.id} className="product-card">
+          <div
+            key={product.id}
+            className="product-card"
+            onClick={() => navigate(`/quickshop/${product.id}`)} // ✅ Correct navigation
+          >
             <div className="product-image">
-              <img src={product.images[0]} alt={product.name} className="main-img" />
+              <img
+                src={product.images[0]}
+                alt={product.name}
+                className="main-img"
+              />
               <img
                 src={product.images[1]}
                 alt={`${product.name} Hover`}
                 className="hover-img"
-              /> 
+              />
 
               {/* Wishlist Button */}
               <button
-                className={`best-icon-btn best-wishlist ${wishlist.includes(product.id) ? "active" : ""}`}
-                onClick={() => dispatch(toggleWishlist(product.id))}
-                aria-label="Toggle Wishlist">
+                className={`best-icon-btn best-wishlist ${
+                  wishlist.includes(product.id) ? "active" : ""
+                }`}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  dispatch(toggleWishlist(product.id));
+                }}
+                aria-label="Toggle Wishlist"
+              >
                 {wishlist.includes(product.id) ? <FaHeart /> : <FaRegHeart />}
               </button>
 
               {/* View Button */}
-              <Link to={`/quickshop/${product.id}`} className="best-icon-btn view" aria-label="View Product">
+              <Link
+                to={`/quickshop/${product.id}`}
+                className="best-icon-btn view"
+                aria-label="View Product"
+                onClick={(e) => e.stopPropagation()} // ✅ prevent conflict with card click
+              >
                 <FiEye />
               </Link>
 
@@ -55,6 +72,7 @@ export default function BestSellers() {
               <Link
                 to={`/quickshop/${product.id}`}
                 className="quickshop-btn"
+                onClick={(e) => e.stopPropagation()} // ✅ prevent double navigation
               >
                 Quickshop
               </Link>

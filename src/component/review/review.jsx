@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import "./review.css";
 import ReviewList from "./reviewList";
+import { toast } from "react-toastify";
 
 const ReviewSection = ({ reviews }) => {
-  const [allReviews, setAllReviews] = useState(reviews);
+  const [allReviews, setAllReviews] = useState(reviews || []);
   const [newReview, setNewReview] = useState({
     name: "",
     avatar: "",
@@ -27,16 +28,20 @@ const ReviewSection = ({ reviews }) => {
 
   const handleSubmit = () => {
     if (!newReview.name || !newReview.rating || !newReview.comment) {
-      alert("Please fill all fields!");
+      toast.error("⚠️ Please fill all fields!");
       return;
     }
+
     const newEntry = {
       ...newReview,
       id: Date.now(),
-      date: new Date().toISOString().split("T")[0],
+      date: new Date().toLocaleDateString(), // nicer format
     };
+
     setAllReviews([newEntry, ...allReviews]);
     setNewReview({ name: "", avatar: "", rating: 0, comment: "", photos: [] });
+
+    toast.success("✅ Review submitted successfully!");
   };
 
   return (
@@ -62,15 +67,14 @@ const ReviewSection = ({ reviews }) => {
           value={newReview.rating}
           onChange={(e) =>
             setNewReview({ ...newReview, rating: Number(e.target.value) })
-          }
-        >
+          }>
           <option value="0">Select Rating</option>
           <option value="5">⭐️⭐️⭐️⭐️⭐️</option>
           <option value="4">⭐️⭐️⭐️⭐️</option>
           <option value="3">⭐️⭐️⭐️</option>
           <option value="2">⭐️⭐️</option>
           <option value="1">⭐️</option>
-        </select>
+        </select> 
 
         <textarea
           placeholder="Write your review..."
@@ -91,7 +95,7 @@ const ReviewSection = ({ reviews }) => {
         <button onClick={handleSubmit}>Submit Review</button>
       </div>
 
-      {/* ✅ Separated ReviewList Component */}
+      {/* ✅ Show Reviews */}
       {/* <ReviewList reviews={allReviews} /> */}
     </div>
   );

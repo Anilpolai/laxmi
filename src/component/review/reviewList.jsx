@@ -1,7 +1,7 @@
 import React from "react";
 import "./review.css";
 
-const ReviewList = ({ reviews }) => {
+const ReviewList = ({ reviews = [] }) => {
   return (
     <div className="review-list">
       {reviews.length === 0 ? (

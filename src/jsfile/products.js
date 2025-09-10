@@ -1,26 +1,47 @@
-import p1 from '../img/products/p1.jpg';
-import p2 from '../img/products/p2.jpg';
-import p3 from '../img/products/p3.jpg';
-import p4 from '../img/products/p4.jpg';
+import p1 from "../img/products/p1.jpg";
+import p2 from "../img/products/p2.jpg";
+import p3 from "../img/products/p3.jpg";
+import p4 from "../img/products/p4.jpg";
 
 export const products = [
   {
     id: 1,
     name: "Embroidered Kurti",
     price: 1299,
-    images: [p1, p3], // 👈 array for slider
+    images: [p1, p3, p4], // 👈 array for slider
     description: "A stylish embroidered kurti with intricate embroidery.",
     sizes: ["S", "M", "L", "XL"],
-    reviews: []
+    descriptionDetails: [
+      { label: "Fabric", value: "Kurti : Cotton Linen | Bottom :" },
+      { label: "Color", value: "Kurti : Pink | Bottom :" },
+      { label: "Occasion", value: "Festival Casual Women Wear" },
+      { label: "Work", value: "Embroidered" },
+      {
+        label: "Do note",
+        value:
+          "Accessories shown in the image are for shooting purpose. There might be some color variation.",
+      },
+    ],
+    reviews: [
+      {
+        id: 1,
+        name: "Priya Sharma",
+        avatar: "/avatars/user1.jpg",
+        rating: 5,
+        comment: "Loved the fabric quality! Perfect fit.",
+        date: "2025-08-28",
+      },
+    ],
   },
   {
     id: 2,
     name: "Onion Pink Embroidered Neck Vatican Kurti Set with Chanderi Jacquard Dupatta",
     price: 1799,
-    images: [p2, p4],
-    description: "Elegant kurti set with dupatta, perfect for festive occasions.",
+    images: [p2, p4, p1, p3],
+    description:
+      "Elegant kurti set with dupatta, perfect for festive occasions.",
     sizes: ["M", "L", "XL"],
-    reviews: []
+    reviews: [],
   },
   {
     id: 3,
@@ -29,16 +50,16 @@ export const products = [
     images: [p3, p1],
     description: "Lightweight tunic for everyday casual wear.",
     sizes: ["S", "M", "L"],
-    reviews: []
+    reviews: [],
   },
   {
     id: 4,
     name: "Designer Saree",
     price: 2499,
-    images: [p4, p2],
+    images: [p4, p2, p3],
     description: "Premium designer saree with fine fabric and design.",
     sizes: [],
-    reviews: []
+    reviews: [],
   },
   {
     id: 5,
@@ -47,7 +68,7 @@ export const products = [
     images: [p1, p3],
     description: "Beautiful embroidered kurti with comfortable fabric.",
     sizes: ["S", "M", "L", "XL"],
-    reviews: []
+    reviews: [],
   },
   {
     id: 6,
@@ -56,7 +77,7 @@ export const products = [
     images: [p2, p4],
     description: "Trendy kurti set with dupatta.",
     sizes: ["M", "L", "XL"],
-    reviews: []
+    reviews: [],
   },
   {
     id: 7,
@@ -65,7 +86,7 @@ export const products = [
     images: [p3, p1],
     description: "Simple tunic for everyday comfort.",
     sizes: ["S", "M", "L"],
-    reviews: []
+    reviews: [],
   },
   {
     id: 8,
@@ -74,7 +95,7 @@ export const products = [
     images: [p4, p2],
     description: "Elegant saree designed for special occasions.",
     sizes: [],
-    reviews: []
+    reviews: [],
   },
   {
     id: 9,
@@ -83,7 +104,7 @@ export const products = [
     images: [p1, p3],
     description: "Stylish embroidered kurti with premium finishing.",
     sizes: ["S", "M", "L", "XL"],
-    reviews: []
+    reviews: [],
   },
   {
     id: 10,
@@ -92,7 +113,7 @@ export const products = [
     images: [p2, p4],
     description: "Classic kurti set with a dupatta for traditional look.",
     sizes: ["M", "L", "XL"],
-    reviews: []
+    reviews: [],
   },
   {
     id: 11,
@@ -101,7 +122,7 @@ export const products = [
     images: [p3, p1],
     description: "Breathable tunic for daily use.",
     sizes: ["S", "M", "L"],
-    reviews: []
+    reviews: [],
   },
   {
     id: 12,
@@ -110,6 +131,6 @@ export const products = [
     images: [p4, p2],
     description: "Luxurious saree crafted for elegance.",
     sizes: [],
-    reviews: []
-  }
+    reviews: [],
+  },
 ];

@@ -9,11 +9,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./redux/store/store.js"; // ✅ from Redux setup
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
 
 createRoot(document.getElementById('root')).render(
-    <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </Provider>,
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+      <ToastContainer position="top-right" autoClose={2000} />
+    </BrowserRouter>
+  </Provider>,
 );
