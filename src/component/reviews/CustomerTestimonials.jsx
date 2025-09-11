@@ -45,7 +45,7 @@ export default function CustomerTestimonials() {
   const options = {
     loop: true,
     margin: 20,
-    nav: true,
+    nav: false,
     dots: true,
     autoplay: true,
     autoplayTimeout: 3500,

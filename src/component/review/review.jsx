@@ -86,8 +86,7 @@ const ReviewSection = ({ productId, onClose }) => {
                   type="file"
                   accept="image/*"
                   onChange={handleAvatarUpload}
-                  hidden
-                />
+                  hidden/>
                 Profile
               </label>
             )}
@@ -140,9 +139,7 @@ const ReviewSection = ({ productId, onClose }) => {
           placeholder="Write your review..."
           value={newReview.comment}
           onChange={(e) =>
-            setNewReview({ ...newReview, comment: e.target.value })
-          }
-        />
+            setNewReview({ ...newReview, comment: e.target.value })}/>
 
         <button onClick={handleSubmit}>Submit Review</button>
       </div>
