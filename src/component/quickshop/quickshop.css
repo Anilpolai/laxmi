@@ -268,9 +268,7 @@
   align-items: flex-start;
 }
 
-.review-left,
-.review-right {
-  flex: 1;
+.review-left {
   max-width: 500px;
 }
 
@@ -335,8 +333,13 @@
   color: #7b1d35;
   font-weight: 600;
 }
-
-/* Line with stars + button */
+/* Divider line between review list and button */
+.review-divider-line {
+  margin: 0 15px;
+  color: #ccc;
+  font-size: 30px;
+  user-select: none;
+}
 
 
 

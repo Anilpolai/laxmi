@@ -7,6 +7,7 @@ import "./quickshop.css";
 import ProductGallery from "./ProductGallery";
 import ImageModal from "./ImageModal";
 import LiveViewers from "./LiveViewers";
+import { RxDividerVertical } from "react-icons/rx";
 import SizeChartAccordion from "../sizeandpincode/SizeChartAccordion";
 import PincodeAccordion from "../sizeandpincode/PincodeAccordion";
 import ShippingAccordion from "../sizeandpincode/ShippingAccordion";
@@ -108,29 +109,32 @@ const QuickshopPage = () => {
           currentIndex={currentIndex}
           setCurrentIndex={setCurrentIndex}
         />
-      </div>
+      </div>.
+
       {/* ✅ Review Section */}
       <div className="review-wrapper">
-          <h2>Customer Reviews</h2>
-          <div className="review-section">
-        {/* Left side → Review List */}
-        <div className="review-left">
-          <ReviewList reviews={reviews} />
-        </div>
+        <h2>Customer Reviews</h2>
+        <div className="review-section">
+          {/* Left side → Review List */}
+          <div className="review-left">
+            <ReviewList reviews={reviews} />
+          </div>
 
-        {/* Right side → Button */}
-        <div className="review-right">
-          <button
-            className="review-btn"
-            onClick={() => setIsReviewModalOpen(true)}
-          >
-            Write a Review
-          </button>
-        </div>
+          {/* Divider Line */}
+          <div className="review-divider-line"><RxDividerVertical /></div>
+
+          {/* Right side → Button */}
+          <div className="review-right">
+            <button
+              className="review-btn"
+              onClick={() => setIsReviewModalOpen(true)}
+            >
+              Write a Review
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* ✅ Review Modal */}
       {isReviewModalOpen && (
         <div className="review-modal open">
           <div className="review-modal-content">
@@ -140,10 +144,15 @@ const QuickshopPage = () => {
             >
               ✖
             </button>
-            <Review productId={product.id}/>
+            <Review
+              productId={product.id}
+              onClose={() => setIsReviewModalOpen(false)}
+            />
           </div>
         </div>
       )}
+
+
     </>
   );
 };

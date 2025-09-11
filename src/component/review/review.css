@@ -1,12 +1,13 @@
-.review-section {
+.review-section-wrapper {
   margin-top: 30px;
+  padding: 20px;
 }
 
 .review-form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 12px;
+  margin-bottom: 30px;
 }
 
 .review-form input,
@@ -21,9 +22,73 @@
   background: #7b1d35;
   color: #fff;
   border: none;
-  padding: 10px;
+  padding: 12px;
   border-radius: 6px;
   cursor: pointer;
+  font-weight: bold;
+}
+
+.photo-upload-wrapper {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin: 10px 0;
+}
+
+.photo-upload-box {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.photo-upload-box:hover {
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+.photo-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #7b1d35;
+  gap: 5px;
+}
+
+.plus-icon {
+  font-size: 28px;
+  font-weight: bold;
+  color: #7b1d35;
+}
+
+.uploaded-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.uploaded-photos {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.uploaded-photos .uploaded-photo {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
 }
 
 .review-card {
@@ -52,7 +117,6 @@
   margin: 4px 0;
 }
 
-.preview-photos,
 .review-photos {
   display: flex;
   gap: 8px;
@@ -60,11 +124,32 @@
   margin-top: 8px;
 }
 
-.preview-img,
 .review-img {
   width: 70px;
   height: 70px;
   object-fit: cover;
   border-radius: 6px;
   border: 1px solid #ddd;
+}
+
+.review-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.no-reviews {
+  text-align: center;
+}
+
+.review-date {
+  color: #888;
+  font-size: 12px;
+  margin-top: 6px;
+}
+
+.review-rating {
+  color: gold;
+  margin: 4px 0;
+  font-size: 16px;
 }

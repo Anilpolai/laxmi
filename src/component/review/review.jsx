@@ -5,13 +5,13 @@ import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { addReview, selectReviewsByProduct } from "../../redux/slice/rootslice";
 
-const ReviewSection = ({ productId }) => {
+const ReviewSection = ({ productId, onClose }) => {
   const dispatch = useDispatch();
 
-  // Redux se reviews lao
-  const reviews = useSelector((state) => selectReviewsByProduct(state, productId));
+  const reviews = useSelector((state) =>
+    selectReviewsByProduct(state, productId)
+  );
 
-  // Naya review form state
   const [newReview, setNewReview] = useState({
     name: "",
     avatar: "",
@@ -20,7 +20,6 @@ const ReviewSection = ({ productId }) => {
     photos: [],
   });
 
-  // Profile pic upload
   const handleAvatarUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -28,14 +27,12 @@ const ReviewSection = ({ productId }) => {
     }
   };
 
-  // Product photo upload
   const handlePhotosUpload = (e) => {
     const files = Array.from(e.target.files);
     const photoURLs = files.map((file) => URL.createObjectURL(file));
     setNewReview({ ...newReview, photos: [...newReview.photos, ...photoURLs] });
   };
 
-  // Submit review
   const handleSubmit = () => {
     if (!newReview.name || !newReview.rating || !newReview.comment) {
       toast.error("⚠️ Please fill all fields!");
@@ -48,33 +45,82 @@ const ReviewSection = ({ productId }) => {
       date: new Date().toLocaleDateString(),
     };
 
-    // Redux me save karo
     dispatch(addReview({ productId, review: newEntry }));
 
-    // Form reset
     setNewReview({ name: "", avatar: "", rating: 0, comment: "", photos: [] });
 
     toast.success("✅ Review submitted successfully!");
+
+    // ✅ Auto close modal
+    if (onClose) onClose();
   };
 
   return (
-    <div className="review-section">
-      <h3>Customer Reviews</h3>
+    <div className="review-section-wrapper">
+      <h2>Customer Reviews</h2>
 
-      {/* Review Form */}
       <div className="review-form">
         <input
           type="text"
           placeholder="Your Name"
           value={newReview.name}
-          onChange={(e) => setNewReview({ ...newReview, name: e.target.value })}
+          onChange={(e) =>
+            setNewReview({ ...newReview, name: e.target.value })
+          }
         />
 
-        <label>Upload Profile Photo:</label>
-        <input type="file" accept="image/*" onChange={handleAvatarUpload} />
+        {/* Photo Uploads */}
+        <div className="photo-upload-wrapper">
+          {/* Profile Photo */}
+          <div className="photo-upload-box">
+            {newReview.avatar ? (
+              <img
+                src={newReview.avatar}
+                alt="profile"
+                className="uploaded-photo"
+              />
+            ) : (
+              <label className="photo-label">
+                <span className="plus-icon">+</span>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleAvatarUpload}
+                  hidden
+                />
+                Profile
+              </label>
+            )}
+          </div>
 
-        <label>Upload Product Photos:</label>
-        <input type="file" accept="image/*" multiple onChange={handlePhotosUpload} />
+          {/* Product Photos */}
+          <div className="photo-upload-box">
+            {newReview.photos.length > 0 ? (
+              <div className="uploaded-photos">
+                {newReview.photos.map((photo, i) => (
+                  <img
+                    key={i}
+                    src={photo}
+                    alt="product"
+                    className="uploaded-photo"
+                  />
+                ))}
+              </div>
+            ) : (
+              <label className="photo-label">
+                <span className="plus-icon">+</span>
+                <input
+                  type="file"
+                  accept="image/*"
+                  multiple
+                  onChange={handlePhotosUpload}
+                  hidden
+                />
+                Product
+              </label>
+            )}
+          </div>
+        </div>
 
         <select
           value={newReview.rating}
@@ -93,16 +139,10 @@ const ReviewSection = ({ productId }) => {
         <textarea
           placeholder="Write your review..."
           value={newReview.comment}
-          onChange={(e) => setNewReview({ ...newReview, comment: e.target.value })}
+          onChange={(e) =>
+            setNewReview({ ...newReview, comment: e.target.value })
+          }
         />
-
-        {newReview.photos.length > 0 && (
-          <div className="preview-photos">
-            {newReview.photos.map((photo, i) => (
-              <img key={i} src={photo} alt="preview" className="preview-img" />
-            ))}
-          </div>
-        )}
 
         <button onClick={handleSubmit}>Submit Review</button>
       </div>

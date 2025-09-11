@@ -1,5 +1,5 @@
 import React from "react";
-import { AiOutlineStar } from "react-icons/ai"; // import star icon
+import { AiOutlineStar } from "react-icons/ai"; // star icon
 import "./review.css";
 
 const ReviewList = ({ reviews = [] }) => {
@@ -7,12 +7,10 @@ const ReviewList = ({ reviews = [] }) => {
     <div className="review-list">
       {reviews.length === 0 ? (
         <div className="no-reviews">
-          {/* Show 5 empty stars */}
           {[...Array(5)].map((_, i) => (
             <AiOutlineStar key={i} size={24} color="#7b1d35" />
           ))}
-          <p>
-            Be the first to write a review</p>
+          <p>Be the first to write a review</p>
         </div>
       ) : (
         reviews.map((r) => (
@@ -24,7 +22,11 @@ const ReviewList = ({ reviews = [] }) => {
             />
             <div className="review-info">
               <h4>{r.name}</h4>
-              <p className="review-rating">{"⭐️".repeat(r.rating)}</p>
+              <div className="review-rating">
+                {"⭐".repeat(r.rating)}
+                {/* show empty stars for rest */}
+                {"☆".repeat(5 - r.rating)}
+              </div>
               <p>{r.comment}</p>
 
               {r.photos && r.photos.length > 0 && (
@@ -40,7 +42,7 @@ const ReviewList = ({ reviews = [] }) => {
                 </div>
               )}
 
-              <small>{r.date}</small>
+              <small className="review-date">{r.date}</small>
             </div>
           </div>
         ))
