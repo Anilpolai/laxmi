@@ -111,9 +111,10 @@ const QuickshopPage = () => {
       </div>
       {/* ✅ Review Section */}
       <div className="review-wrapper">
+          <h2>Customer Reviews</h2>
+          <div className="review-section">
         {/* Left side → Review List */}
         <div className="review-left">
-          <h2>Customer Reviews</h2>
           <ReviewList reviews={reviews} />
         </div>
 
@@ -125,6 +126,7 @@ const QuickshopPage = () => {
           >
             Write a Review
           </button>
+        </div>
         </div>
       </div>
 

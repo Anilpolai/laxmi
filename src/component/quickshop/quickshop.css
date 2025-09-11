@@ -257,12 +257,15 @@
 
 /* Review Section Layout */
 .review-wrapper {
+  text-align: center;
+  margin-top: 40px;
+  padding: 20px;
+}
+
+.review-section {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  gap: 40px;
-  margin-top: 40px;
-  padding: 20px;
 }
 
 .review-left,
@@ -324,6 +327,17 @@
   transform: scale(1);
   opacity: 1;
 }
+/* Center the heading */
+.review-heading {
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 28px;
+  color: #7b1d35;
+  font-weight: 600;
+}
+
+/* Line with stars + button */
+
 
 
 /* Responsive Fix */
@@ -621,6 +635,7 @@
 .review-section {
   margin-top: 20px;
 }
+
 
 /* Responsive */
 @media (max-width: 992px) {
