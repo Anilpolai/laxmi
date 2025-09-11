@@ -3,7 +3,7 @@ import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { FiEye } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";   // ✅ Added useNavigate
 import { useSelector, useDispatch } from "react-redux";
-import { toggleWishlist } from "../../redux/slice/wishlistSlice";
+import { toggleWishlist } from "../../redux/slice/rootslice";  // ✅ Updated import path
 import { products as productData } from "../../jsfile/products";
 
 import "./bestselling.css";

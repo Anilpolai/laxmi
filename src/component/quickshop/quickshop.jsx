@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleWishlist } from "../../redux/slice/wishlistSlice";
-import { selectProductById } from "../../redux/slice/quickshopSlice";
+import { toggleWishlist } from "../../redux/slice/rootslice";
+import { selectProductById } from "../../redux/slice/rootslice";
 import "./quickshop.css";
 
 import ProductGallery from "./ProductGallery";
@@ -13,6 +13,8 @@ import PincodeAccordion from "../sizeandpincode/PincodeAccordion";
 import ShippingAccordion from "../sizeandpincode/ShippingAccordion";
 import DescriptionAccordion from "../sizeandpincode/Description";
 import CareGuideAccordion from "../sizeandpincode/CareGuideAccordion";
+import Review from "../review/review";
+import ReviewList from "../review/reviewList";
 
 const QuickshopPage = () => {
   const { id } = useParams();
@@ -21,7 +23,7 @@ const QuickshopPage = () => {
 
   const product = useSelector((state) => selectProductById(state, id));
   const wishlist = useSelector((state) => state.wishlist.items);
-
+  const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedSize, setSelectedSize] = useState(product?.sizes?.[0] || "");
@@ -34,77 +36,112 @@ const QuickshopPage = () => {
   const isWishlisted = wishlist.includes(product.id);
 
   return (
-    <div className="quickshop-page">
-      <div className="quickshop-content">
-        {/* ✅ Left: Product Gallery */}
-        <ProductGallery
+    <>
+      <div className="quickshop-page">
+        <div className="quickshop-content">
+          {/* ✅ Left: Product Gallery */}
+          <ProductGallery
+            images={product.images}
+            currentIndex={currentIndex}
+            setCurrentIndex={setCurrentIndex}
+            onOpenModal={() => setIsModalOpen(true)}
+          />
+
+          {/* ✅ Right: Info */}
+          <div className="quickshop-right">
+            <h2>{product.name}</h2>
+            <LiveViewers />
+            <p className="price">₹{product.price}</p>
+            {product.discount && (
+              <p className="discount">{product.discount}% OFF</p>
+            )}
+            <p>{product.description}</p>
+
+            {/* Sizes */}
+            <div className="sizes">
+              {product.sizes?.map((size) => (
+                <button
+                  key={size}
+                  className={selectedSize === size ? "active" : ""}
+                  onClick={() => setSelectedSize(size)}
+                >
+                  {size}
+                </button>
+              ))}
+            </div>
+
+            {/* Cart + Wishlist */}
+            <div className="product-actions">
+              <div className="quantity">
+                <button onClick={() => setQuantity((q) => Math.max(1, q - 1))}>
+                  -
+                </button>
+                <span>{quantity}</span>
+                <button onClick={() => setQuantity((q) => q + 1)}>+</button>
+              </div>
+
+              <button className="add-to-cart">Add to Cart</button>
+
+              <button
+                className={`wishlist ${isWishlisted ? "active" : ""}`}
+                onClick={() => dispatch(toggleWishlist(product.id))}
+              >
+                {isWishlisted ? "❤️ Wishlisted" : "♡ Add to Wishlist"}
+              </button>
+            </div>
+
+            {/* Accordions */}
+            <ShippingAccordion />
+            <CareGuideAccordion />
+            <SizeChartAccordion />
+            <DescriptionAccordion productId={product.id} />
+            <PincodeAccordion />
+          </div>
+        </div>
+
+        {/* ✅ Fullscreen Modal */}
+        <ImageModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
           images={product.images}
           currentIndex={currentIndex}
           setCurrentIndex={setCurrentIndex}
-          onOpenModal={() => setIsModalOpen(true)}
         />
+      </div>
+      {/* ✅ Review Section */}
+      <div className="review-wrapper">
+        {/* Left side → Review List */}
+        <div className="review-left">
+          <h2>Customer Reviews</h2>
+          <ReviewList reviews={product.reviews} />
+        </div>
 
-        {/* ✅ Right: Info */}
-        <div className="quickshop-right">
-          <h2>{product.name}</h2>
-          <LiveViewers />
-          <p className="price">₹{product.price}</p>
-          {product.discount && (
-            <p className="discount">{product.discount}% OFF</p>
-          )}
-          <p>{product.description}</p>
-
-          {/* Sizes */}
-          <div className="sizes">
-            {product.sizes?.map((size) => (
-              <button
-                key={size}
-                className={selectedSize === size ? "active" : ""}
-                onClick={() => setSelectedSize(size)}
-              >
-                {size}
-              </button>
-            ))}
-          </div>
-
-          {/* Cart + Wishlist */}
-          <div className="product-actions">
-            <div className="quantity">
-              <button onClick={() => setQuantity((q) => Math.max(1, q - 1))}>
-                -
-              </button>
-              <span>{quantity}</span>
-              <button onClick={() => setQuantity((q) => q + 1)}>+</button>
-            </div>
-
-            <button className="add-to-cart">Add to Cart</button>
-
-            <button
-              className={`wishlist ${isWishlisted ? "active" : ""}`}
-              onClick={() => dispatch(toggleWishlist(product.id))}
-            >
-              {isWishlisted ? "❤️ Wishlisted" : "♡ Add to Wishlist"}
-            </button>
-          </div>
-
-          {/* Accordions */}
-          <ShippingAccordion />
-          <CareGuideAccordion />
-          <SizeChartAccordion />
-          <DescriptionAccordion productId={product.id} />
-          <PincodeAccordion />
+        {/* Right side → Button */}
+        <div className="review-right">
+          <button
+            className="review-btn"
+            onClick={() => setIsReviewModalOpen(true)}
+          >
+             Write a Review
+          </button>
         </div>
       </div>
 
-      {/* ✅ Fullscreen Modal */}
-      <ImageModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        images={product.images}
-        currentIndex={currentIndex}
-        setCurrentIndex={setCurrentIndex}
-      />
-    </div>
+      {/* ✅ Review Modal */}
+      {isReviewModalOpen && (
+        <div className="review-modal open">
+          <div className="review-modal-content">
+            <button
+              className="close-btn"
+              onClick={() => setIsReviewModalOpen(false)}
+            >
+              ✖
+            </button>
+            <Review />
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { toggleWishlist } from "../redux/slice/wishlistSlice"
-import { selectProductById } from "../redux/slice/quickshopSlice";
+import { toggleWishlist, selectProductById } from "../redux/slice/rootslice";
 import { FaRegHeart, FaHeart, FaFilter } from "react-icons/fa";
 import { FiEye } from "react-icons/fi";
 import { BsGrid3X3GapFill, BsGridFill } from "react-icons/bs";

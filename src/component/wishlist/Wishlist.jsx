@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { removeWishlist, clearWishlist } from "../../redux/slice/wishlistSlice";
+import { removeWishlist, clearWishlist } from "../../redux/slice/rootslice";
 import { FaHeart } from "react-icons/fa";
 import { FiEye } from "react-icons/fi";
 import './wishlist.css';

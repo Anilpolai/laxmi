@@ -253,58 +253,71 @@
   background-color: #5e1528;
 }
 
-/* Modal Background */
+
+
+/* Review Section Layout */
+.review-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  margin-top: 40px;
+  padding: 20px;
+}
+
+.review-left,
+.review-right {
+  flex: 1;
+  max-width: 500px;
+}
+
+/* Button */
+.review-btn {
+  background: black;
+  color: #fff;
+  border: none;
+  padding: 12px 25px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.review-btn:hover {
+  background: #5e1528;
+}
+
+/* Review Modal */
 .review-modal {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background: rgba(0,0,0,0.6);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 2000;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-/* When open */
-.review-modal.open {
-  opacity: 1;
-  visibility: visible;
-}
-
-.review-modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-  z-index: 2000;
-}
-
-.review-modal.open {
-  opacity: 1;
-  pointer-events: auto;
 }
 
 .review-modal-content {
   background: #fff;
-  padding: 20px;
+  padding: 25px;
   border-radius: 12px;
   width: 90%;
-  max-width: 500px;
+  max-width: 600px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.3);
   position: relative;
-  transform: scale(0.8);
-  opacity: 0;
-  transition: all 0.3s ease;
+}
+
+.review-modal-content .close-btn {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #333;
 }
 
 .review-modal.open .review-modal-content {

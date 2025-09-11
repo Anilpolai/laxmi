@@ -94,9 +94,6 @@ const ReviewSection = ({ reviews }) => {
 
         <button onClick={handleSubmit}>Submit Review</button>
       </div>
-
-      {/* ✅ Show Reviews */}
-      {/* <ReviewList reviews={allReviews} /> */}
     </div>
   );
 };
