@@ -1,7 +1,6 @@
 // src/components/review/ReviewSection.jsx
 import React, { useState } from "react";
 import "./review.css";
-import ReviewList from "./reviewList";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { addReview, selectReviewsByProduct } from "../../redux/slice/rootslice";
@@ -107,9 +106,6 @@ const ReviewSection = ({ productId }) => {
 
         <button onClick={handleSubmit}>Submit Review</button>
       </div>
-
-      {/* ✅ Review List Redux se aayega */}
-      <ReviewList reviews={reviews} />
     </div>
   );
 };

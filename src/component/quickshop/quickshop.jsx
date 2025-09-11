@@ -114,7 +114,7 @@ const QuickshopPage = () => {
         {/* Left side → Review List */}
         <div className="review-left">
           <h2>Customer Reviews</h2>
-          <ReviewList reviews={product.reviews} />
+          <ReviewList reviews={reviews} />
         </div>
 
         {/* Right side → Button */}
