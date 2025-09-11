@@ -94,19 +94,25 @@
 .review-card {
   display: flex;
   gap: 12px;
-  background: #fafafa;
   padding: 12px;
-  border-radius: 8px;
-  margin-bottom: 12px;
+  background: #fff;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  word-break: break-word; /* wrap long words */
 }
 
 .review-avatar {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   object-fit: cover;
 }
 
+.review-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
 .review-info h4 {
   margin: 0;
   font-size: 16px;
@@ -149,7 +155,36 @@
 }
 
 .review-rating {
-  color: gold;
   margin: 4px 0;
-  font-size: 16px;
+  font-size: 14px;
+  color: #f2b01e;
 }
+
+.review-comment {
+  max-height: 25px; /* about 2 lines */
+  overflow: hidden;
+  line-height: 1.5;
+  margin-bottom: 5px;
+  transition: max-height 0.4s ease, opacity 0.3s ease;
+  opacity: 0.9;
+}
+
+.review-comment.expanded {
+  max-height: 500px; /* enough space for long text */
+  opacity: 1;
+}
+
+.more-text {
+  color: #7b1d35;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 14px;
+  margin-top: 2px;
+  user-select: none;
+  transition: color 0.2s ease;
+}
+
+.more-text:hover {
+  color: #5e1528;
+}
+

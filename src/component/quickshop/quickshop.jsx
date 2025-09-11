@@ -86,8 +86,7 @@ const QuickshopPage = () => {
 
               <button
                 className={`wishlist ${isWishlisted ? "active" : ""}`}
-                onClick={() => dispatch(toggleWishlist(product.id))}
-              >
+                onClick={() => dispatch(toggleWishlist(product.id))}>
                 {isWishlisted ? "❤️ Wishlisted" : "♡ Add to Wishlist"}
               </button>
             </div>
