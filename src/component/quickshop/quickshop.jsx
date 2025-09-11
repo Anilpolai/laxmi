@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleWishlist } from "../../redux/slice/rootslice";
-import { selectProductById } from "../../redux/slice/rootslice";
+import { toggleWishlist, selectProductById, selectReviewsByProduct } from "../../redux/slice/rootslice";
 import "./quickshop.css";
 
 import ProductGallery from "./ProductGallery";
@@ -23,6 +22,8 @@ const QuickshopPage = () => {
 
   const product = useSelector((state) => selectProductById(state, id));
   const wishlist = useSelector((state) => state.wishlist.items);
+  const reviews = useSelector((state) => selectReviewsByProduct(state, id));
+
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -122,7 +123,7 @@ const QuickshopPage = () => {
             className="review-btn"
             onClick={() => setIsReviewModalOpen(true)}
           >
-             Write a Review
+            Write a Review
           </button>
         </div>
       </div>
@@ -137,7 +138,7 @@ const QuickshopPage = () => {
             >
               ✖
             </button>
-            <Review />
+            <Review productId={product.id}/>
           </div>
         </div>
       )}

@@ -1,15 +1,17 @@
 // src/redux/store/store.js
 import { configureStore } from "@reduxjs/toolkit";
 import {
-  categoryReducer,   // ✅ singular
+  categoryReducer,
   productReducer,
   wishlistReducer,
-} from "../slice/rootslice";  // ✅ index.js hai to sirf folder ka naam likho
+  reviewReducer,
+} from "../slice/rootslice";  // ✅ single import from index.js
 
 export const store = configureStore({
   reducer: {
-    categories: categoryReducer,  // key tum apni marzi se rakh sakte ho
+    categories: categoryReducer,
     products: productReducer,
     wishlist: wishlistReducer,
+    reviews: reviewReducer, // ✅ added
   },
 });

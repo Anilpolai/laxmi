@@ -1,10 +1,18 @@
+// src/components/review/ReviewSection.jsx
 import React, { useState } from "react";
 import "./review.css";
 import ReviewList from "./reviewList";
 import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { addReview, selectReviewsByProduct } from "../../redux/slice/rootslice";
 
-const ReviewSection = ({ reviews }) => {
-  const [allReviews, setAllReviews] = useState(reviews || []);
+const ReviewSection = ({ productId }) => {
+  const dispatch = useDispatch();
+
+  // Redux se reviews lao
+  const reviews = useSelector((state) => selectReviewsByProduct(state, productId));
+
+  // Naya review form state
   const [newReview, setNewReview] = useState({
     name: "",
     avatar: "",
@@ -13,6 +21,7 @@ const ReviewSection = ({ reviews }) => {
     photos: [],
   });
 
+  // Profile pic upload
   const handleAvatarUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -20,12 +29,14 @@ const ReviewSection = ({ reviews }) => {
     }
   };
 
+  // Product photo upload
   const handlePhotosUpload = (e) => {
     const files = Array.from(e.target.files);
     const photoURLs = files.map((file) => URL.createObjectURL(file));
     setNewReview({ ...newReview, photos: [...newReview.photos, ...photoURLs] });
   };
 
+  // Submit review
   const handleSubmit = () => {
     if (!newReview.name || !newReview.rating || !newReview.comment) {
       toast.error("⚠️ Please fill all fields!");
@@ -35,10 +46,13 @@ const ReviewSection = ({ reviews }) => {
     const newEntry = {
       ...newReview,
       id: Date.now(),
-      date: new Date().toLocaleDateString(), // nicer format
+      date: new Date().toLocaleDateString(),
     };
 
-    setAllReviews([newEntry, ...allReviews]);
+    // Redux me save karo
+    dispatch(addReview({ productId, review: newEntry }));
+
+    // Form reset
     setNewReview({ name: "", avatar: "", rating: 0, comment: "", photos: [] });
 
     toast.success("✅ Review submitted successfully!");
@@ -67,21 +81,20 @@ const ReviewSection = ({ reviews }) => {
           value={newReview.rating}
           onChange={(e) =>
             setNewReview({ ...newReview, rating: Number(e.target.value) })
-          }>
+          }
+        >
           <option value="0">Select Rating</option>
           <option value="5">⭐️⭐️⭐️⭐️⭐️</option>
           <option value="4">⭐️⭐️⭐️⭐️</option>
           <option value="3">⭐️⭐️⭐️</option>
           <option value="2">⭐️⭐️</option>
           <option value="1">⭐️</option>
-        </select> 
+        </select>
 
         <textarea
           placeholder="Write your review..."
           value={newReview.comment}
-          onChange={(e) =>
-            setNewReview({ ...newReview, comment: e.target.value })
-          }
+          onChange={(e) => setNewReview({ ...newReview, comment: e.target.value })}
         />
 
         {newReview.photos.length > 0 && (
@@ -94,6 +107,9 @@ const ReviewSection = ({ reviews }) => {
 
         <button onClick={handleSubmit}>Submit Review</button>
       </div>
+
+      {/* ✅ Review List Redux se aayega */}
+      <ReviewList reviews={reviews} />
     </div>
   );
 };

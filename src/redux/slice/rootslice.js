@@ -1,5 +1,5 @@
 // src/redux/slices/index.js
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createSelector } from "@reduxjs/toolkit";
 import { categoriesData } from "../../jsfile/categoriesData";
 import { products as generalProducts } from "../../jsfile/products";
 import { kurti as kurtiProducts } from "../../jsfile/kurti";
@@ -55,13 +55,48 @@ const wishlistSlice = createSlice({
   },
 });
 
-export const {
-  toggleWishlist,
-  removeWishlist,
-  clearWishlist,
-} = wishlistSlice.actions;
+export const { toggleWishlist, removeWishlist, clearWishlist } =
+  wishlistSlice.actions;
+
+// ------------------- REVIEW SLICE -------------------
+const reviewSlice = createSlice({
+  name: "reviews",
+  initialState: {
+    // reviews per productId → array
+    reviews: JSON.parse(localStorage.getItem("reviews")) || {},
+  },
+  reducers: {
+    addReview: (state, action) => {
+      const { productId, review } = action.payload;
+      if (!state.reviews[productId]) {
+        state.reviews[productId] = [];
+      }
+      state.reviews[productId].unshift(review);
+
+      // ✅ persist to localStorage
+      localStorage.setItem("reviews", JSON.stringify(state.reviews));
+    },
+    clearReviews: (state, action) => {
+      const productId = action.payload;
+      if (productId) {
+        delete state.reviews[productId];
+      } else {
+        state.reviews = {};
+      }
+      localStorage.setItem("reviews", JSON.stringify(state.reviews));
+    },
+  },
+});
+
+export const { addReview, clearReviews } = reviewSlice.actions;
+
+export const selectReviewsByProduct = createSelector(
+  [(state) => state.reviews.reviews, (_, productId) => productId],
+  (reviews, productId) => reviews[productId] || []
+);
 
 // ------------------- EXPORT REDUCERS -------------------
 export const categoryReducer = categorySlice.reducer;
 export const productReducer = productSlice.reducer;
 export const wishlistReducer = wishlistSlice.reducer;
+export const reviewReducer = reviewSlice.reducer;
