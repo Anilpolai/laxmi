@@ -18,7 +18,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/wishlist" element={<Wishlist/>} />
           <Route path="/quickshop/:id" element={<QuickshopPage />} />
-          
+            
 
           {/* Products by category */}
           <Route path="/kurti" element={<Kurti category="Kurti" />} />

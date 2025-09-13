@@ -13,6 +13,7 @@ import PincodeAccordion from "../sizeandpincode/PincodeAccordion";
 import ShippingAccordion from "../sizeandpincode/ShippingAccordion";
 import DescriptionAccordion from "../sizeandpincode/Description";
 import CareGuideAccordion from "../sizeandpincode/CareGuideAccordion";
+import SimilarProducts from "./SimilarProducts";
 import Review from "../review/review";
 import ReviewList from "../review/reviewList";
 
@@ -151,7 +152,8 @@ const QuickshopPage = () => {
         </div>
       )}
 
-
+      {/* ✅ Similar Products Section */}
+      <SimilarProducts currentProductId={product.id} category={product.category} />
     </>
   );
 };

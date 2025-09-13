@@ -1,0 +1,31 @@
+.similar-products {
+  margin-top: 50px;
+}
+
+.similar-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 25px;
+  text-align: center;
+  color: #111;
+}
+
+.similar-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+}
+
+/* Tablet */
+@media (max-width: 991px) {
+  .similar-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .similar-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

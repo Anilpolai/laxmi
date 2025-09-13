@@ -14,15 +14,30 @@ const categorySlice = createSlice({
 });
 
 // ------------------- PRODUCT SLICE -------------------
-const allProducts = [...generalProducts, ...kurtiProducts];
+const allProducts = [
+  ...generalProducts.map((p) => ({ ...p, category: "general" })),
+  ...kurtiProducts.map((p) => ({ ...p, category: "kurti" })),
+];
 
 const productSlice = createSlice({
   name: "products",
   initialState: {
     list: allProducts,
   },
-  reducers: {},
+  reducers: {
+    addProduct: (state, action) => {
+      state.list.push(action.payload);
+    },
+  },
 });
+
+export const { addProduct } = productSlice.actions;
+
+// ✅ Selectors
+export const selectAllProducts = (state) => state.products.list;
+
+export const selectProductsByCategory = (state, category) =>
+  state.products.list.filter((p) => p.category === category);
 
 export const selectProductById = (state, id) =>
   state.products.list.find((p) => String(p.id) === String(id));
