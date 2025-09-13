@@ -16,10 +16,8 @@ function App() {
         {/* Layout wrapper */}
         <Route element={<Endlayout />}>
           <Route path="/" element={<Home />} />
-          <Route path="/wishlist" element={<Wishlist/>} />
+          <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/quickshop/:id" element={<QuickshopPage />} />
-            
-
           {/* Products by category */}
           <Route path="/kurti" element={<Kurti category="Kurti" />} />
           <Route path="/kurti-set" element={<Kurtiset category="Kurti Set" />} />

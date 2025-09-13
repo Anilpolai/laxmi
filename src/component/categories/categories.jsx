@@ -2,38 +2,46 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './categories.css';
 
 export default function CategorySection() {
   const categories = useSelector((state) => state.categories.list);
-
-  // Use window width to conditionally show Swiper only on mobile
   const [isMobile, setIsMobile] = React.useState(window.innerWidth <= 768);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const categoryLinks = {
+    'kurti': '/kurti',
+    'kurti-set': '/kurti-set',
+    'tunics': '/tunics',
+    'co-ord': '/co-ord',
+  };
+
   React.useEffect(() => {
     const handler = () => setIsMobile(window.innerWidth <= 768);
     window.addEventListener('resize', handler);
     return () => window.removeEventListener('resize', handler);
   }, []);
 
+  const goToCategory = (cat) => {
+    const link = categoryLinks[cat.name.toLowerCase()];
+    if (link) navigate(link);
+  };
+
   return (
     <div className="categories-container">
       {isMobile ? (
-        <Swiper
-          spaceBetween={30}
-          slidesPerView={'auto'}
-          grabCursor={true}
-        >
+        <Swiper spaceBetween={30} slidesPerView={'auto'} grabCursor={true}>
           {categories.map((cat, index) => (
             <SwiperSlide
               key={index}
-              style={{
-                width: 130,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center'
-              }}
+              style={{ width: 130, display: 'flex', flexDirection: 'column', alignItems: 'center' }}
             >
-              <div className="category-item" onClick={() => alert(`Clicked ${cat.name}`)}>
+              <div
+                className={`category-item ${location.pathname === categoryLinks[cat.name.toLowerCase()] ? 'active' : ''}`}
+                onClick={() => goToCategory(cat)}
+              >
                 <div className="category-image">
                   <img src={cat.img} alt={cat.name} />
                 </div>
@@ -43,10 +51,13 @@ export default function CategorySection() {
           ))}
         </Swiper>
       ) : (
-        // Desktop/grid view
         <div className="categories-row">
           {categories.map((cat, index) => (
-            <div className="category-item" key={index} onClick={() => alert(`Clicked ${cat.name}`)}>
+            <div
+              key={index}
+              className={`category-item ${location.pathname === categoryLinks[cat.name.toLowerCase()] ? 'active' : ''}`}
+              onClick={() => goToCategory(cat)}
+            >
               <div className="category-image">
                 <img src={cat.img} alt={cat.name} />
               </div>
