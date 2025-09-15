@@ -1,8 +1,8 @@
 // src/redux/slices/index.js
 import { createSlice, createSelector } from "@reduxjs/toolkit";
 import { categoriesData } from "../../jsfile/categoriesData";
-import { products as generalProducts } from "../../jsfile/products";
-import { kurti as kurtiProducts } from "../../jsfile/kurti";
+import { products as allProducts } from "../../jsfile/products";
+// import { kurti as kurtiProducts } from "../../jsfile/kurti";
 
 // ------------------- CATEGORY SLICE -------------------
 const categorySlice = createSlice({
@@ -14,11 +14,7 @@ const categorySlice = createSlice({
 });
 
 // ------------------- PRODUCT SLICE -------------------
-const allProducts = [
-  ...generalProducts.map((p) => ({ ...p, category: "general" })),
-  ...kurtiProducts.map((p) => ({ ...p, category: "kurti" })),
-];
-
+// src/redux/slices/index.js
 const productSlice = createSlice({
   name: "products",
   initialState: {
@@ -33,14 +29,14 @@ const productSlice = createSlice({
 
 export const { addProduct } = productSlice.actions;
 
-// ✅ Selectors
+// Selectors
 export const selectAllProducts = (state) => state.products.list;
-
 export const selectProductsByCategory = (state, category) =>
   state.products.list.filter((p) => p.category === category);
-
 export const selectProductById = (state, id) =>
   state.products.list.find((p) => String(p.id) === String(id));
+
+;
 
 // ------------------- WISHLIST SLICE -------------------
 const wishlistSlice = createSlice({

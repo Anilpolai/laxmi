@@ -1,10 +1,16 @@
 /* Full width banner */
-.kurti-banner-full {
+.kurti-banner-full,
+.kurti-set-banner-full,
+.tunics-banner-full,
+.coord-banner-full {
   width: 100%;
   overflow: hidden;
 }
 
-.kurti-banner-full img {
+.kurti-banner-full img,
+.kurti-set-banner-full img,
+.tunics-banner-full img,
+.coord-banner-full img {
   width: 100%;
   height: auto;
   display: block;
@@ -12,7 +18,10 @@
 }
 
 /* Main content 90% width, centered */
-.kurti-Full {
+.kurti-Full,
+.kurti-set-Full,
+.tunics-Full,
+.coord-Full {
   width: 90%;
   margin: 0 auto;
   padding: 60px 0;
@@ -21,7 +30,10 @@
 /* Rest of your previous CSS (products grid, cards, hover, filters, pagination, etc.) remains unchanged */
 
 /* Left filter full height */
-.kurti-container {
+.kurti-container,
+.kurti-set-container,
+.tunics-container,
+.coord-container {
   display: flex;
   align-items: flex-start;
   /* ✅ sidebar top se start */
@@ -33,13 +45,19 @@
 /* ========================
    Banner Styles
 ======================== */
-.kurti-banner {
+.kurti-banner,
+.kurti-set-banner,
+.tunics-banner,
+.coord-banner {
   width: 100%;
   overflow: hidden;
   margin-bottom: 20px;
 }
 
-.kurti-banner img {
+.kurti-banner img,
+.kurti-set-banner img,
+.tunics-banner img,
+.coord-banner img {
   width: 100%;
   height: auto;
   /* fixed height */
@@ -52,7 +70,6 @@
 
 
 .kurti-filter {
-
   width: 280px;
   min-height: 100vh;
   background: #fafafa;
@@ -65,7 +82,10 @@
 }
 
 /* Right section */
-.kurti-section {
+.kurti-section,
+.kurti-set-section,
+.tunics-section,
+.coord-section {
   width: 90%;
   flex: 1;
   padding: 20px;
@@ -76,7 +96,10 @@
 
 }
 
-.kurti-header2 {
+.kurti-header2,
+.kurti-set-header2,
+.tunics-header2,
+.coord-header2 {
   display: flex;
   justify-content: space-between;
 }
@@ -85,11 +108,23 @@
 /* Section Headings */
 .kurti-tagline,
 .kurti-title,
-.kurti-subtitle {
+.kurti-subtitle,
+.kurti-set-tagline,
+.kurti-set-title,
+.kurti-set-subtitle,
+.tunics-tagline,
+.tunics-title,
+.tunics-subtitle,
+.coord-tagline,
+.coord-title,
+.coord-subtitle {
   text-align: center;
 }
 
-.kurti-tagline {
+.kurti-tagline,
+.kurti-set-tagline,
+.tunics-tagline,
+.coord-tagline {
   font-size: 14px;
   letter-spacing: 2px;
   color: #7b1d35;
@@ -98,7 +133,10 @@
   text-transform: uppercase;
 }
 
-.kurti-title {
+.kurti-title,
+.kurti-set-title,
+.tunics-title,
+.coord-title {
   font-family: "Montserrat", sans-serif;
   font-size: 32px;
   margin: 0;
@@ -107,7 +145,10 @@
 }
 
 
-.kurti-columns button {
+.kurti-columns button,
+.kurti-set-columns button,
+.tunics-columns button,
+.coord-columns button {
   border: 1px solid #ccc;
   border-radius: 6px;
   background: #fff;
@@ -118,14 +159,20 @@
   font-size: 16px;
 }
 
-.kurti-columns button.active {
+.kurti-columns button.active,
+.kurti-set-columns button.active,
+.tunics-columns button.active,
+.coord-columns button.active {
   background: #7b1d35;
   color: #fff;
   border-color: #7b1d35;
 }
 
 /* Story section */
-.kurti-stories {
+.kurti-stories,
+.kurti-set-stories,
+.tunics-stories,
+.coord-stories {
   display: flex;
   gap: 15px;
   margin-bottom: 30px;
@@ -133,13 +180,19 @@
   padding-bottom: 10px;
 }
 
-.kurti-story {
+.kurti-story,
+.kurti-set-story,
+.tunics-story,
+.coord-story {
   width: 70px;
   text-align: center;
   cursor: pointer;
 }
 
-.kurti-story img {
+.kurti-story img,
+.kurti-set-story img,
+.tunics-story img,
+.coord-story img {
   width: 70px;
   height: 70px;
   border-radius: 50%;
@@ -158,21 +211,33 @@
 
 
 /* Grid Columns */
-.kurti-products-grid {
+.kurti-products-grid,
+.kurti-set-products-grid,
+.tunics-products-grid,
+.coord-products-grid {
   display: grid;
   gap: 25px;
   margin-top: 40px;
 }
 
-.kurti-products-grid.cols-2 {
+.kurti-products-grid.cols-2,
+.kurti-set-products-grid.cols-2,
+.tunics-products-grid.cols-2,
+.coord-products-grid.cols-2  {
   grid-template-columns: repeat(2, 1fr);
 }
 
-.kurti-products-grid.cols-3 {
+.kurti-products-grid.cols-3,
+.kurti-set-products-grid.cols-3,
+.tunics-products-grid.cols-3, 
+.coord-products-grid.cols-3  {
   grid-template-columns: repeat(3, 1fr);
 }
 
-.kurti-products-grid.cols-4 {
+.kurti-products-grid.cols-4,
+.kurti-set-products-grid.cols-4,
+.tunics-products-grid.cols-4,
+.coord-products-grid.cols-4  {
   grid-template-columns: repeat(4, 1fr);
 }
 
@@ -180,7 +245,10 @@
 /* ===========================
    Grid Layout (Full width)
 =========================== */
-.kurti-products-grid {
+.kurti-products-grid,
+.kurti-set-products-grid ,
+.tunics-products-grid,
+.coord-products-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   /* ✅ Desktop - 5 per row */
@@ -191,34 +259,54 @@
 
 /* Laptop */
 @media (max-width: 1199px) {
-  .kurti-products-grid {
+
+  .kurti-products-grid,
+  .kurti-set-products-grid,
+  .tunics-products-grid,
+  .coord-products-grid
+  {
     grid-template-columns: repeat(4, 1fr);
   }
 }
 
 /* Tablet */
 @media (max-width: 991px) {
-  .kurti-products-grid {
+
+  .kurti-products-grid,
+  .kurti-set-products-grid,
+  .tunics-products-grid,
+  .coord-products-grid{
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
 /* Mobile */
 @media (max-width: 768px) {
-  .kurti-products-grid {
+
+  .kurti-products-grid,
+  .kurti-set-products-grid,
+  .tunics-products-grid,
+  .coord-products-grid {
     grid-template-columns: repeat(2, 1fr);
     /* ✅ Always 2x2 */
     gap: 20px;
   }
 
-  .kurti-filter.open~.kurti-section {
+  .kurti-filter.open~.kurti-section,
+  .kurti-filter.open~.kurti-set-section,
+  .kurti-filter.open~.tunics-section, 
+  .kurti-filter.open~.coord-section {
     margin-left: 280px;
   }
 }
 
 /* Small phones */
 @media (max-width: 480px) {
-  .kurti-products-grid {
+
+  .kurti-products-grid,
+  .kurti-set-products-grid,
+  .tunics-products-grid,
+  .coord-products-grid  {
     grid-template-columns: repeat(2, 1fr);
     /* ✅ Still 2x2 */
     gap: 15px;
@@ -229,7 +317,10 @@
 /* ===========================
    Product Card
 =========================== */
-.kurti-card {
+.kurti-card,
+.kurti-set-card,
+.tunics-card, 
+.coord-card  {
   background: #fff;
   border-radius: 12px;
   overflow: hidden;
@@ -239,7 +330,10 @@
   cursor: pointer;
 }
 
-.kurti-card:hover {
+.kurti-card:hover,
+.kurti-set-card:hover,
+.tunics-card:hover, 
+.coord-card:hover    {
   transform: translateY(-6px);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
 }
@@ -247,24 +341,36 @@
 /* ===========================
    Product Image
 =========================== */
-.kurti-image {
+.kurti-image,
+.kurti-set-image,
+.tunics-image, 
+.coord-image {
   position: relative;
   overflow: hidden;
-  
+
 }
 
-.kurti-image img {
+.kurti-image img,
+.kurti-set-image img,
+.tunics-image img,   
+.coord-image img {
   width: 100%;
   display: block;
   transition: transform 0.4s ease, opacity 0.4s ease;
   border-radius: 12px 12px 0 0;
 }
 
-.kurti-image:hover img.kurti-main-img {
+.kurti-image:hover img.kurti-main-img,
+.kurti-set-image:hover img.kurti-set-main-img,
+.tunics-image:hover img.tunics-main-img,
+.coord-image:hover img.coord-main-img {
   transform: scale(1.05);
 }
 
-.kurti-image .kurti-hover-img {
+.kurti-image .kurti-hover-img,
+.kurti-set-image .kurti-set-hover-img,
+.tunics-image .tunics-hover-img,
+.coord-image .coord-hover-img {
   position: absolute;
   top: 0;
   left: 0;
@@ -272,7 +378,10 @@
   transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-.kurti-image:hover .kurti-hover-img {
+.kurti-image:hover .kurti-hover-img,
+.kurti-set-image:hover .kurti-set-hover-img,
+.tunics-image:hover .tunics-hover-img,  
+.coord-image:hover .coord-hover-img {
   opacity: 1;
   transform: scale(1.08);
 }
@@ -280,7 +389,10 @@
 /* ===========================
    Icons (Wishlist, View)
 =========================== */
-.kurti-icon-btn {
+.kurti-icon-btn,
+.kurti-set-icon-btn,
+.tunics-icon-btn, 
+.coord-icon-btn {
   background: #fff;
   border: none;
   border-radius: 50%;
@@ -299,30 +411,49 @@
 }
 
 /* Wishlist */
-.kurti-icon-btn.kurti-wishlist {
+.kurti-icon-btn.kurti-wishlist,
+.kurti-set-icon-btn.kurti-set-wishlist,
+.tunics-icon-btn.tunics-wishlist, 
+.coord-icon-btn.coord-wishlist   {
   top: 10px;
   right: 10px;
 }
 
-.kurti-icon-btn.kurti-wishlist.active {
+.kurti-icon-btn.kurti-wishlist.active,
+.kurti-set-icon-btn.kurti-set-wishlist.active,
+.tunics-icon-btn.tunics-wishlist.active,  
+.coord-icon-btn.coord-wishlist.active   {
   background-color: #7b1d35;
   color: #fff;
 }
 
 /* View */
-.kurti-icon-btn.kurti-view {
+.kurti-icon-btn.kurti-view,
+.kurti-set-icon-btn.kurti-set-view,
+.tunics-icon-btn.tunics-view, 
+.coord-icon-btn.coord-view {
   top: 55px;
   right: 10px;
   opacity: 0;
   transform: translateY(10px);
 }
 
-.kurti-image:hover .kurti-icon-btn.kurti-view {
+.kurti-image:hover .kurti-icon-btn.kurti-view,
+.kurti-set-image:hover .kurti-set-icon-btn.kurti-set-view,
+.tunics-image:hover .tunics-icon-btn.tunics-view,  
+.coord-image:hover .coord-icon-btn.coord-view {
   opacity: 1;
   transform: translateY(0);
 }
+
 .kurti-quickshop-btn,
-.kurti-view {
+.kurti-view,
+.kurti-set-quickshop-btn,
+.kurti-set-view,
+.tunics-quickshop-btn,
+.tunics-view,
+.coord-quickshop-btn,
+.coord-view {
   text-decoration: none;
 }
 
@@ -330,7 +461,10 @@
 /* ===========================
    Quickshop Button
 =========================== */
-.kurti-quickshop-btn {
+.kurti-quickshop-btn,
+.kurti-set-quickshop-btn,
+.tunics-quickshop-btn,
+.coord-quickshop-btn {
   width: 80%;
   padding: 10px 20px;
   background: #fff;
@@ -350,44 +484,66 @@
 }
 
 /* ✅ Button poore card hover pe dikh jayega */
-.kurti-card:hover .kurti-quickshop-btn {
+.kurti-card:hover .kurti-quickshop-btn,
+.kurti-set-card:hover .kurti-set-quickshop-btn,
+.tunics-card:hover .tunics-quickshop-btn,
+.coord-card:hover .coord-quickshop-btn {
   opacity: 1;
   transform: translate(-50%, 0);
 }
 
 /* Image zoom on full card hover */
-.kurti-card:hover .kurti-main-img {
+.kurti-card:hover .kurti-main-img,
+.kurti-set-card:hover .kurti-set-main-img,
+.tunics-card:hover .tunics-main-img,
+.coord-card:hover .coord-main-img {
   transform: scale(1.05);
 }
 
 /* Hover image visible on full card hover */
-.kurti-card:hover .kurti-hover-img {
+.kurti-card:hover .kurti-hover-img,
+.kurti-set-card:hover .kurti-set-hover-img {
   opacity: 1;
   transform: scale(1.08);
 }
 
 /* View icon show on full card hover */
-.kurti-card:hover .kurti-icon-btn.kurti-view {
+.kurti-card:hover .kurti-icon-btn.kurti-view,
+.kurti-set-card:hover .kurti-set-icon-btn.kurti-set-view,
+.tunics-card:hover .tunics-icon-btn.tunics-view,
+.coord-card:hover .coord-icon-btn.coord-view {
   opacity: 1;
   transform: translateY(0);
 }
 
 /* Quickshop button show on full card hover */
-.kurti-card:hover .kurti-quickshop-btn {
+.kurti-card:hover .kurti-quickshop-btn,
+.kurti-set-card:hover .kurti-set-quickshop-btn,
+.tunics-card:hover .tunics-quickshop-btn, 
+.coord-card:hover .coord-quickshop-btn  {
   opacity: 1;
   transform: translate(-50%, 0);
 }
 
 /* Text color change on full card hover */
-.kurti-card:hover .kurti-name {
+.kurti-card:hover .kurti-name,
+.kurti-set-card:hover .kurti-set-name,
+.tunics-card:hover .tunics-name,
+.coord-card:hover .coord-name {
   color: #7b1d35;
 }
 
-.kurti-card:hover .kurti-price {
+.kurti-card:hover .kurti-price,
+.kurti-set-card:hover .kurti-set-price,
+.tunics-card:hover .tunics-price,
+.coord-card:hover .coord-price {
   color: #000;
 }
 
-.kurti-quickshop-btn:hover {
+.kurti-quickshop-btn:hover,
+.kurti-set-quickshop-btn:hover,
+.tunics-quickshop-btn:hover,
+.coord-quickshop-btn:hover {
   background-color: #7b1d35;
   color: #fff;
 }
@@ -396,12 +552,18 @@
 /* ===========================
    Product Info
 =========================== */
-.kurti-info {
+.kurti-info,
+.kurti-set-info,
+.tunics-info,
+.coord-info {
   padding: 15px 10px 20px;
   text-align: center;
 }
 
-.kurti-name {
+.kurti-name,
+.kurti-set-name,
+.tunics-name,
+.coord-name {
   font-size: 15px;
   font-weight: 600;
   margin: 5px 0;
@@ -409,7 +571,10 @@
   transition: color 0.3s ease;
 }
 
-.kurti-price {
+.kurti-price,
+.kurti-set-price,
+.tunics-price,
+.coord-price {
   font-size: 14px;
   color: #d33;
   font-weight: bold;
@@ -418,17 +583,26 @@
 }
 
 /* ✅ Now hover works when whole card is hovered */
-.kurti-card:hover .kurti-name {
+.kurti-card:hover .kurti-name,
+.kurti-set-card:hover .kurti-set-name,
+.tunics-card:hover .tunics-name,
+.coord-card:hover .coord-name {
   color: #7b1d35;
 }
 
-.kurti-card:hover .kurti-price {
+.kurti-card:hover .kurti-price,
+.kurti-set-card:hover .kurti-set-price,
+.tunics-card:hover .tunics-price,
+.coord-card:hover .coord-price {
   color: #000;
 }
 
 
 /* Wrapper with Sidebar */
-.kurti-wrapper {
+.kurti-wrapper,
+.kurti-set-wrapper,
+.tunics-wrapper,
+.coord-wrapper {
   display: flex;
   width: 95%;
   margin: 0 auto;
@@ -437,7 +611,10 @@
 
 
 
-.kurti-filter h3 {
+.kurti-filter h3,
+.kurti-set-filter h3,
+.tunics-filter h3,
+.coord-filter h3 {
   margin-bottom: 15px;
   font-size: 20px;
   color: #7b1d35;

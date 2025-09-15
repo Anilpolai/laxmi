@@ -6,16 +6,16 @@ import { FiEye } from "react-icons/fi";
 import { BsGrid3X3GapFill, BsGridFill } from "react-icons/bs";
 import { FaThLarge } from "react-icons/fa";
 import { NavLink, useNavigate } from "react-router-dom";
-import { kurti as productData } from "../../jsfile/kurti"; // change if using tunics data
-import banner from "../../img/kurti/homekurti.jpg"; // change if tunics banner exists
-import "../kurti.css"; // ✅ your CSS file
+import { kurti as productData } from "../../jsfile/kurti";
+import banner from "../../img/kurti/homekurti.jpg";
+import "../kurti.css"; // ✅ naya css file
 import KurtiFilter from "../../component/filter/KurtiFilter";
 
-function Tunics() {
+function KurtiSet() {
   const dispatch = useDispatch();
   const wishlist = useSelector((state) => state.wishlist.items);
   const products = useSelector((state) => state.products.list);
-  const tunicsProducts = products.filter((p) => p.category === "tunics");
+  const kurtiset = products.filter((p) => p.category === "kurti");
 
   const [filteredProducts, setFilteredProducts] = useState(productData);
   const [availability, setAvailability] = useState("all");
@@ -50,12 +50,12 @@ function Tunics() {
   return (
     <div>
       {/* Banner */}
-      <div className="tunics-banner-full">
-        <img src={banner} alt="Tunics Banner" />
+      <div className="kurti-set-banner-full">
+        <img src={banner} alt="Kurti Banner" />
       </div>
 
-      <div className="tunics-Full">
-        <div className="tunics-container">
+      <div className="kurti-set-Full">
+        <div className="kurti-set-container">
           {/* Filter */}
           <KurtiFilter
             showFilter={showFilter}
@@ -72,17 +72,17 @@ function Tunics() {
             setFabric={setFabric}
           />
 
-          <main className="tunics-section">
+          <main className="kurti-set-section">
             {/* Header */}
-            <div className="tunics-texts">
-              <p className="tunics-tagline">STAY AHEAD OF THE FASHION CURVE</p>
-              <h2 className="tunics-title">Tunics</h2>
-              <p className="tunics-subtitle">
-                Elegance redefined with every tunic — tradition and style combined.
+            <div className="kurti-set-texts">
+              <p className="kurti-set-tagline">STAY AHEAD OF THE FASHION CURVE</p>
+              <h2 className="kurti-set-title">Kurti Set</h2>
+              <p className="kurti-set-subtitle">
+                Elegance redefined with every kurti set — tradition and style combined.
               </p>
             </div>
-            <div className="tunics-header2">
-              <div className="tunics-header-left">
+            <div className="kurti-set-header2">
+              <div className="kurti-set-header-left">
                 <button
                   className="desktop-filter-btn"
                   onClick={() => setShowFilter(!showFilter)}
@@ -90,7 +90,7 @@ function Tunics() {
                   <FaFilter /> Filter
                 </button>
               </div>
-              <div className="tunics-columns">
+              <div className="kurti-set-columns">
                 <button onClick={() => setColumns(3)} className={columns === 3 ? "active" : ""}><BsGrid3X3GapFill /></button>
                 <button onClick={() => setColumns(4)} className={columns === 4 ? "active" : ""}><BsGridFill /></button>
                 <button onClick={() => setColumns(5)} className={columns === 5 ? "active" : ""}><FaThLarge /></button>
@@ -103,15 +103,15 @@ function Tunics() {
             </button>
 
             {/* Products Grid */}
-            <div className={`tunics-products-grid cols-${columns}`}>
+            <div className={`kurti-set-products-grid cols-${columns}`}>
               {currentProducts.map((product) => (
-                <div key={product.id} className="tunics-card" onClick={() => navigate(`/quickshop/${product.id}`)}>
-                  <div className="tunics-image">
-                    <img src={product.image} alt={product.name} className="tunics-main-img" />
-                    <img src={product.hoverimage} alt={product.name} className="tunics-hover-img" />
+                <div key={product.id} className="kurti-set-card" onClick={() => navigate(`/quickshop/${product.id}`)}>
+                  <div className="kurti-set-image" >
+                    <img src={product.image} alt={product.name} className="kurti-set-main-img" />
+                    <img src={product.hoverimage} alt={product.name} className="kurti-set-hover-img" />
 
                     <button
-                      className={`tunics-icon-btn tunics-wishlist ${wishlist.includes(product.id) ? "active" : ""}`}
+                      className={`kurti-set-icon-btn kurti-set-wishlist ${wishlist.includes(product.id) ? "active" : ""}`}
                       onClick={(e) => {
                         e.stopPropagation();
                         dispatch(toggleWishlist(product.id));
@@ -119,16 +119,16 @@ function Tunics() {
                       {wishlist.includes(product.id) ? <FaHeart /> : <FaRegHeart />}
                     </button>
 
-                    <NavLink to={`/quickshop/${product.id}`} className="tunics-icon-btn tunics-view"><FiEye /></NavLink>
-                    <NavLink to={`/quickshop/${product.id}`} className="tunics-quickshop-btn">
+                    <NavLink to={`/quickshop/${product.id}`} className="kurti-set-icon-btn kurti-set-view"><FiEye /></NavLink>
+                    <NavLink to={`/quickshop/${product.id}`} className="kurti-set-quickshop-btn">
                       Quickshop
                     </NavLink>
                   </div>
 
-                  <div className="tunics-info">
-                    <h5 className="tunics-name">{product.name}</h5>
-                    <p className="tunics-price">₹{product.price}</p>
-                    {product.discount && <p className="tunics-discount">{product.discount}% OFF</p>}
+                  <div className="kurti-set-info">
+                    <h5 className="kurti-set-name">{product.name}</h5>
+                    <p className="kurti-set-price">₹{product.price}</p>
+                    {product.discount && <p className="kurti-set-discount">{product.discount}% OFF</p>}
                   </div>
                 </div>
               ))}
@@ -151,4 +151,4 @@ function Tunics() {
   );
 }
 
-export default Tunics;
+export default KurtiSet;

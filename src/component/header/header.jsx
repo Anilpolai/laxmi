@@ -4,8 +4,9 @@ import './header.css';
 import Topre from '../toper/toper';
 import logo from '../../img/logo-1.png';
 import { IoSearch, IoCartOutline } from "react-icons/io5";
-import { FaRegHeart, FaRegUser, FaHome } from "react-icons/fa";
-import { PiShoppingBagLight } from "react-icons/pi"; 
+import { FaRegHeart, FaRegUser, FaHome} from "react-icons/fa";
+import { BiShoppingBag } from "react-icons/bi";
+import { PiShoppingBagLight } from "react-icons/pi";
 import SignInSignUp from '../../login/login';
 import { useSelector } from 'react-redux';
 
@@ -31,7 +32,7 @@ const Header = () => {   // ✅ capitalized
             &#9776;
           </span>
           {/* Search Icon */}
-          <IoSearch className="icon" />
+          <BiShoppingBag  className="icon" />
         </div>
 
         {/* Logo */}
