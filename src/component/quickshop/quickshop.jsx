@@ -153,7 +153,7 @@ const QuickshopPage = () => {
       )}
 
       {/* ✅ Similar Products Section */}
-      <SimilarProducts currentProductId={product.id} category={product.category} />
+      {/* <SimilarProducts currentProductId={product.id} category={product.category} /> */}
     </>
   );
 };

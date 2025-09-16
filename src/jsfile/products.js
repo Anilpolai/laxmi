@@ -1,26 +1,58 @@
-// src/jsfile/products.js
-import p1 from "../img/products/p1.jpg";
-import p2 from "../img/products/p2.jpg";
-import p3 from "../img/products/p3.jpg";
-import p4 from "../img/products/p4.jpg";
+// Import Kurti images
+import k1 from '../img/kurti/blue1.jpg';
+import k2 from '../img/kurti/light1.jpg';
+import k3 from '../img/kurti/blue2.jpg';
+import k4 from '../img/kurti/pink1.jpg';
 
-export const products = [
-  // ---------------- Kurti ----------------
+
+
+import ks1 from '../img/kurti/blue1.jpg';
+import ks2 from '../img/kurti/light1.jpg';
+import ks3 from '../img/kurti/Pink1.jpg';
+// Import Kurti Set images
+// import ks1 from '../img/kurtiset/set1.jpg';
+// import ks2 from '../img/kurtiset/set2.jpg';
+// import ks3 from '../img/kurtiset/set3.jpg';
+
+// Import Tunics images
+// import t1 from '../img/tunics/t1.jpg';
+// import t2 from '../img/tunics/t2.jpg';
+import t1 from '../img/kurti/blue1.jpg';
+import t2 from '../img/kurti/light1.jpg';
+
+// Import Co-Ord images
+// import c1 from '../img/coord/c1.jpg';
+// import c2 from '../img/coord/c2.jpg';
+import c1 from '../img/kurti/blue2.jpg';
+import c2 from '../img/kurti/pink1.jpg';
+
+/* -------------------------------
+   Kurti Products
+---------------------------------*/
+export const kurti = [
   {
-    id: 1,
-    category: "kurti",
+    id: "kurti-1",
+    catchegories: ["kurti"],
     name: "Embroidered Kurti",
     price: 1299,
-    images: [p1, p3, p4],
-    hoverImage: p3,
-    description: "A stylish embroidered kurti with intricate embroidery.",
-    sizes: ["S", "M", "L", "XL"],
+    stock: 10,
+    discount: 10,
+    fabric: "Cotton",
+    image: k1,
+    hoverimage: k3,
+    sizes: ["S", "M", "L", "XL", "2XL"],
+    description: "A beautifully embroidered cotton kurti, perfect for casual and festive wear.",
+    images: [k1, k3, k4],
+    video: "/videos/kurti-1.mp4",
     descriptionDetails: [
-      { label: "Fabric", value: "Kurti: Cotton Linen | Bottom:" },
-      { label: "Color", value: "Kurti: Pink | Bottom:" },
+      { label: "Fabric", value: "Kurti : Cotton Linen | Bottom :" },
+      { label: "Color", value: "Kurti : Pink | Bottom :" },
       { label: "Occasion", value: "Festival Casual Women Wear" },
       { label: "Work", value: "Embroidered" },
-      { label: "Do note", value: "Accessories shown in the image are for shooting purpose. There might be some color variation." },
+      {
+        label: "Do note",
+        value: "Accessories shown are for shooting purpose. Color variation may occur.",
+      },
     ],
     reviews: [
       {
@@ -31,133 +63,109 @@ export const products = [
         comment: "Loved the fabric quality! Perfect fit.",
         date: "2025-08-28",
       },
+      {
+        id: 2,
+        name: "Anjali Verma",
+        avatar: "/avatars/user2.jpg",
+        rating: 4,
+        comment: "Very comfortable, but color is slightly different.",
+        date: "2025-08-30",
+      },
     ],
   },
   {
-    id: 5,
-    category: "kurti",
-    name: "Embroidered Kurti",
-    price: 1299,
-    images: [p1, p3],
-    hoverImage: p3,
-    description: "Beautiful embroidered kurti with comfortable fabric.",
+    id: "kurti-2",
+    catchegories: ["kurti"],
+    name: "Light Cotton Kurti",
+    price: 999,
+    stock: 15,
+    discount: 5,
+    fabric: "Cotton",
+    image: k2,
+    hoverimage: k4,
+    sizes: ["M", "L", "XL"],
+    description: "Soft light cotton kurti, ideal for everyday wear in summer.",
+    images: [k2, k4],
+    video: "/videos/kurti-2.mp4",
+    reviews: [
+      {
+        id: 1,
+        name: "Riya Kapoor",
+        avatar: "/avatars/user3.jpg",
+        rating: 5,
+        comment: "Super light and airy. Great for hot days!",
+        date: "2025-08-25",
+      },
+    ],
+  },
+];
+
+/* -------------------------------
+   Kurti Set Products
+---------------------------------*/
+export const kurtiSet = [
+  {
+    id: "kurtiSet-1",
+    categories: ["kurti-set"],
+    name: "Blue Kurti Set",
+    price: 1899,
+    stock: 12,
+    discount: 15,
+    fabric: "Silk Blend",
+    image: ks1,
+    hoverimage: ks2,
     sizes: ["S", "M", "L", "XL"],
+    description: "Elegant blue kurti set with matching bottom & dupatta.",
+    images: [ks1, ks2, ks3],
+    video: "/videos/kurtiset-1.mp4",
     reviews: [],
   },
-  {
-    id: 9,
-    category: "kurti",
-    name: "Embroidered Kurti",
-    price: 1299,
-    images: [p1, p3],
-    hoverImage: p3,
-    description: "Stylish embroidered kurti with premium finishing.",
-    sizes: ["S", "M", "L", "XL"],
-    reviews: [],
-  },
+];
 
-  // ---------------- Kurti Set ----------------
+/* -------------------------------
+   Tunics Products
+---------------------------------*/
+export const tunics = [
   {
-    id: 2,
-    category: "kurti-set",
-    name: "Onion Pink Embroidered Neck Vatican Kurti Set with Chanderi Jacquard Dupatta",
-    price: 1799,
-    images: [p2, p4, p1, p3],
-    hoverImage: p4,
-    description: "Elegant kurti set with dupatta, perfect for festive occasions.",
-    sizes: ["M", "L", "XL"],
+    id: "tunics-1",
+    categories: ["tunics"],
+    name: "Casual Tunic Top",
+    price: 799,
+    stock: 20,
+    discount: 0,
+    fabric: "Rayon",
+    image: t1,
+    hoverimage: t2,
+    sizes: ["S", "M", "L"],
+    description: "Trendy rayon tunic top for daily wear.",
+    images: [t1, t2],
     reviews: [],
   },
-  {
-    id: 6,
-    category: "kurti-set",
-    name: "Kurti Set with Dupatta",
-    price: 1799,
-    images: [p2, p4],
-    hoverImage: p4,
-    description: "Trendy kurti set with dupatta.",
-    sizes: ["M", "L", "XL"],
-    reviews: [],
-  },
-  {
-    id: 10,
-    category: "kurti-set",
-    name: "Kurti Set with Dupatta",
-    price: 1799,
-    images: [p2, p4],
-    hoverImage: p4,
-    description: "Classic kurti set with a dupatta for traditional look.",
-    sizes: ["M", "L", "XL"],
-    reviews: [],
-  },
+];
 
-  // ---------------- Tunics ----------------
+/* -------------------------------
+   Co-Ord Products
+---------------------------------*/
+export const coord = [
   {
-    id: 3,
-    category: "tunics",
-    name: "Casual Tunic",
-    price: 999,
-    images: [p3, p1],
-    hoverImage: p1,
-    description: "Lightweight tunic for everyday casual wear.",
-    sizes: ["S", "M", "L"],
+    id: "coord-1",
+    categories: ["co-ord"],
+    name: "Stylish Co-Ord Set",
+    price: 2199,
+    stock: 8,
+    discount: 20,
+    fabric: "Poly Cotton",
+    image: c1,
+    hoverimage: c2,
+    sizes: ["M", "L", "XL"],
+    description: "Modern co-ord set for party & casual outings.",
+    images: [c1, c2],
     reviews: [],
   },
-  {
-    id: 7,
-    category: "tunics",
-    name: "Casual Tunic",
-    price: 999,
-    images: [p3, p1],
-    hoverImage: p1,
-    description: "Simple tunic for everyday comfort.",
-    sizes: ["S", "M", "L"],
-    reviews: [],
-  },
-  {
-    id: 11,
-    category: "tunics",
-    name: "Casual Tunic",
-    price: 999,
-    images: [p3, p1],
-    hoverImage: p1,
-    description: "Breathable tunic for daily use.",
-    sizes: ["S", "M", "L"],
-    reviews: [],
-  },
-
-  // ---------------- Coord / Saree ----------------
-  {
-    id: 4,
-    category: "coord",
-    name: "Designer Saree",
-    price: 2499,
-    images: [p4, p2, p3],
-    hoverImage: p2,
-    description: "Premium designer saree with fine fabric and design.",
-    sizes: [],
-    reviews: [],
-  },
-  {
-    id: 8,
-    category: "coord",
-    name: "Designer Saree",
-    price: 2499,
-    images: [p4, p2],
-    hoverImage: p2,
-    description: "Elegant saree designed for special occasions.",
-    sizes: [],
-    reviews: [],
-  },
-  {
-    id: 12,
-    category: "coord",
-    name: "Designer Saree",
-    price: 2499,
-    images: [p4, p2],
-    hoverImage: p2,
-    description: "Luxurious saree crafted for elegance.",
-    sizes: [],
-    reviews: [],
-  },
+];
+export const products = [
+  ...kurti,
+  ...kurtiSet,
+  ...tunics,
+  ...coord,
 ];

@@ -2,7 +2,7 @@
 import { createSlice, createSelector } from "@reduxjs/toolkit";
 import { categoriesData } from "../../jsfile/categoriesData";
 import { products as allProducts } from "../../jsfile/products";
-// import { kurti as kurtiProducts } from "../../jsfile/kurti";
+
 
 // ------------------- CATEGORY SLICE -------------------
 const categorySlice = createSlice({

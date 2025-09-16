@@ -22,6 +22,7 @@ function Kurti() {
   const [columns, setColumns] = useState(4);
   const [minPrice, setMinPrice] = useState(500);
   const [maxPrice, setMaxPrice] = useState(5000);
+  
   const [discount, setDiscount] = useState("all");
   const [fabric, setFabric] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);

@@ -1,5 +1,3 @@
-// src/data/kurti.js
-
 import p1 from '../img/kurti/blue1.jpg';
 import p2 from '../img/kurti/light1.jpg';
 import p3 from '../img/kurti/blue2.jpg';
@@ -8,6 +6,7 @@ import p4 from '../img/kurti/pink1.jpg';
 export const kurti = [
   {
     id: "kurti-1",
+    categories: ["kurti"],
     name: "Embroidered Kurti",
     price: 1299,
     stock: 10,
@@ -20,6 +19,17 @@ export const kurti = [
       "A beautifully embroidered cotton kurti, perfect for casual and festive wear.",
     images: [p1, p3, p4], // product gallery
     video: "/videos/kurti-1.mp4", // optional product video
+    descriptionDetails: [
+      { label: "Fabric", value: "Kurti : Cotton Linen | Bottom :" },
+      { label: "Color", value: "Kurti : Pink | Bottom :" },
+      { label: "Occasion", value: "Festival Casual Women Wear" },
+      { label: "Work", value: "Embroidered" },
+      {
+        label: "Do note",
+        value:
+          "Accessories shown in the image are for shooting purpose. There might be some color variation.",
+      },
+    ],
     reviews: [
       {
         id: 1,
@@ -42,6 +52,7 @@ export const kurti = [
 
   {
     id: "kurti-2",
+    categories: ["kurti"],
     name: "Light Cotton Kurti",
     price: 999,
     stock: 15,
