@@ -8,7 +8,7 @@ import k4 from '../img/kurti/pink1.jpg';
 
 import ks1 from '../img/kurti/blue1.jpg';
 import ks2 from '../img/kurti/light1.jpg';
-import ks3 from '../img/kurti/Pink1.jpg';
+// import ks3 from '../img/kurti/Pink1.jpg';
 // Import Kurti Set images
 // import ks1 from '../img/kurtiset/set1.jpg';
 // import ks2 from '../img/kurtiset/set2.jpg';
@@ -42,7 +42,7 @@ export const kurti = [
     hoverimage: k3,
     sizes: ["S", "M", "L", "XL", "2XL"],
     description: "A beautifully embroidered cotton kurti, perfect for casual and festive wear.",
-    images: [k1, k3, k4],
+    images: [k1, k3],
     video: "/videos/kurti-1.mp4",
     descriptionDetails: [
       { label: "Fabric", value: "Kurti : Cotton Linen | Bottom :" },
