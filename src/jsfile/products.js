@@ -8,7 +8,7 @@ import k4 from '../img/kurti/pink1.jpg';
 
 import ks1 from '../img/kurti/blue1.jpg';
 import ks2 from '../img/kurti/light1.jpg';
-// import ks3 from '../img/kurti/Pink1.jpg';
+import ks3 from '../img/kurti/blue2.jpg';
 // Import Kurti Set images
 // import ks1 from '../img/kurtiset/set1.jpg';
 // import ks2 from '../img/kurtiset/set2.jpg';
