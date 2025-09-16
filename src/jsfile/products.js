@@ -32,7 +32,7 @@ import c2 from '../img/kurti/pink1.jpg';
 export const kurti = [
   {
     id: "kurti-1",
-    catchegories: ["kurti"],
+    category: "kurti",
     name: "Embroidered Kurti",
     price: 1299,
     stock: 10,
@@ -75,7 +75,7 @@ export const kurti = [
   },
   {
     id: "kurti-2",
-    catchegories: ["kurti"],
+    category: "kurti",
     name: "Light Cotton Kurti",
     price: 999,
     stock: 15,
@@ -106,7 +106,7 @@ export const kurti = [
 export const kurtiSet = [
   {
     id: "kurtiSet-1",
-    categories: ["kurti-set"],
+    category: "kurtiSet",
     name: "Blue Kurti Set",
     price: 1899,
     stock: 12,
@@ -128,7 +128,7 @@ export const kurtiSet = [
 export const tunics = [
   {
     id: "tunics-1",
-    categories: ["tunics"],
+    category: "tunics",
     name: "Casual Tunic Top",
     price: 799,
     stock: 20,
@@ -149,7 +149,7 @@ export const tunics = [
 export const coord = [
   {
     id: "coord-1",
-    categories: ["co-ord"],
+    category: "coord",
     name: "Stylish Co-Ord Set",
     price: 2199,
     stock: 8,
@@ -169,3 +169,4 @@ export const products = [
   ...tunics,
   ...coord,
 ];
+

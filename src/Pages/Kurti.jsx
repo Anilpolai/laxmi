@@ -6,7 +6,6 @@ import { FiEye } from "react-icons/fi";
 import { BsGrid3X3GapFill, BsGridFill } from "react-icons/bs";
 import { FaThLarge } from "react-icons/fa";
 import { NavLink, useNavigate } from 'react-router-dom';
-import { kurti as productData } from "../jsfile/kurti";
 import banner from "../img/kurti/homekurti.jpg";
 import "./kurti.css";
 import KurtiFilter from "../component/filter/KurtiFilter";
@@ -17,12 +16,13 @@ function Kurti() {
   const products = useSelector((state) => state.products.list);
   const kurtiProducts = products.filter((p) => p.category === "kurti");
 
-  const [filteredProducts, setFilteredProducts] = useState(productData);
+
+  const [filteredProducts, setFilteredProducts] = useState(kurtiProducts);
   const [availability, setAvailability] = useState("all");
   const [columns, setColumns] = useState(4);
   const [minPrice, setMinPrice] = useState(500);
   const [maxPrice, setMaxPrice] = useState(5000);
-  
+
   const [discount, setDiscount] = useState("all");
   const [fabric, setFabric] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
@@ -31,7 +31,7 @@ function Kurti() {
   const productsPerPage = 12;
 
   useEffect(() => {
-    let updated = productData.filter(
+    let updated = kurtiProducts.filter(
       (p) => p.price >= minPrice && p.price <= maxPrice
     );
     if (availability === "in") updated = updated.filter((p) => p.stock > 0);

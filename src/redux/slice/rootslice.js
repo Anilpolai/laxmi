@@ -1,7 +1,7 @@
 // src/redux/slices/index.js
 import { createSlice, createSelector } from "@reduxjs/toolkit";
 import { categoriesData } from "../../jsfile/categoriesData";
-import { products as allProducts } from "../../jsfile/products";
+import { products} from "../../jsfile/products";
 
 
 // ------------------- CATEGORY SLICE -------------------
@@ -18,7 +18,7 @@ const categorySlice = createSlice({
 const productSlice = createSlice({
   name: "products",
   initialState: {
-    list: allProducts,
+    list: products,
   },
   reducers: {
     addProduct: (state, action) => {
