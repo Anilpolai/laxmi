@@ -3,9 +3,10 @@
 }
 
 .similar-title {
-  font-size: 22px;
-  font-weight: 600;
+  font-size: 32px;
+  font-weight: 500;
   margin-bottom: 25px;
+  font-family: Jost, sans-serif;
   text-align: center;
   color: #111;
 }

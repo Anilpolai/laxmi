@@ -29,7 +29,7 @@ const SimilarProducts = () => {
 
   return (
     <div className="similar-products">
-      <h3 className="similar-title">Similar Products</h3>
+      <h3 className="similar-title">You My Also Like</h3>
       <div className="similar-grid">
         {similar.map((product) => (
           <div key={product.id} className="kurti-card">
