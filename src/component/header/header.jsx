@@ -3,12 +3,13 @@ import { NavLink, useNavigate } from 'react-router-dom'; // ✅ added useNavigat
 import './header.css';
 import Topre from '../toper/toper';
 import logo from '../../img/logo-1.png';
-import { IoSearch, IoCartOutline } from "react-icons/io5";
-import { FaRegHeart, FaRegUser, FaHome} from "react-icons/fa";
+import { IoCartOutline } from "react-icons/io5";
+import { FaRegHeart, FaRegUser, FaHome } from "react-icons/fa";
 import { BiShoppingBag } from "react-icons/bi";
 import { PiShoppingBagLight } from "react-icons/pi";
 import SignInSignUp from '../../login/login';
 import { useSelector } from 'react-redux';
+import { selectCartCount } from "../../redux/slice/rootslice";
 
 const Header = () => {   // ✅ capitalized
   const [menuOpen, setMenuOpen] = useState(false);
@@ -17,6 +18,7 @@ const Header = () => {   // ✅ capitalized
   const [showAuth, setShowAuth] = useState(false);
   const toggleAuth = () => setShowAuth(!showAuth);
 
+  const cartCount = useSelector(selectCartCount);
   const wishlistCount = useSelector((state) => state.wishlist.items.length);
   const navigate = useNavigate();
 
@@ -32,7 +34,7 @@ const Header = () => {   // ✅ capitalized
             &#9776;
           </span>
           {/* Search Icon */}
-          <BiShoppingBag  className="icon" />
+          <BiShoppingBag className="icon" />
         </div>
 
         {/* Logo */}
@@ -51,9 +53,9 @@ const Header = () => {   // ✅ capitalized
 
           <FaRegUser className="icon d-none d-lg-inline" onClick={toggleAuth} />
 
-          <div className="position-relative d-none d-lg-inline">
+          <div className="position-relative d-none d-lg-inline" onClick={() => navigate("/cart")}>
             <IoCartOutline className="icon" />
-            <span className="badge">0</span>
+            {cartCount > 0 && <span className="badge">{cartCount}</span>}
           </div>
         </div>
       </div>
@@ -106,7 +108,7 @@ const Header = () => {   // ✅ capitalized
         <NavLink to="/cart" className="footer-icon position-relative">
           <IoCartOutline className="icon" />
           <span>Cart</span>
-          <span className="badge">0</span>
+          {cartCount > 0 && <span className="badge">{cartCount}</span>}
         </NavLink>
       </div>
 

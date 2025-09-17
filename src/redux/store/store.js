@@ -5,6 +5,7 @@ import {
   productReducer,
   wishlistReducer,
   reviewReducer,
+  cartReducer,
 } from "../slice/rootslice";  // ✅ single import from index.js
 
 export const store = configureStore({
@@ -13,5 +14,6 @@ export const store = configureStore({
     products: productReducer,
     wishlist: wishlistReducer,
     reviews: reviewReducer, // ✅ added
+    cart: cartReducer, // ✅ added
   },
 });

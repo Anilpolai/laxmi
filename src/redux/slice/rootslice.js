@@ -1,8 +1,6 @@
-// src/redux/slices/index.js
 import { createSlice, createSelector } from "@reduxjs/toolkit";
 import { categoriesData } from "../../jsfile/categoriesData";
-import { products} from "../../jsfile/products";
-
+import { products } from "../../jsfile/products";
 
 // ------------------- CATEGORY SLICE -------------------
 const categorySlice = createSlice({
@@ -14,7 +12,6 @@ const categorySlice = createSlice({
 });
 
 // ------------------- PRODUCT SLICE -------------------
-// src/redux/slices/index.js
 const productSlice = createSlice({
   name: "products",
   initialState: {
@@ -35,8 +32,6 @@ export const selectProductsByCategory = (state, category) =>
   state.products.list.filter((p) => p.category === category);
 export const selectProductById = (state, id) =>
   state.products.list.find((p) => String(p.id) === String(id));
-
-;
 
 // ------------------- WISHLIST SLICE -------------------
 const wishlistSlice = createSlice({
@@ -73,8 +68,7 @@ export const { toggleWishlist, removeWishlist, clearWishlist } =
 const reviewSlice = createSlice({
   name: "reviews",
   initialState: {
-    // reviews per productId → array
-    reviews: JSON.parse(localStorage.getItem("reviews")) || {},
+    reviews: JSON.parse(localStorage.getItem("reviews")) || {}, // productId → array
   },
   reducers: {
     addReview: (state, action) => {
@@ -84,7 +78,6 @@ const reviewSlice = createSlice({
       }
       state.reviews[productId].unshift(review);
 
-      // ✅ persist to localStorage
       localStorage.setItem("reviews", JSON.stringify(state.reviews));
     },
     clearReviews: (state, action) => {
@@ -106,8 +99,61 @@ export const selectReviewsByProduct = createSelector(
   (reviews, productId) => reviews[productId] || []
 );
 
+const cartSlice = createSlice({
+  name: "cart",
+  initialState: {
+    items: Array.isArray(JSON.parse(localStorage.getItem("cart")))
+      ? JSON.parse(localStorage.getItem("cart"))
+      : [],  // ✅ always an array
+  },
+  reducers: {
+    addToCart: (state, action) => {
+      const { id, name, image, price, size, quantity } = action.payload;
+      const existing = state.items.find(
+        (item) => item.id === id && item.size === size
+      );
+
+      if (existing) {
+        existing.quantity = Math.max(1, quantity);
+      } else {
+        state.items.push({ id, name, image, price, size, quantity });
+      }
+
+      localStorage.setItem("cart", JSON.stringify(state.items));
+    },
+    updateQuantity: (state, action) => {
+      const { id, size, quantity } = action.payload;
+      const existing = state.items.find(
+        (item) => item.id === id && item.size === size
+      );
+      if (existing) {
+        existing.quantity = Math.max(1, quantity); // never < 1
+      }
+      localStorage.setItem("cart", JSON.stringify(state.items));
+    },
+    removeFromCart: (state, action) => {
+      const { id, size } = action.payload;
+      state.items = state.items.filter(
+        (item) => !(item.id === id && item.size === size)
+      );
+      localStorage.setItem("cart", JSON.stringify(state.items));
+    },
+    clearCart: (state) => {
+      state.items = [];
+      localStorage.removeItem("cart");
+    },
+  },
+});
+
+
+export const { addToCart, removeFromCart, updateQuantity, clearCart } = cartSlice.actions;
+export const selectCartCount = (state) =>
+  state.cart?.items?.reduce((sum, item) => sum + item.quantity, 0) || 0;
+
+
 // ------------------- EXPORT REDUCERS -------------------
 export const categoryReducer = categorySlice.reducer;
 export const productReducer = productSlice.reducer;
 export const wishlistReducer = wishlistSlice.reducer;
 export const reviewReducer = reviewSlice.reducer;
+export const cartReducer = cartSlice.reducer;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleWishlist, selectProductById, selectReviewsByProduct } from "../../redux/slice/rootslice";
+import { toggleWishlist, selectProductById, selectReviewsByProduct, addToCart } from "../../redux/slice/rootslice";
 import "./quickshop.css";
 
 import ProductGallery from "./ProductGallery";
@@ -84,7 +84,33 @@ const QuickshopPage = () => {
                 <button onClick={() => setQuantity((q) => q + 1)}>+</button>
               </div>
 
-              <button className="add-to-cart">Add to Cart</button>
+              <button
+                className="add-to-cart"
+                onClick={() => {
+                  dispatch(
+                    addToCart({
+                      id: product.id,
+                      name: product.name,
+                      price: product.price,
+                      image: product.images[0],
+                      size: selectedSize,
+                      quantity,
+                    })
+                  );
+                  toast.success(`${product.name} added to cart!`, {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                  });
+                }}
+              >
+                Add to Cart
+              </button>
+
 
               <button
                 className={`wishlist ${isWishlisted ? "active" : ""}`}
@@ -118,7 +144,7 @@ const QuickshopPage = () => {
         <div className="review-section">
           {/* Left side → Review List */}
           <div className="review-left">
-            <ReviewList/>
+            <ReviewList />
           </div>
 
           {/* Divider Line */}
