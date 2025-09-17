@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleWishlist, selectProductById, selectReviewsByProduct, addToCart } from "../../redux/slice/rootslice";
 import "./quickshop.css";
-
+import { toast } from "react-toastify";
 import ProductGallery from "./ProductGallery";
 import ImageModal from "./ImageModal";
 import LiveViewers from "./LiveViewers";
@@ -97,19 +97,12 @@ const QuickshopPage = () => {
                       quantity,
                     })
                   );
-                  toast.success(`${product.name} added to cart!`, {
-                    position: "top-right",
-                    autoClose: 2000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                  });
+                  toast.success(`${product.name} added to cart!`);
                 }}
               >
                 Add to Cart
               </button>
+
 
 
               <button

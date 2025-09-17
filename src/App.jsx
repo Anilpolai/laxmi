@@ -11,6 +11,7 @@ import Wishlist from "./component/wishlist/Wishlist";
 import QuickshopPage from "./component/quickshop/quickshop";
 
 function App() {
+  
   return (
     <>
       <Routes>
