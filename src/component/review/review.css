@@ -188,3 +188,89 @@
   color: #5e1528;
 }
 
+.full-review-panel {
+  width: 100%;
+  margin: 20px 0;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.toggle-btn {
+  background: #7b1d35;
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: background 0.3s ease;
+}
+
+.toggle-btn:hover {
+  background: #5e1528;
+}
+.full-review-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 30px auto;
+}
+
+.review-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); /* ✅ side by side */
+  gap: 18px;
+}
+
+.review-list {
+  display: contents; /* ✅ allow ReviewCard to fill grid */
+}
+
+.review-card {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  word-break: break-word;
+  transition: transform 0.2s ease;
+}
+
+.review-card:hover {
+  transform: translateY(-4px);
+}
+
+.review-expand {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: scaleY(0.9);
+  transform-origin: top;
+  transition: max-height 0.5s ease, opacity 0.4s ease, transform 0.4s ease;
+}
+
+.review-expand.open {
+  max-height: 2000px; /* enough space for reviews */
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+.review-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 18px;
+  padding: 10px 0;
+}
+
+.review-list {
+  display: contents; /* cards take grid directly */
+}

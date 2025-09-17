@@ -38,17 +38,13 @@ const ReviewCard = ({ review }) => {
           {"☆".repeat(5 - review.rating)}
         </div>
 
+        {/* ✅ Comment with expand/collapse */}
         <p className={`review-comment ${expanded ? "expanded" : ""}`}>
           {review.comment}
         </p>
 
-        {review.comment.length > 120 && (
-          <span className="more-text" onClick={toggleExpanded}>
-            {expanded ? "show less" : "…more"}
-          </span>
-        )}
-
-        {review.photos && review.photos.length > 0 && (
+        {/* ✅ Only show photos/details if expanded */}
+        {expanded && review.photos && review.photos.length > 0 && (
           <div className="review-photos">
             {review.photos.map((photo, i) => (
               <img key={i} src={photo} alt="review" className="review-img" />
@@ -56,7 +52,15 @@ const ReviewCard = ({ review }) => {
           </div>
         )}
 
-        <small className="review-date">{review.date}</small>
+        {/* ✅ Show Date only if expanded */}
+        {expanded && <small className="review-date">{review.date}</small>}
+
+        {/* Expand/Collapse Button */}
+        {review.comment.length > 120 || (review.photos && review.photos.length > 0) ? (
+          <span className="more-text" onClick={toggleExpanded}>
+            {expanded ? "show less" : "Read more"}
+          </span>
+        ) : null}
       </div>
     </div>
   );

@@ -16,6 +16,7 @@ import CareGuideAccordion from "../sizeandpincode/CareGuideAccordion";
 import SimilarProducts from "./SimilarProducts";
 import Review from "../review/review";
 import ReviewList from "../review/reviewList";
+import FullReviewPanel from "../review/FullReviewPanel";
 
 const QuickshopPage = () => {
   const { id } = useParams();
@@ -117,7 +118,7 @@ const QuickshopPage = () => {
         <div className="review-section">
           {/* Left side → Review List */}
           <div className="review-left">
-            <ReviewList reviews={reviews} />
+            <ReviewList/>
           </div>
 
           {/* Divider Line */}
@@ -151,6 +152,7 @@ const QuickshopPage = () => {
           </div>
         </div>
       )}
+      <FullReviewPanel reviews={reviews} />
 
       {/* ✅ Similar Products Section */}
       <SimilarProducts currentProductId={product.id} category={product.category} />
