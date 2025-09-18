@@ -129,7 +129,7 @@ const QuickshopPage = () => {
           currentIndex={currentIndex}
           setCurrentIndex={setCurrentIndex}
         />
-      </div>.
+      </div>
 
       {/* ✅ Review Section */}
       <div className="review-wrapper">

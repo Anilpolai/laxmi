@@ -1,7 +1,7 @@
 import "./App.css";
 import Kurti from "./Pages/Kurti";
 import Home from "./Pages/Home";
-import CartPage from "./Pages/Cart";
+import CartPage from "./Pages/addtocart/Cart";
 import Kurtiset from "./Pages/products/kuratiset";
 import Tunics from "./Pages/products/tunics";
 import Coord from "./Pages/products/co-ord";

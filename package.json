@@ -12,6 +12,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.8.2",
     "bootstrap": "^5.3.7",
+    "framer-motion": "^12.23.14",
     "jquery": "^3.7.1",
     "owl.carousel": "^2.3.4",
     "react": "^19.1.0",
