@@ -8,6 +8,7 @@ import Coord from "./Pages/products/co-ord";
 import Checkout from "./Pages/checkout/Checkout";
 import ThankYou from "./Pages/checkout/ThankYou";
 import Contact  from "./Pages/contact/contact";
+import About from "./Pages/About/About";
 import { Routes, Route } from "react-router-dom";
 import Endlayout from "./component/Endlayout";
 import Wishlist from "./component/wishlist/Wishlist";
@@ -30,7 +31,7 @@ function App() {
           <Route path="/co-ord" element={<Coord category="Co-Ord Set" />} />
           <Route path="/cart" element={<CartPage/>} />
           <Route path="/contact" element={<Contact />} />
-          {/* <Route path="/about" element={<Contact />} /> */}
+          <Route path="/about" element={<About/>} />
 
 
           {/* Add other routes as needed */}
