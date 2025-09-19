@@ -1,0 +1,40 @@
+.checkout-page {
+  background: #f8f9fa;
+  min-height: 100vh;
+}
+
+.checkout-form h4,
+.order-summary h4 {
+  font-weight: 600;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+}
+
+.checkout-form .form-label {
+  font-weight: 500;
+}
+
+.order-summary img {
+  object-fit: cover;
+}
+
+.checkout-btn {
+  background: #ff6600;
+  border: none;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+.checkout-btn:hover {
+  background: #e55b00;
+}
+
+.order-summary {
+  background: #fff;
+}
+
+.order-summary div p {
+  font-size: 14px;
+}

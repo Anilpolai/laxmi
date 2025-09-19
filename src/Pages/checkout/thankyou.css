@@ -1,0 +1,19 @@
+.thankyou-page {
+  min-height: 100vh;
+  background: #f8f9fa;
+}
+
+.thankyou-card {
+  background: #fff;
+  max-width: 500px;
+}
+
+.thankyou-card h1 {
+  color: #28a745;
+  font-weight: 700;
+}
+
+.thankyou-card p {
+  font-size: 16px;
+  color: #555;
+}

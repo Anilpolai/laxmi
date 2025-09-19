@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { HiOutlineTruck } from "react-icons/hi2";
+import { useNavigate } from "react-router-dom";
 
 const CartSummary = ({ cartItems, totalPrice }) => {
+  const navigate = useNavigate();
   const [coupon, setCoupon] = useState("");
   const [progress, setProgress] = useState(0);
 
@@ -72,7 +74,9 @@ const CartSummary = ({ cartItems, totalPrice }) => {
         <small>Taxes and shipping calculated at checkout</small>
       </div>
 
-      <button className="checkout-btn">CHECK OUT</button>
+      <button className="checkout-btn" onClick={() => navigate("/checkout")}>
+        CHECK OUT
+      </button>
     </div>
   );
 };
