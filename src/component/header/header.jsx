@@ -97,14 +97,14 @@ const Header = () => {   // ✅ capitalized
           <FaHome className="icon" />
           <span>Home</span>
         </NavLink>
-        <NavLink to="/shop" className="footer-icon">
+        <NavLink to="/kurti" className="footer-icon">
           <PiShoppingBagLight className="icon" />
           <span>Shop</span>
         </NavLink>
-        <NavLink to="/profile" className="footer-icon">
-          <FaRegUser className="icon" />
+        <div className="footer-icon">
+          <FaRegUser className="icon"onClick={toggleAuth} />
           <span>Profile</span>
-        </NavLink>
+      </div>
         <NavLink to="/cart" className="footer-icon position-relative">
           <IoCartOutline className="icon" />
           <span>Cart</span>
