@@ -1,9 +1,10 @@
+// src/pages/BestSellers.jsx
 import React from "react";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { FiEye } from "react-icons/fi";
-import { Link, useNavigate } from "react-router-dom";   // ✅ Added useNavigate
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { toggleWishlist } from "../../redux/slice/rootslice";  // ✅ Updated import path
+import { toggleWishlist } from "../../redux/slice/rootslice";
 import { products as productData } from "../../jsfile/products";
 
 import "./bestselling.css";
@@ -11,7 +12,10 @@ import "./bestselling.css";
 export default function BestSellers() {
   const wishlist = useSelector((state) => state.wishlist.items);
   const dispatch = useDispatch();
-  const navigate = useNavigate();   // ✅ Now we can navigate programmatically
+  const navigate = useNavigate();
+
+  // ✅ सिर्फ वो products जिनमें bestSelling: true है
+  const bestSellingProducts = productData.filter((p) => p.bestSelling);
 
   return (
     <div className="best-sellers-section">
@@ -26,11 +30,11 @@ export default function BestSellers() {
 
       {/* Product Grid */}
       <div className="products-grid">
-        {productData.map((product) => (
+        {bestSellingProducts.map((product) => (
           <div
             key={product.id}
             className="product-card"
-            onClick={() => navigate(`/quickshop/${product.id}`)} // ✅ Correct navigation
+            onClick={() => navigate(`/quickshop/${product.id}`)}
           >
             <div className="product-image">
               <img
@@ -63,7 +67,7 @@ export default function BestSellers() {
                 to={`/quickshop/${product.id}`}
                 className="best-icon-btn view"
                 aria-label="View Product"
-                onClick={(e) => e.stopPropagation()} // ✅ prevent conflict with card click
+                onClick={(e) => e.stopPropagation()}
               >
                 <FiEye />
               </Link>
@@ -72,7 +76,7 @@ export default function BestSellers() {
               <Link
                 to={`/quickshop/${product.id}`}
                 className="quickshop-btn"
-                onClick={(e) => e.stopPropagation()} // ✅ prevent double navigation
+                onClick={(e) => e.stopPropagation()}
               >
                 Quickshop
               </Link>

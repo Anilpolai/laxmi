@@ -33,6 +33,7 @@ export const kurti = [
   {
     id: "kurti-1",
     category: "kurti",
+     bestSelling: true ,
     name: "Embroidered Kurti",
     price: 1299,
     stock: 10,
@@ -107,6 +108,7 @@ export const kurtiSet = [
   {
     id: "kurtiSet-1",
     category: "kurtiSet",
+      bestSelling: true ,
     name: "Blue Kurti Set",
     price: 1899,
     stock: 12,
