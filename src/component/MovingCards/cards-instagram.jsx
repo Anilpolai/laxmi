@@ -2,34 +2,36 @@
 import React from "react";
 import "./cards-instagram.css";
 import { FaInstagram, FaShoppingCart } from "react-icons/fa";
-
-// ✅ Use URLs directly instead of import
-const videos = [
-  "https://www.snehalcreation.co.in/backend/uploads/gallery_images/2813_MM-1015.mp4",
-  "https://www.snehalcreation.co.in/backend/uploads/gallery_images/2814_MM-1016.mp4",
-  "https://www.snehalcreation.co.in/backend/uploads/gallery_images/2814_MM-1016.mp4",
-  "https://www.snehalcreation.co.in/backend/uploads/gallery_images/2813_MM-1015.mp4",
-];
+import { useSelector, useDispatch } from "react-redux";
+import { addToCart, selectAllProducts } from "../../redux/slice/rootslice"; 
+import { useNavigate } from "react-router-dom";
 
 function CardsInstagram() {
-  const loopVideos = [...videos, ...videos, ...videos];
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const products = useSelector(selectAllProducts);
+
+  // ✅ Sirf un products ko lo jinke paas video hai
+  const videoProducts = products.filter((p) => p.video);
+
+  // ✅ Infinite scroll feel ke liye repeat kar do
+  const loopProducts = [...videoProducts, ...videoProducts, ...videoProducts];
 
   return (
     <div className="instagram-section">
       <div className="instagram-header text-center">
         <h2>@Yourinstagram</h2>
         <p>
-          Inspire and let yourself be inspired, from one unique fashion to
-          another.
+          Inspire and let yourself be inspired, from one unique fashion to another.
         </p>
       </div>
 
       <div className="instagram-gallery">
         <div className="instagram-slider">
-          {loopVideos.map((video, idx) => (
+          {loopProducts.map((product, idx) => (
             <div className="insta-card" key={idx}>
               <video
-                src={video}
+                src={product.video}
                 loop
                 autoPlay
                 muted
@@ -48,9 +50,24 @@ function CardsInstagram() {
               </a>
 
               {/* Cart icon (right) */}
-              <div className="insta-overlay insta-right">
-                <FaShoppingCart size={23} />
+              <div
+                className="insta-overlay insta-right"
+                onClick={() =>
+                  dispatch(
+                    addToCart({
+                      id: product.id,
+                      name: product.name,
+                      image: product.image,
+                      price: product.price,
+                      size: product.sizes[0], // ✅ default first size
+                      quantity: 1,
+                    })
+                  )
+                }
+              >
+                <FaShoppingCart size={23}onClick={() => navigate(`/quickshop/${product.id}`)} />
               </div>
+
             </div>
           ))}
         </div>

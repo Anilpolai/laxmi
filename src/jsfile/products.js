@@ -44,7 +44,7 @@ export const kurti = [
     sizes: ["S", "M", "L", "XL", "2XL"],
     description: "A beautifully embroidered cotton kurti, perfect for casual and festive wear.",
     images: [k1, k3],
-    video: "/videos/kurti-1.mp4",
+    video: "https://www.snehalcreation.co.in/backend/uploads/gallery_images/2813_MM-1015.mp4",
     descriptionDetails: [
       { label: "Fabric", value: "Kurti : Cotton Linen | Bottom :" },
       { label: "Color", value: "Kurti : Pink | Bottom :" },
