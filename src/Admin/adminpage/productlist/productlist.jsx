@@ -1,5 +1,5 @@
 import React from "react";
-import "./Adminproducts.css";
+
 
 export default function ProductList({ products, onEdit, onDelete }) {
   if (!products || products.length === 0) {
