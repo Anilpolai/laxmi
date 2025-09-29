@@ -6,15 +6,13 @@ import { FiEye } from "react-icons/fi";
 import { BsGrid3X3GapFill, BsGridFill } from "react-icons/bs";
 import { FaThLarge } from "react-icons/fa";
 import { NavLink, useNavigate } from "react-router-dom";
-import ProductFilter from "../component/filter/KurtiFilter"; // 👈 generic filter
+import KurtiFilter from "../component/filter/KurtiFilter";
+import "./kurti.css"; // ✅ use same CSS with category-based classnames
 
-import "./productlisting.css"; // 👈 new css file
-
-function ProductListing({ category, title, subtitle, banner }) {
+function ProductList({ category, title, subtitle, banner }) {
   const dispatch = useDispatch();
   const wishlist = useSelector((state) => state.wishlist.items);
   const products = useSelector((state) => state.products.list);
-
   const categoryProducts = products.filter((p) => p.category === category);
 
   const [filteredProducts, setFilteredProducts] = useState(categoryProducts);
@@ -35,15 +33,11 @@ function ProductListing({ category, title, subtitle, banner }) {
     );
     if (availability === "in") updated = updated.filter((p) => p.stock > 0);
     if (availability === "out") updated = updated.filter((p) => p.stock === 0);
-    if (discount !== "all")
-      updated = updated.filter((p) => p.discount >= Number(discount));
-    if (fabric !== "all")
-      updated = updated.filter(
-        (p) => p.fabric?.toLowerCase() === fabric.toLowerCase()
-      );
+    if (discount !== "all") updated = updated.filter((p) => p.discount >= Number(discount));
+    if (fabric !== "all") updated = updated.filter((p) => p.fabric?.toLowerCase() === fabric.toLowerCase());
     setFilteredProducts(updated);
     setCurrentPage(1);
-  }, [categoryProducts, minPrice, maxPrice, availability, discount, fabric]);
+  }, [minPrice, maxPrice, availability, discount, fabric, categoryProducts]);
 
   const navigate = useNavigate();
   const indexOfLast = currentPage * productsPerPage;
@@ -52,16 +46,16 @@ function ProductListing({ category, title, subtitle, banner }) {
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
 
   return (
-    <div className="product-listing">
+    <div>
       {/* Banner */}
-      <div className="product-banner">
-        <img src={banner} alt={`${title} Banner`} />
+      <div className={`${category}-banner-full`}>
+        <img src={banner} alt={`${category} Banner`} />
       </div>
 
-      <div className="product-wrapper">
-        <div className="product-container">
+      <div className={`${category}-Full`}>
+        <div className={`${category}-container`}>
           {/* Filter */}
-          <ProductFilter
+          <KurtiFilter
             showFilter={showFilter}
             setShowFilter={setShowFilter}
             availability={availability}
@@ -76,109 +70,62 @@ function ProductListing({ category, title, subtitle, banner }) {
             setFabric={setFabric}
           />
 
-          <main className="product-section">
+          <main className={`${category}-section`}>
             {/* Header */}
-            <div className="product-header">
-              <p className="product-tagline">STAY AHEAD OF THE FASHION CURVE</p>
-              <h2 className="product-title">{title}</h2>
-              <p className="product-subtitle">{subtitle}</p>
+            <div className={`${category}-texts`}>
+              <p className={`${category}-tagline`}>STAY AHEAD OF THE FASHION CURVE</p>
+              <h2 className={`${category}-title`}>{title}</h2>
+              <p className={`${category}-subtitle`}>{subtitle}</p>
             </div>
 
-            <div className="product-controls">
-              <button
-                className="desktop-filter-btn"
-                onClick={() => setShowFilter(!showFilter)}
-              >
-                <FaFilter /> Filter
-              </button>
-              <div className="product-columns">
+            <div className={`${category}-header2`}>
+              <div className={`${category}-header-left`}>
                 <button
-                  onClick={() => setColumns(3)}
-                  className={columns === 3 ? "active" : ""}
+                  className="desktop-filter-btn"
+                  onClick={() => setShowFilter(!showFilter)}
                 >
-                  <BsGrid3X3GapFill />
+                  <FaFilter /> Filter
                 </button>
-                <button
-                  onClick={() => setColumns(4)}
-                  className={columns === 4 ? "active" : ""}
-                >
-                  <BsGridFill />
-                </button>
-                <button
-                  onClick={() => setColumns(5)}
-                  className={columns === 5 ? "active" : ""}
-                >
-                  <FaThLarge />
-                </button>
+              </div>
+              <div className={`${category}-columns`}>
+                <button onClick={() => setColumns(3)} className={columns === 3 ? "active" : ""}><BsGrid3X3GapFill /></button>
+                <button onClick={() => setColumns(4)} className={columns === 4 ? "active" : ""}><BsGridFill /></button>
+                <button onClick={() => setColumns(5)} className={columns === 5 ? "active" : ""}><FaThLarge /></button>
               </div>
             </div>
 
             {/* Mobile Filter */}
-            <button
-              className="mobile-filter-btn"
-              onClick={() => setShowFilter(!showFilter)}
-            >
+            <button className="mobile-filter-btn" onClick={() => setShowFilter(!showFilter)}>
               <FaFilter /> Filter
             </button>
 
             {/* Products Grid */}
-            <div className={`product-grid cols-${columns}`}>
+            <div className={`${category}-products-grid cols-${columns}`}>
               {currentProducts.map((product) => (
-                <div
-                  key={product.id}
-                  className="product-card"
-                  onClick={() => navigate(`/quickshop/${product.id}`)}
-                >
-                  <div className="product-image">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="main-img"
-                    />
-                    <img
-                      src={product.hoverimage}
-                      alt={product.name}
-                      className="hover-img"
-                    />
+                <div key={product.id} className={`${category}-card`} onClick={() => navigate(`/quickshop/${product.id}`)}>
+                  <div className={`${category}-image`}>
+                    <img src={product.image} alt={product.name} className={`${category}-main-img`} />
+                    <img src={product.hoverimage} alt={product.name} className={`${category}-hover-img`} />
 
                     <button
-                      className={`wishlist-btn ${
-                        wishlist.includes(product.id) ? "active" : ""
-                      }`}
+                      className={`${category}-icon-btn ${category}-wishlist ${wishlist.includes(product.id) ? "active" : ""}`}
                       onClick={(e) => {
                         e.stopPropagation();
                         dispatch(toggleWishlist(product.id));
-                      }}
-                    >
-                      {wishlist.includes(product.id) ? (
-                        <FaHeart />
-                      ) : (
-                        <FaRegHeart />
-                      )}
+                      }}>
+                      {wishlist.includes(product.id) ? <FaHeart /> : <FaRegHeart />}
                     </button>
 
-                    <NavLink
-                      to={`/quickshop/${product.id}`}
-                      className="view-btn"
-                    >
-                      <FiEye />
-                    </NavLink>
-                    <NavLink
-                      to={`/quickshop/${product.id}`}
-                      className="quickshop-btn"
-                    >
+                    <NavLink to={`/quickshop/${product.id}`} className={`${category}-icon-btn ${category}-view`}><FiEye /></NavLink>
+                    <NavLink to={`/quickshop/${product.id}`} className={`${category}-quickshop-btn`}>
                       Quickshop
                     </NavLink>
                   </div>
 
-                  <div className="product-info">
-                    <h5 className="product-name">{product.name}</h5>
-                    <p className="product-price">₹{product.price}</p>
-                    {product.discount && (
-                      <p className="product-discount">
-                        {product.discount}% OFF
-                      </p>
-                    )}
+                  <div className={`${category}-info`}>
+                    <h5 className={`${category}-name`}>{product.name}</h5>
+                    <p className={`${category}-price`}>₹{product.price}</p>
+                    {product.discount && <p className={`${category}-discount`}>{product.discount}% OFF</p>}
                   </div>
                 </div>
               ))}
@@ -188,31 +135,17 @@ function ProductListing({ category, title, subtitle, banner }) {
 
         {/* Pagination */}
         <div className="pagination">
-          <button
-            disabled={currentPage === 1}
-            onClick={() => setCurrentPage((p) => p - 1)}
-          >
-            Prev
-          </button>
+          <button disabled={currentPage === 1} onClick={() => setCurrentPage((p) => p - 1)}>Prev</button>
           {Array.from({ length: totalPages }, (_, i) => (
-            <button
-              key={i}
-              className={currentPage === i + 1 ? "active" : ""}
-              onClick={() => setCurrentPage(i + 1)}
-            >
+            <button key={i} className={currentPage === i + 1 ? "active" : ""} onClick={() => setCurrentPage(i + 1)}>
               {i + 1}
             </button>
           ))}
-          <button
-            disabled={currentPage === totalPages}
-            onClick={() => setCurrentPage((p) => p + 1)}
-          >
-            Next
-          </button>
+          <button disabled={currentPage === totalPages} onClick={() => setCurrentPage((p) => p + 1)}>Next</button>
         </div>
       </div>
     </div>
   );
 }
 
-export default ProductListing;
+export default ProductList;

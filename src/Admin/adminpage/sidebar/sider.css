@@ -1,0 +1,134 @@
+.sidebar {
+  height: 100vh;
+  background: #1f242d;
+  color: #fff;
+  position: fixed;
+  left: 0;
+  top: 0;
+  transition: width 0.3s ease, transform 0.3s ease;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.sidebar.open {
+  width: 240px;
+}
+
+.sidebar.collapsed {
+  width: 70px;
+}
+
+.sidebar-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-icon {
+  font-size: 24px;
+  color: #fff;
+}
+
+.sidebar-title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.toggle-btn {
+  font-size: 20px;
+  cursor: pointer;
+  color: #fff;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 20px;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 15px;
+  color: #d1d5db;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background 0.3s, color 0.3s;
+  position: relative;
+  cursor: pointer;
+}
+
+.link-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sidebar-link-icon {
+  display: flex;
+  align-items: center;
+}
+
+.sidebar-link:hover {
+  background: #374151;
+  color: #fff;
+}
+
+.sidebar-link.active {
+  background: #2563eb;
+  color: #fff;
+}
+
+.sidebar-submenu {
+  display: flex;
+  flex-direction: column;
+  margin-left: 25px;
+  margin-top: 5px;
+}
+
+.sidebar-sublink {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  color: #9ca3af;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.sidebar-sublink:hover {
+  background: #4b5563;
+  color: #fff;
+}
+
+.sidebar.collapsed .sidebar-title,
+.sidebar.collapsed .sidebar-link span {
+  display: none;
+}
+
+.sidebar.collapsed .sidebar-submenu {
+  display: none;
+}
+
+.sidebar.collapsed .sidebar-link:hover::after {
+  content: attr(title);
+  position: absolute;
+  left: 70px;
+  background: #111827;
+  padding: 4px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  color: #fff;
+  font-size: 13px;
+}

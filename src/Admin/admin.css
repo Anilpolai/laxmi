@@ -1,0 +1,59 @@
+.admin-layout {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 240px;
+  background: #1e222d;
+  color: #fff;
+  z-index: 200;
+  transition: width 0.3s ease;
+}
+
+.sidebar.collapsed {
+  width: 70px;
+}
+
+/* Main Section */
+.admin-main {
+  flex: 1;
+  margin-left: 240px; /* ✅ push content next to sidebar */
+  display: flex;
+  flex-direction: column;
+  transition: margin-left 0.3s ease;
+}
+
+/* adjust when sidebar collapsed */
+.sidebar.collapsed ~ .admin-main {
+  margin-left: 70px;
+}
+
+/* Header */
+.admin-header {
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 150;
+}
+
+/* Content area */
+.admin-content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background: #f5f6fa;
+}

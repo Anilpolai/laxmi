@@ -1,6 +1,7 @@
-import { createSlice, createSelector } from "@reduxjs/toolkit";
+// rootslice.js
+import { createSlice, createAsyncThunk, createSelector } from "@reduxjs/toolkit";
+import axios from "axios";
 import { categoriesData } from "../../jsfile/categoriesData";
-import { products } from "../../jsfile/products";
 
 // ------------------- CATEGORY SLICE -------------------
 const categorySlice = createSlice({
@@ -12,26 +13,42 @@ const categorySlice = createSlice({
 });
 
 // ------------------- PRODUCT SLICE -------------------
+// Async thunk to fetch products
+export const fetchProducts = createAsyncThunk(
+  "products/fetchProducts",
+  async () => {
+    const response = await axios.get("http://localhost:3000/api/products"); // Change to your backend URL
+    return response.data;
+  }
+);
+
 const productSlice = createSlice({
   name: "products",
   initialState: {
-    list: products,
+    list: [],
+    status: "idle",
+    error: null,
   },
   reducers: {
     addProduct: (state, action) => {
       state.list.push(action.payload);
     },
   },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchProducts.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchProducts.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.list = action.payload;
+      })
+      .addCase(fetchProducts.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      });
+  },
 });
-
-export const { addProduct } = productSlice.actions;
-
-// Selectors
-export const selectAllProducts = (state) => state.products.list;
-export const selectProductsByCategory = (state, category) =>
-  state.products.list.filter((p) => p.category === category);
-export const selectProductById = (state, id) =>
-  state.products.list.find((p) => String(p.id) === String(id));
 
 // ------------------- WISHLIST SLICE -------------------
 const wishlistSlice = createSlice({
@@ -60,15 +77,15 @@ const wishlistSlice = createSlice({
     },
   },
 });
-
 export const { toggleWishlist, removeWishlist, clearWishlist } =
   wishlistSlice.actions;
+
 
 // ------------------- REVIEW SLICE -------------------
 const reviewSlice = createSlice({
   name: "reviews",
   initialState: {
-    reviews: JSON.parse(localStorage.getItem("reviews")) || {}, // productId → array
+    reviews: JSON.parse(localStorage.getItem("reviews")) || {},
   },
   reducers: {
     addReview: (state, action) => {
@@ -77,7 +94,6 @@ const reviewSlice = createSlice({
         state.reviews[productId] = [];
       }
       state.reviews[productId].unshift(review);
-
       localStorage.setItem("reviews", JSON.stringify(state.reviews));
     },
     clearReviews: (state, action) => {
@@ -94,17 +110,19 @@ const reviewSlice = createSlice({
 
 export const { addReview, clearReviews } = reviewSlice.actions;
 
+// Selector for reviews
 export const selectReviewsByProduct = createSelector(
   [(state) => state.reviews.reviews, (_, productId) => productId],
   (reviews, productId) => reviews[productId] || []
 );
 
+// ------------------- CART SLICE -------------------
 const cartSlice = createSlice({
   name: "cart",
   initialState: {
     items: Array.isArray(JSON.parse(localStorage.getItem("cart")))
       ? JSON.parse(localStorage.getItem("cart"))
-      : [],  // ✅ always an array
+      : [],
   },
   reducers: {
     addToCart: (state, action) => {
@@ -127,7 +145,7 @@ const cartSlice = createSlice({
         (item) => item.id === id && item.size === size
       );
       if (existing) {
-        existing.quantity = Math.max(1, quantity); // never < 1
+        existing.quantity = Math.max(1, quantity);
       }
       localStorage.setItem("cart", JSON.stringify(state.items));
     },
@@ -145,11 +163,21 @@ const cartSlice = createSlice({
   },
 });
 
+export const { addToCart, removeFromCart, updateQuantity, clearCart } =
+  cartSlice.actions;
 
-export const { addToCart, removeFromCart, updateQuantity, clearCart } = cartSlice.actions;
+// Selector for cart count
 export const selectCartCount = (state) =>
   state.cart?.items?.reduce((sum, item) => sum + item.quantity, 0) || 0;
 
+// ------------------- SELECTORS -------------------
+export const selectAllProducts = (state) => state.products.list;
+
+export const selectProductsByCategory = (state, category) =>
+  state.products.list.filter((p) => p.category === category);
+
+export const selectProductById = (state, id) =>
+  state.products.list.find((p) => String(p.id) === String(id));
 
 // ------------------- EXPORT REDUCERS -------------------
 export const categoryReducer = categorySlice.reducer;
