@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./AdminProducts.css";
-import ProductList from "./productlist"; // ✅ ensure correct spelling
+import ProductList from "./productlist";
 
 export default function AddProduct() {
   const [products, setProducts] = useState([]);
@@ -29,7 +29,6 @@ export default function AddProduct() {
   const categories = ["kurti", "kurtiSet", "tunics", "coord"];
   const sizeOptions = ["S", "M", "L", "XL", "XXL"];
 
-  // Fetch Products
   const fetchProducts = async () => {
     try {
       const res = await axios.get("http://localhost:3000/api/products");
@@ -47,7 +46,6 @@ export default function AddProduct() {
 
   const handleChange = (e) => {
     const { name, value, files, type, checked } = e.target;
-
     if (files) {
       setFormData({
         ...formData,
@@ -94,14 +92,17 @@ export default function AddProduct() {
     if (formData.video) data.append("video", formData.video);
 
     try {
+      let res;
       if (editingId) {
-        await axios.put(`http://localhost:3000/api/products/${editingId}`, data, {
+        res = await axios.put(`http://localhost:3000/api/products/${editingId}`, data, {
           headers: { "Content-Type": "multipart/form-data" },
         });
+        setProducts(products.map(p => p._id === editingId ? res.data : p)); // update product instantly
       } else {
-        await axios.post("http://localhost:3000/api/products", data, {
+        res = await axios.post("http://localhost:3000/api/products", data, {
           headers: { "Content-Type": "multipart/form-data" },
         });
+        setProducts([res.data, ...products]); // add new product instantly
       }
 
       setFormData({
@@ -121,9 +122,6 @@ export default function AddProduct() {
         bestSelling: false,
       });
       setEditingId(null);
-
-      // ✅ Immediately refresh product list
-      fetchProducts();
     } catch (error) {
       console.error("Submit error:", error);
     }
@@ -158,7 +156,7 @@ export default function AddProduct() {
     if (!window.confirm("Are you sure you want to delete this product?")) return;
     try {
       await axios.delete(`http://localhost:3000/api/products/${id}`);
-      fetchProducts();
+      setProducts(products.filter(p => p._id !== id)); // remove instantly
     } catch (error) {
       console.error("Delete error:", error);
     }
@@ -172,22 +170,16 @@ export default function AddProduct() {
 
       <form onSubmit={handleSubmit} className="product-form">
         <input name="name" placeholder="Name" value={formData.name} onChange={handleChange} required />
-
         <select name="category" value={formData.category} onChange={handleChange}>
-          {categories.map((cat) => (
-            <option key={cat} value={cat}>{cat}</option>
-          ))}
+          {categories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
         </select>
-
         <input name="price" placeholder="Price" value={formData.price} onChange={handleChange} type="number" />
         <input name="discount" placeholder="Discount" value={formData.discount} onChange={handleChange} type="number" />
         <input name="fabric" placeholder="Fabric" value={formData.fabric} onChange={handleChange} />
 
         <label>Sizes:</label>
         <select name="sizes" multiple value={formData.sizes} onChange={handleChange}>
-          {sizeOptions.map((size) => (
-            <option key={size} value={size}>{size}</option>
-          ))}
+          {sizeOptions.map(size => <option key={size} value={size}>{size}</option>)}
         </select>
 
         <label>Stock Status:</label>
@@ -206,7 +198,7 @@ export default function AddProduct() {
         <h4>Product Details</h4>
         <table className="desc-table">
           <tbody>
-            {["fabric", "length", "style", "occasion"].map((field) => (
+            {["fabric", "length", "style", "occasion"].map(field => (
               <tr key={field}>
                 <td>{field.charAt(0).toUpperCase() + field.slice(1)}</td>
                 <td>
@@ -219,13 +211,10 @@ export default function AddProduct() {
 
         <label>Main Image:</label>
         <input type="file" name="image" onChange={handleChange} />
-
         <label>Hover Image:</label>
         <input type="file" name="hoverimage" onChange={handleChange} />
-
         <label>Additional Images:</label>
         <input type="file" name="images" multiple onChange={handleChange} />
-
         <label>Video:</label>
         <input type="file" name="video" onChange={handleChange} />
 
