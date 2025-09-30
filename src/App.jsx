@@ -20,6 +20,7 @@ import AdminLogin from "./Admin/admin";
 import Admin from "./Admin/admin";
 import AddProduct from "./Admin/adminpage/productlist/addproduct";
 import ProductList from "./Admin/adminpage/productlist/productlist";
+import Orders from "./Admin/adminpage/order/orders";
 
 function App() {
   const location = useLocation();
@@ -59,6 +60,7 @@ function App() {
       <Route element={<Admin />}>
         <Route path="/products/addproduct" element={<AddProduct />} />
         <Route path="/products/ProductList" element={<ProductList />} />
+        <Route path="/orders/orders" element={<Orders/>}/>
       </Route>
     </Routes>
   );

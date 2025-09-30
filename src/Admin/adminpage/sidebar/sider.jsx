@@ -127,7 +127,7 @@ function Sider() {
                     </div>
                     {isOpen && openMenu === "orders" && (
                         <div className="sidebar-submenu">
-                            <NavLink to="/orders/list" className="sidebar-sublink">
+                            <NavLink to="/orders/orders" className="sidebar-sublink">
                                 <FaList /> Order List
                             </NavLink>
                             <NavLink to="/orders/track" className="sidebar-sublink">

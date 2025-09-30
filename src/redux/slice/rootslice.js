@@ -1,4 +1,3 @@
-// rootslice.js
 import { createSlice, createAsyncThunk, createSelector } from "@reduxjs/toolkit";
 import axios from "axios";
 import { categoriesData } from "../../jsfile/categoriesData";
@@ -13,22 +12,14 @@ const categorySlice = createSlice({
 });
 
 // ------------------- PRODUCT SLICE -------------------
-// Async thunk to fetch products
-export const fetchProducts = createAsyncThunk(
-  "products/fetchProducts",
-  async () => {
-    const response = await axios.get("http://localhost:3000/api/products"); // Change to your backend URL
-    return response.data;
-  }
-);
+export const fetchProducts = createAsyncThunk("products/fetch", async () => {
+  const res = await axios.get("http://localhost:3000/api/products");
+  return res.data;
+});
 
 const productSlice = createSlice({
   name: "products",
-  initialState: {
-    list: [],
-    status: "idle",
-    error: null,
-  },
+  initialState: { list: [], status: "idle", error: null },
   reducers: {
     addProduct: (state, action) => {
       state.list.push(action.payload);
@@ -77,9 +68,6 @@ const wishlistSlice = createSlice({
     },
   },
 });
-export const { toggleWishlist, removeWishlist, clearWishlist } =
-  wishlistSlice.actions;
-
 
 // ------------------- REVIEW SLICE -------------------
 const reviewSlice = createSlice({
@@ -108,9 +96,6 @@ const reviewSlice = createSlice({
   },
 });
 
-export const { addReview, clearReviews } = reviewSlice.actions;
-
-// Selector for reviews
 export const selectReviewsByProduct = createSelector(
   [(state) => state.reviews.reviews, (_, productId) => productId],
   (reviews, productId) => reviews[productId] || []
@@ -130,13 +115,11 @@ const cartSlice = createSlice({
       const existing = state.items.find(
         (item) => item.id === id && item.size === size
       );
-
       if (existing) {
         existing.quantity = Math.max(1, quantity);
       } else {
         state.items.push({ id, name, image, price, size, quantity });
       }
-
       localStorage.setItem("cart", JSON.stringify(state.items));
     },
     updateQuantity: (state, action) => {
@@ -163,25 +146,64 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addToCart, removeFromCart, updateQuantity, clearCart } =
-  cartSlice.actions;
+// ------------------- ORDERS SLICE -------------------
+export const fetchOrders = createAsyncThunk("orders/fetch", async () => {
+  const res = await axios.get("http://localhost:3000/api/orders");
+  return res.data;
+});
 
-// Selector for cart count
-export const selectCartCount = (state) =>
-  state.cart?.items?.reduce((sum, item) => sum + item.quantity, 0) || 0;
+const orderSlice = createSlice({
+  name: "orders",
+  initialState: { list: [], status: "idle", error: null },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchOrders.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchOrders.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.list = action.payload;
+      })
+      .addCase(fetchOrders.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      });
+  },
+});
+
+// ------------------- EXPORTS -------------------
+
+// ✅ Category
+export const categoryReducer = categorySlice.reducer;
+
+// ✅ Products
+export const { addProduct } = productSlice.actions;
+export const productReducer = productSlice.reducer;
+
+// ✅ Wishlist
+export const { toggleWishlist, removeWishlist, clearWishlist } =
+  wishlistSlice.actions;
+export const wishlistReducer = wishlistSlice.reducer;
+
+// ✅ Reviews
+export const { addReview, clearReviews } = reviewSlice.actions;
+export const reviewReducer = reviewSlice.reducer;
+
+// ✅ Cart
+export const { addToCart, updateQuantity, removeFromCart, clearCart } =
+  cartSlice.actions;
+export const cartReducer = cartSlice.reducer;
+
+// ✅ Orders
+export const orderReducer = orderSlice.reducer;
 
 // ------------------- SELECTORS -------------------
 export const selectAllProducts = (state) => state.products.list;
-
 export const selectProductsByCategory = (state, category) =>
   state.products.list.filter((p) => p.category === category);
-
 export const selectProductById = (state, id) =>
   state.products.list.find((p) => String(p.id) === String(id));
 
-// ------------------- EXPORT REDUCERS -------------------
-export const categoryReducer = categorySlice.reducer;
-export const productReducer = productSlice.reducer;
-export const wishlistReducer = wishlistSlice.reducer;
-export const reviewReducer = reviewSlice.reducer;
-export const cartReducer = cartSlice.reducer;
+export const selectCartCount = (state) =>
+  state.cart.items.reduce((sum, item) => sum + item.quantity, 0);

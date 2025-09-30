@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { clearCart } from "../../redux/slice/rootslice"; // ✅ add this action in slice
+import { clearCart } from "../../redux/slice/rootslice";
+import axios from "axios";
 import "./checkout.css";
 
 const Checkout = () => {
@@ -29,15 +30,35 @@ const Checkout = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // ✅ Optional: Clear cart after order
-    dispatch(clearCart());
+    try {
+      const orderPayload = {
+        user: {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          address: formData.address,
+          city: formData.city,
+          zip: formData.zip,
+        },
+        items: cartItems,
+        payment: formData.payment,
+        totalPrice,
+      };
 
-    // ✅ Redirect to Thank You page
-    navigate("/thank-you");
+      const res = await axios.post("http://localhost:3000/api/order", orderPayload);
+
+      console.log("Order placed:", res.data);
+
+      dispatch(clearCart());
+      navigate("/thank-you");
+    } catch (error) {
+      console.error("Order creation failed:", error);
+    }
   };
+
 
   return (
     <Container className="checkout-page py-5">

@@ -1,4 +1,3 @@
-// src/redux/store/store.js
 import { configureStore } from "@reduxjs/toolkit";
 import {
   categoryReducer,
@@ -6,14 +5,18 @@ import {
   wishlistReducer,
   reviewReducer,
   cartReducer,
-} from "../slice/rootslice";  // ✅ single import from index.js
+  orderReducer,
+} from "../slice/rootslice";
 
-export const store = configureStore({
+const store = configureStore({
   reducer: {
     categories: categoryReducer,
     products: productReducer,
     wishlist: wishlistReducer,
-    reviews: reviewReducer, // ✅ added
-    cart: cartReducer, // ✅ added
+    reviews: reviewReducer,
+    cart: cartReducer,
+    orders: orderReducer,
   },
 });
+
+export default store;
