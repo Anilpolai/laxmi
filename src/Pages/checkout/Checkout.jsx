@@ -23,6 +23,8 @@ const Checkout = () => {
     payment: "cod",
   });
 
+  const [loading, setLoading] = useState(false);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -33,7 +35,24 @@ const Checkout = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (cartItems.length === 0) {
+      alert("Cart is empty!");
+      return;
+    }
+
+    setLoading(true);
+
     try {
+      // Add productId for backend validation
+      const itemsWithProductId = cartItems.map((item) => ({
+        productId: item.id || item._id, // <-- MUST be product ID
+        name: item.name,
+        image: item.image,
+        price: item.price,
+        size: item.size,
+        quantity: item.quantity,
+      }));
+
       const orderPayload = {
         user: {
           name: formData.name,
@@ -43,12 +62,15 @@ const Checkout = () => {
           city: formData.city,
           zip: formData.zip,
         },
-        items: cartItems,
+        items: itemsWithProductId,
         payment: formData.payment,
         totalPrice,
       };
 
-      const res = await axios.post("http://localhost:3000/api/order", orderPayload);
+      const res = await axios.post(
+        "http://localhost:3000/api/orders",
+        orderPayload
+      );
 
       console.log("Order placed:", res.data);
 
@@ -56,9 +78,11 @@ const Checkout = () => {
       navigate("/thank-you");
     } catch (error) {
       console.error("Order creation failed:", error);
+      alert("Failed to place order. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
-
 
   return (
     <Container className="checkout-page py-5">
@@ -164,8 +188,12 @@ const Checkout = () => {
                 onChange={handleChange}
               />
 
-              <Button type="submit" className="mt-4 w-100 checkout-btn">
-                Place Order
+              <Button
+                type="submit"
+                className="mt-4 w-100 checkout-btn"
+                disabled={loading}
+              >
+                {loading ? "Placing Order..." : "Place Order"}
               </Button>
             </Form>
           </Card>

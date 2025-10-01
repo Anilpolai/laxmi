@@ -45,7 +45,9 @@ const productSlice = createSlice({
 const wishlistSlice = createSlice({
   name: "wishlist",
   initialState: {
-    items: JSON.parse(localStorage.getItem("wishlist")) || [],
+    items: Array.isArray(JSON.parse(localStorage.getItem("wishlist"))) 
+      ? JSON.parse(localStorage.getItem("wishlist")) 
+      : [],
   },
   reducers: {
     toggleWishlist: (state, action) => {
@@ -58,8 +60,7 @@ const wishlistSlice = createSlice({
       localStorage.setItem("wishlist", JSON.stringify(state.items));
     },
     removeWishlist: (state, action) => {
-      const id = action.payload;
-      state.items = state.items.filter((item) => item !== id);
+      state.items = state.items.filter((item) => item !== action.payload);
       localStorage.setItem("wishlist", JSON.stringify(state.items));
     },
     clearWishlist: (state) => {
@@ -85,9 +86,8 @@ const reviewSlice = createSlice({
       localStorage.setItem("reviews", JSON.stringify(state.reviews));
     },
     clearReviews: (state, action) => {
-      const productId = action.payload;
-      if (productId) {
-        delete state.reviews[productId];
+      if (action.payload) {
+        delete state.reviews[action.payload];
       } else {
         state.reviews = {};
       }
@@ -118,7 +118,7 @@ const cartSlice = createSlice({
       if (existing) {
         existing.quantity = Math.max(1, quantity);
       } else {
-        state.items.push({ id, name, image, price, size, quantity });
+        state.items.push({ id, productId: id, name, image, price, size, quantity });
       }
       localStorage.setItem("cart", JSON.stringify(state.items));
     },
@@ -173,29 +173,15 @@ const orderSlice = createSlice({
 });
 
 // ------------------- EXPORTS -------------------
-
-// ✅ Category
 export const categoryReducer = categorySlice.reducer;
-
-// ✅ Products
 export const { addProduct } = productSlice.actions;
 export const productReducer = productSlice.reducer;
-
-// ✅ Wishlist
-export const { toggleWishlist, removeWishlist, clearWishlist } =
-  wishlistSlice.actions;
+export const { toggleWishlist, removeWishlist, clearWishlist } = wishlistSlice.actions;
 export const wishlistReducer = wishlistSlice.reducer;
-
-// ✅ Reviews
 export const { addReview, clearReviews } = reviewSlice.actions;
 export const reviewReducer = reviewSlice.reducer;
-
-// ✅ Cart
-export const { addToCart, updateQuantity, removeFromCart, clearCart } =
-  cartSlice.actions;
+export const { addToCart, updateQuantity, removeFromCart, clearCart } = cartSlice.actions;
 export const cartReducer = cartSlice.reducer;
-
-// ✅ Orders
 export const orderReducer = orderSlice.reducer;
 
 // ------------------- SELECTORS -------------------
@@ -204,6 +190,5 @@ export const selectProductsByCategory = (state, category) =>
   state.products.list.filter((p) => p.category === category);
 export const selectProductById = (state, id) =>
   state.products.list.find((p) => String(p.id) === String(id));
-
 export const selectCartCount = (state) =>
   state.cart.items.reduce((sum, item) => sum + item.quantity, 0);
