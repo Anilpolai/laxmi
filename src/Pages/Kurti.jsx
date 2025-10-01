@@ -108,10 +108,21 @@ function Kurti() {
               {currentProducts.map((product) => (
                 <div key={product.id} className="kurti-card" onClick={() => navigate(`/quickshop/${product.id}`)}>
                   <div className="kurti-image" >
-                    <img src={product.image} alt={product.name} className="kurti-main-img" />
-                    <img src={product.hoverimage} alt={product.name} className="kurti-hover-img" />
+                    {/* <img src={product.image} alt={product.name} className="kurti-main-img" />
+                    <img src={product.hoverimage} alt={product.name} className="kurti-hover-img" /> */}
 
-
+                    <img
+                      src={product.images?.[0]}
+                      alt={product.name}
+                      className="kurti-main-img"
+                    />
+                    {product.images?.[1] && (
+                      <img
+                        src={product.images[1]}
+                        alt={`${product.name} Hover`}
+                        className="kurti-hover-img"
+                      />
+                    )}
                     <button
                       className={`kurti-icon-btn kurti-wishlist ${wishlist.includes(product.id) ? "active" : ""}`}
                       onClick={(e) => {

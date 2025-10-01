@@ -30,7 +30,7 @@ function Coord() {
   const productsPerPage = 12;
 
   useEffect(() => {
-    let updated =  coordProducts.filter(
+    let updated = coordProducts.filter(
       (p) => p.price >= minPrice && p.price <= maxPrice
     );
     if (availability === "in") updated = updated.filter((p) => p.stock > 0);
@@ -107,9 +107,20 @@ function Coord() {
               {currentProducts.map((product) => (
                 <div key={product.id} className="coord-card" onClick={() => navigate(`/quickshop/${product.id}`)}>
                   <div className="coord-image">
-                    <img src={product.image} alt={product.name} className="coord-main-img" />
-                    <img src={product.hoverimage} alt={product.name} className="coord-hover-img" />
-
+                    {/* <img src={product.image} alt={product.name} className="coord-main-img" />
+                    <img src={product.hoverimage} alt={product.name} className="coord-hover-img" /> */}
+                    <img
+                      src={product.images?.[0]}
+                      alt={product.name}
+                      className="coord-main-img"
+                    />
+                    {product.images?.[1] && (
+                      <img
+                        src={product.images[1]}
+                        alt={`${product.name} Hover`}
+                        className="coord-hover-img"
+                      />
+                    )}
                     <button
                       className={`coord-icon-btn coord-wishlist ${wishlist.includes(product.id) ? "active" : ""}`}
                       onClick={(e) => {

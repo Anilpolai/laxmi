@@ -1,279 +1,236 @@
-:root{
-  --bg: #f5f7fb;
+:root {
+  --bg: #f4f6fb;
   --card: #ffffff;
-  --muted: #7b8596;
-  --primary: #0f6cff;
-  --accent: #6c63ff;
-  --danger: #ff4d6d;
+  --muted: #6b7280;
+  --primary: #2563eb;
+  --accent: #7c3aed;
+  --danger: #ef4444;
   --success: #22c55e;
-  --border: #e6e9ef;
-  --shadow: 0 6px 20px rgba(18,24,40,0.06);
-  --radius: 12px;
-  --glass: rgba(255,255,255,0.6);
-  font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  --border: #e5e7eb;
+  --shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+  --radius: 14px;
+  font-family: 'Inter', sans-serif;
 }
 
 /* Page container */
 .admin-products {
   max-width: 1200px;
   margin: 28px auto;
-  padding: 24px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(250,251,253,0.8));
-  border-radius: 16px;
+  padding: 28px;
+  background: var(--card);
+  border-radius: var(--radius);
   box-shadow: var(--shadow);
   color: #111827;
 }
 
 /* Title */
 .admin-products h2 {
-  margin: 0 0 18px 0;
-  font-size: 20px;
-  letter-spacing: 0.2px;
-  color: #0b1220;
+  margin: 0 0 24px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #1f2937;
+  letter-spacing: -0.5px;
+  border-left: 5px solid var(--primary);
+  padding-left: 10px;
 }
 
-/* Form layout */
+/* Form grid */
 .product-form {
   display: grid;
-  grid-template-columns: 1fr 320px;
-  gap: 20px;
-  align-items: start;
-  margin-bottom: 28px;
+  grid-template-columns: 2fr 1fr;
+  gap: 28px;
+  margin-bottom: 40px;
 }
 
-/* Left column (form fields) */
-.product-form > * {
-  background: transparent;
-}
-
-/* Group inside left column */
-.form-left {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-/* Inputs & selects styling */
+/* Inputs */
 .product-form input[type="text"],
 .product-form input[type="number"],
 .product-form textarea,
 .product-form select {
   width: 100%;
-  padding: 10px 12px;
+  padding: 12px 14px;
   border-radius: 10px;
   border: 1px solid var(--border);
-  background: var(--card);
-  box-shadow: 0 1px 0 rgba(0,0,0,0.02) inset;
-  outline: none;
+  background: #f9fafb;
   font-size: 14px;
-  color: #0b1220;
-  transition: border-color .18s ease, box-shadow .18s ease;
+  color: #1f2937;
+  transition: 0.2s ease;
 }
 
-.product-form textarea {
-  min-height: 92px;
-  resize: vertical;
-}
-
-/* Multi select sizing */
-.product-form select[multiple] {
-  min-height: 120px;
-  padding: 10px;
-}
-
-/* Inputs focus */
 .product-form input:focus,
 .product-form textarea:focus,
 .product-form select:focus {
   border-color: var(--primary);
-  box-shadow: 0 6px 18px rgba(15,108,255,0.06);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
-/* Right column (preview + details) */
-.form-right {
-  background: linear-gradient(180deg, rgba(255,255,255,0.8), rgba(250,250,255,0.9));
-  border: 1px solid var(--border);
-  padding: 18px;
-  border-radius: 12px;
+/* Textarea */
+.product-form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Labels */
+.product-form label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  margin: 8px 0 4px;
+  display: block;
+}
+
+/* File upload */
+.file-upload {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-/* File input label styled as button */
-.product-form label {
-  font-size: 13px;
-  color: var(--muted);
-  display: block;
-  margin-bottom: 6px;
+.file-upload input[type="file"] {
+  display: none;
 }
 
-.file-input {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.file-input input[type="file"] {
-  display: inline-block;
-}
-
-/* Fancy file button using pseudo-element technique (works without JS) */
 .file-btn {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 12px;
-  border-radius: 10px;
   background: linear-gradient(90deg, var(--primary), var(--accent));
   color: white;
-  font-weight: 600;
+  padding: 10px 16px;
+  border-radius: 10px;
   cursor: pointer;
-  border: none;
-  box-shadow: 0 8px 20px rgba(108,99,255,0.12);
-  font-size: 13px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 8px 20px rgba(124, 58, 237, 0.15);
+  transition: transform 0.15s ease;
 }
 
-/* Description table styles */
+.file-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* Image preview */
+.preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.preview img {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 2px solid var(--border);
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease;
+}
+
+.preview img:hover {
+  transform: scale(1.05);
+}
+
+/* Description table */
 .desc-table {
   width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  background: transparent;
-  overflow: hidden;
   border-radius: 10px;
+  overflow: hidden;
   border: 1px solid var(--border);
 }
 
 .desc-table td {
-  padding: 10px 12px;
-  background: var(--card);
-  border-bottom: 1px solid var(--border);
-  vertical-align: middle;
+  padding: 12px 14px;
+  background: #f9fafb;
   font-size: 14px;
-  color: #0b1220;
+  border-bottom: 1px solid var(--border);
 }
 
 .desc-table tr:last-child td {
   border-bottom: 0;
 }
 
-/* Preview thumbnails area (if you render previews) */
-.preview {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-top: 8px;
-}
-
-.preview img {
-  width: 110px;
-  height: 110px;
-  object-fit: cover;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  box-shadow: 0 4px 14px rgba(2,6,23,0.06);
-}
-
 /* Buttons */
-button[type="submit"],
-.product-action-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 14px;
-  border-radius: 10px;
+button[type="submit"] {
+  margin-top: 18px;
   background: var(--primary);
-  color: white;
+  color: #fff;
   font-weight: 600;
   border: none;
+  padding: 12px 18px;
+  border-radius: 10px;
   cursor: pointer;
-  transition: transform .12s ease, box-shadow .12s ease;
-  font-size: 14px;
-  box-shadow: 0 10px 30px rgba(15,108,255,0.12);
+  transition: 0.2s ease;
 }
 
-button[type="submit"]:hover { transform: translateY(-3px); }
-.product-action-btn.danger {
-  background: linear-gradient(90deg, #ff6b7a, #ff4d6d);
-  box-shadow: 0 8px 24px rgba(255,77,109,0.12);
+button[type="submit"]:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
 }
 
+/* Product list */
 .product-list {
-  padding: 20px;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  margin-top: 20px;
+  background: var(--card);
+  padding: 22px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
 }
 
 .product-list h3 {
-  margin-bottom: 15px;
   font-size: 20px;
-  color: #333;
+  margin-bottom: 16px;
+  font-weight: 700;
+  color: #1f2937;
 }
 
 .product-list table {
   width: 100%;
   border-collapse: collapse;
+  overflow: hidden;
 }
 
-.product-list table th,
-.product-list table td {
-  padding: 12px 15px;
-  text-align: left;
-  border-bottom: 1px solid #eee;
-}
-
-.product-list table th {
-  background: #f8f8f8;
-  font-weight: bold;
-}
-
-.product-list table tr:hover {
-  background: #f1f1f1;
-}
-
-.product-list table td button {
-  padding: 6px 12px;
-  margin-right: 5px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+.product-list th,
+.product-list td {
+  padding: 14px 16px;
   font-size: 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
 }
 
-.product-list table td button:hover {
-  opacity: 0.9;
+.product-list th {
+  background: #f3f4f6;
+  font-weight: 600;
+  color: #374151;
 }
 
-.product-list table td button:first-child {
-  background: #4CAF50;
+.product-list tr:hover {
+  background: #f9fafb;
+}
+
+/* Table action buttons */
+.product-list button {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.product-list button:first-child {
+  background: var(--success);
   color: #fff;
 }
 
-.product-list table td button:last-child {
-  background: #f44336;
+.product-list button:last-child {
+  background: var(--danger);
   color: #fff;
-}
-
-
-/* Small helper text */
-.hint {
-  font-size: 12px;
-  color: var(--muted);
 }
 
 /* Responsive */
-@media (max-width: 980px) {
+@media (max-width: 900px) {
   .product-form {
     grid-template-columns: 1fr;
   }
-
-  .form-right {
-    order: 2;
-  }
 }
-
-/* Tiny polish for selects and placeholders */
-::placeholder { color: #9aa4b2; opacity: 1; font-weight: 500; }

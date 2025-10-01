@@ -106,9 +106,20 @@ function KurtiSet() {
               {currentProducts.map((product) => (
                 <div key={product.id} className="kurti-set-card" onClick={() => navigate(`/quickshop/${product.id}`)}>
                   <div className="kurti-set-image" >
-                    <img src={product.image} alt={product.name} className="kurti-set-main-img" />
-                    <img src={product.hoverimage} alt={product.name} className="kurti-set-hover-img" />
-
+                    {/* <img src={product.image} alt={product.name} className="kurti-set-main-img" />
+                    <img src={product.hoverimage} alt={product.name} className="kurti-set-hover-img" /> */}
+                    <img
+                      src={product.images?.[0]}
+                      alt={product.name}
+                      className="kurti-set-main-img"
+                    />
+                    {product.images?.[1] && (
+                      <img
+                        src={product.images[1]}
+                        alt={`${product.name} Hover`}
+                        className="kurti-set-hover-img"
+                      />
+                    )}
                     <button
                       className={`kurti-set-icon-btn kurti-set-wishlist ${wishlist.includes(product.id) ? "active" : ""}`}
                       onClick={(e) => {

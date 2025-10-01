@@ -39,8 +39,6 @@ export const kurti = [
     stock: 10,
     discount: 10,
     fabric: "Cotton",
-    image: k1,
-    hoverimage: k3,
     sizes: ["S", "M", "L", "XL", "2XL"],
     description: "A beautifully embroidered cotton kurti, perfect for casual and festive wear.",
     images: [k1, k3],

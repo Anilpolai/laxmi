@@ -106,9 +106,20 @@ function Tunics() {
               {currentProducts.map((product) => (
                 <div key={product.id} className="tunics-card" onClick={() => navigate(`/quickshop/${product.id}`)}>
                   <div className="tunics-image">
-                    <img src={product.image} alt={product.name} className="tunics-main-img" />
-                    <img src={product.hoverimage} alt={product.name} className="tunics-hover-img" />
-
+                    {/* <img src={product.image} alt={product.name} className="tunics-main-img" />
+                    <img src={product.hoverimage} alt={product.name} className="tunics-hover-img" /> */}
+                    <img
+                      src={product.images?.[0]}
+                      alt={product.name}
+                      className="tunics-main-img"
+                    />
+                    {product.images?.[1] && (
+                      <img
+                        src={product.images[1]}
+                        alt={`${product.name} Hover`}
+                        className="tunics-hover-img"
+                      />
+                    )}
                     <button
                       className={`tunics-icon-btn tunics-wishlist ${wishlist.includes(product.id) ? "active" : ""}`}
                       onClick={(e) => {

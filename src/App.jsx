@@ -19,8 +19,9 @@ import Loader from "./Pages/Loader";
 import AdminLogin from "./Admin/admin";
 import Admin from "./Admin/admin";
 import AddProduct from "./Admin/adminpage/productlist/addproduct";
-import ProductList from "./Admin/adminpage/productlist/productlist";
+import ProductList from "./Admin/adminpage/productlist/list";
 import Orders from "./Admin/adminpage/order/orders";
+import Deshborad from "./Admin/adminpage/dashborad"
 
 function App() {
   const location = useLocation();
@@ -56,10 +57,11 @@ function App() {
         <Route path="/checkout" element={<Checkout />} />
       </Route>
       <Route path="/thank-you" element={<ThankYou />} />
-      <Route path="/admin" element={<AdminLogin />} />
+      <Route path="/admin" element={<Admin />} />
       <Route element={<Admin />}>
+        <Route path="/dashboard" element={<Deshborad/>}/>
         <Route path="/products/addproduct" element={<AddProduct />} />
-        <Route path="/products/ProductList" element={<ProductList />} />
+        <Route path="/products/list" element={<ProductList />} />
         <Route path="/orders/orders" element={<Orders/>}/>
       </Route>
     </Routes>

@@ -29,9 +29,7 @@ function Header() {
 
       {/* Right Side */}
       <div className="header-right">
-        <button className="theme-toggle" onClick={toggleTheme}>
-          {darkMode ? <FaSun /> : <FaMoon />}
-        </button>
+
 
         <div className="profile">
           <img

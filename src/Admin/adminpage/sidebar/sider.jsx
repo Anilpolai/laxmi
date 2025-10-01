@@ -67,41 +67,11 @@ function Sider() {
                     </div>
                     {isOpen && openMenu === "products" && (
                         <div className="sidebar-submenu">
-                            <NavLink to="/products/ProductList" className="sidebar-sublink">
+                            <NavLink to="/products/list" className="sidebar-sublink">
                                 <FaList /> Product List
                             </NavLink>
                             <NavLink to="/products/addproduct" className="sidebar-sublink">
                                 <FaPlus /> Create Product
-                            </NavLink>
-                        </div>
-                    )}
-                </div>
-
-                {/* Categories */}
-                <div className="sidebar-dropdown">
-                    <div
-                        className="sidebar-link"
-                        onClick={() => toggleMenu("categories")}
-                        title="Categories"
-                    >
-                        <div className="link-content">
-                            <FaTags />
-                            {isOpen && <span>Categories</span>}
-                        </div>
-                        {isOpen &&
-                            (openMenu === "categories" ? (
-                                <FaMinus className="sidebar-link-icon" />
-                            ) : (
-                                <FaPlus className="sidebar-link-icon" />
-                            ))}
-                    </div>
-                    {isOpen && openMenu === "categories" && (
-                        <div className="sidebar-submenu">
-                            <NavLink to="/categories/list" className="sidebar-sublink">
-                                <FaList /> Category List
-                            </NavLink>
-                            <NavLink to="/categories/create" className="sidebar-sublink">
-                                <FaPlus /> Create Category
                             </NavLink>
                         </div>
                     )}
