@@ -9,6 +9,7 @@ import Kurtiset from "./Pages/products/kuratiset";
 import Tunics from "./Pages/products/tunics";
 import Coord from "./Pages/products/co-ord";
 import Checkout from "./Pages/checkout/Checkout";
+import TrackOrder from "./Pages/checkout/Tracking";
 import ThankYou from "./Pages/checkout/ThankYou";
 import Contact from "./Pages/contact/contact";
 import About from "./Pages/About/About";
@@ -16,7 +17,7 @@ import Endlayout from "./component/Endlayout";
 import Wishlist from "./component/wishlist/Wishlist";
 import QuickshopPage from "./component/quickshop/quickshop";
 import Loader from "./Pages/Loader";
-import AdminLogin from "./Admin/admin";
+// import AdminLogin from "./Admin/admin";
 import Admin from "./Admin/admin";
 import AddProduct from "./Admin/adminpage/productlist/addproduct";
 import ProductList from "./Admin/adminpage/productlist/list";
@@ -55,6 +56,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<About />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/TrackOrder" element={<TrackOrder/>}/>
       </Route>
       <Route path="/thank-you" element={<ThankYou />} />
       <Route path="/admin" element={<Admin />} />

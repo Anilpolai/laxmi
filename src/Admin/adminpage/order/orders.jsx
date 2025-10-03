@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchOrders } from "../../../redux/slice/rootslice";
+import "./orders.css";
 
 function Orders() {
   const dispatch = useDispatch();
@@ -14,30 +15,50 @@ function Orders() {
   if (status === "failed") return <p>Error: {error}</p>;
 
   return (
-    <div>
-      <h2>📦 Orders</h2>
-      <table border="1" cellPadding="10" style={{ width: "100%", marginTop: "20px" }}>
-        <thead>
-          <tr>
-            <th>Order ID</th>
-            <th>User</th>
-            <th>Total</th>
-            <th>Status</th>
-            <th>Tracking ID</th>
-          </tr>
-        </thead>
-        <tbody>
-          {list.map((order) => (
-            <tr key={order._id}>
-              <td>{order._id}</td>
-              <td>{order.user?.name} ({order.user?.email})</td>
-              <td>₹{order.totalPrice}</td>
-              <td>{order.status}</td>
-              <td>{order.trackingId || "N/A"}</td>
+    <div className="orders-container">
+      {/* ✅ Heading bar */}
+      <div className="orders-header">
+        <h2>📦 Orders</h2>
+        <span className="orders-count">
+          Total: {list.length} orders
+        </span>
+      </div>
+
+      <div className="table-wrapper">
+        <table className="orders-table">
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>User</th>
+              <th>Total</th>
+              <th>Status</th>
+              <th>Tracking ID</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {list.map((order) => (
+              <tr key={order._id}>
+                <td>{order._id}</td>
+                <td>
+                  {order.user?.name} <br />
+                  <small>{order.user?.email}</small>
+                </td>
+                <td>₹{order.totalPrice}</td>
+                <td>
+                  <span
+                    className={`status-badge ${
+                      order.status?.toLowerCase() || "pending"
+                    }`}
+                  >
+                    {order.status}
+                  </span>
+                </td>
+                <td>{order.trackingId || "N/A"}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
